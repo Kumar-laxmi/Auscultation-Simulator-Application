@@ -7,15 +7,15 @@ from django_plotly_dash import DjangoDash
 
 # Example data (a circle).
 resolution = 1000
-rsp = nk.rsp_simulate(duration=10, respiratory_rate=15)
+rsp = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=2000)[:5000]
 max_height, min_height = max(rsp), min(rsp)
-time = list(range(10001))
+time = list(range(5001))
 
 # Example app.
 figure = dict(
     data=[{'x': time, 'y': rsp, 'line': {'color': 'blue'}}],
     layout=dict(
-        xaxis=dict(range=[0, 10000]),
+        xaxis=dict(range=[0, 5000]),
         yaxis=dict(range=[min_height, max_height]),
         plot_bgcolor='black',  # Set background color to black
         paper_bgcolor='black',  # Set paper color to black
@@ -37,12 +37,6 @@ app.clientside_callback(
     function (n_intervals, data, offset) {
         offset = offset % data.x.length;
         const end = Math.min((offset + 10), data.x.length);
-        
-        // Check if it's the initial case
-        if (offset === 0) {
-            return [[{x: [data.x.slice(0, 10)], y: [data.y.slice(0, 10)]}, [0], 9500], end]
-        }
-
         const xSubset = data.x.slice(offset, end);
         const ySubset = data.y.slice(offset, end);
 
@@ -52,7 +46,7 @@ app.clientside_callback(
             ySubset.push(null);
         }
 
-        return [[{x: [xSubset], y: [ySubset]}, [0], 9950], end]
+        return [[{x: [xSubset], y: [ySubset]}, [0], 4950], end]
     }
     """,
     [Output('graph', 'extendData'), Output('offset', 'data')],
