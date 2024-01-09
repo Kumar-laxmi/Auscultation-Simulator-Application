@@ -124,6 +124,13 @@
                             <p class="card-text font-weight-bold" style="transition: 0.5s;" id="blink2">18 Respiration Rate</p>
                         </div>
                     </div>
+                    <div class="card text-white bg-dark">
+                        <div class="card-body">
+                            <p class="card-text font-weight-bold" style="transition: 0.5s;" id="sys_vol"> 
+                                <i class="fa fa-volume-up" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -291,16 +298,18 @@
                     <div class="col-12">
                         <div class="bg-secondary text-center rounded px-2 py-2 gy-1">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">1x</button>
+                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">2x</button>
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">4x</button>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-1">
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">HBR</button>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-1">
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="ecg_btn">ECG</button>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-1">
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="rsp_btn">RR</button>
                                 </div>
                                 <div class="col-2">

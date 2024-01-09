@@ -9,7 +9,12 @@ import numpy as np
 import pandas as pd
 import neurokit2 as nk
 from .DashApp import ecg_dash, rsp_dash
+from .utilities.volume import get_speaker_output_volume
 
 # Create your views here.
 def index(request):
-    return render(request, 'heart.html', {})
+    vol = get_speaker_output_volume() # Obtain the speaker volume of system
+
+    return render(request, 'heart.html', {
+        'vol': vol
+    })
