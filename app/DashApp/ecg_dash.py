@@ -4,9 +4,8 @@ from dash.dependencies import Input, Output, State
 import neurokit2 as nk
 from django_plotly_dash import DjangoDash
 
-# Example data (a circle).
 resolution = 1000
-ecg = nk.ecg_simulate(duration=10, heart_rate=70, sampling_rate=2000)[:5000]
+ecg = nk.ecg_simulate(duration=10, heart_rate=70, sampling_rate=1000)[:5000]
 max_height, min_height = max(ecg), min(ecg)
 time = list(range(5001))
 

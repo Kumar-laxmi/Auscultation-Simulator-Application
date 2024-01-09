@@ -7,7 +7,7 @@ from django_plotly_dash import DjangoDash
 
 # Example data (a circle).
 resolution = 1000
-rsp = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=2000)[:5000]
+rsp = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=1000)[:5000]
 max_height, min_height = max(rsp), min(rsp)
 time = list(range(5001))
 

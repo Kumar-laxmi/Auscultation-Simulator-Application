@@ -12,4 +12,4 @@ from .DashApp import ecg_dash, rsp_dash
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html', {})
+    return render(request, 'heart.html', {})
