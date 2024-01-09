@@ -1,0 +1,49 @@
+Папка heart содержит папки со звуками аускультации сердца.
+
+Каждая папка со звуком содержит 5 папок для каждой точки аускультации:
+А - аортальный клапан;
+Е - точка Боткина-Эрба;
+М - митральный клапан;
+P - легочный клапан;
+T - трехстворчатый клапан.
+
+Список звуков:
+1) acute_myocardial_infarction - Острый инфаркт миокарда
+2) acute_pericarditis - Острый перикардит
+3) aortic_stenosis_and_regurgitation - Стеноз и регургитация аортального клапана
+4) aortic_valve_regurgitation - Регургитация аортального клапана
+5) aortic_valve_stenosis - Стеноз аортального клапана
+6) atrial_septal_defect - Деффект межпредсердной перегородки
+7) austin_flint_murmur - Шум Остина Флинта
+8) coarctation_of_the_aorta - Коарктация аорты
+9) congestive_heart_failure - Застойная недостаточность кровообращения
+10) continuous_murmur - Систоло-диастолический шум
+11) diastolic_murmur - Диастолический шум
+12) dilated_cardiomyopathy - Дилатационная кардиомиопатия
+13) early_systolic_murmur - Ранний систолический шум
+14) fourth_heart_sound_gallop - Четвертый тон сердца (ритм галлопа)
+15) functional_murmur - Функциональный шум
+16) holosystolic_murmur - Голосистолический шум
+17) hypertrophic_cardiomyopathy - Гипертрофическая кардиомиопатия
+18) mid-systolic_murmur - Среднесистолический шум
+19) mitral_stenosis_and_regurgitation - Стеноз и регургитация митрального клапана
+20) mitral_stenosis_and_tricuspid_regurgitation Стеноз митрального клапана и регургитация трехстворчатого клапана
+21) mitral_valve_prolapse - Пролапс митрального клапана
+22) mitral_valve_regurgitation - Регургитация митрального клапана
+23) mitral_valve_stenosis - Стеноз митрального клапана
+24) normal_heart - Нормальный звук сердца
+25) opening_snap - Щелчок открытия клапана
+26) patent_ductus_arteriosus - Открытый артериальный проток
+27) pericardial_rub - Шум трения перикарда
+28) pulmonary_hypertension - Легочная гипертензия
+29) pulmonary_valve_regurgitation - Регургитация легочного клапана
+30) pulmonary_valve_stenosis - Стеноз легочного клапана
+31) split_first_heart_sound - Ресщепленный первый тон сердца
+32) split_second_heart_sound - Ресщепленный второй тон сердца
+33) stills_murmur - Шум Стилла
+34) systemic_hypertension - Системная гипертензия
+35) tetralogy_of_fallot - Тетрада Фалло
+36) third_heart_sound_gallop - Третий тон сердца (ритм галлопа)
+37) tricuspid_valve_regurgitation - Регургитация трехстворчатого клапана
+38) ventricular_aneurysm - Аневризма желудочка
+39) ventricular_septal_defect - Дефект межжелудочковой перегородки

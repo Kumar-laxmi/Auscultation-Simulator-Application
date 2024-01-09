@@ -1,0 +1,17 @@
+Папка abdomen содержит файлы со звуками аускультации кишечника.
+
+Список звуков:
+1) borborygmus - Урчание
+2) bruits_due_to_renal_arteries_stenosis - Шум при стенозе почечных артерий
+3) capotement - Шум плеска
+4) constipation - Запор
+5) crohns_disease - Болезнь Крона
+6) diarrhea - Диарея
+7) hyperactive_sounds - Гиперактивные звуки
+8) hypoactive_sounds - Гипоактивные звуки
+9) irritable_bowel_syndrome - Синдром раздражённого кишечника
+10) normal_bowel - Нормальный звук кишечника
+11) normal_bowel_sound_with_bruits - Нормальный звук кишечника с шумом
+12) paralytic_ileus - Функциональная кишечная непроходимость
+13) peritoneal_friction_rub - Шум трения брюшины
+14) ulcerative_colitis - Язвенный колит
