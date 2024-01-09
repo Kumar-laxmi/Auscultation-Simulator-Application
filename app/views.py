@@ -5,7 +5,6 @@ from django.template import RequestContext
 
 import plotly.graph_objects as go
 from plotly.offline import plot
-import wave, sys
 import numpy as np
 import pandas as pd
 import neurokit2 as nk
