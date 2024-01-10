@@ -1,0 +1,9 @@
+body {
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }
+
+  .dropdown-item{
+    background-color: #191C24;
+    color: #EB1616;
+} 

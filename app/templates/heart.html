@@ -114,20 +114,20 @@
                     <input class="form-control bg-dark border-0" type="search" placeholder="Search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto gap-3">
-                    <button type="button" class="btn btn-link btn-outline-danger" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-link btn-outline-danger" id="hr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
                     <div class="card text-success bg-dark" style="width: fit-content; block-size: fit-content;">
                         <div class="card-body">
                             <p class="card-text text-success" style="transition: 0.5s;" id="blink1">60 Heart Rate</p>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-link btn-outline-danger" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-link btn-outline-danger" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-link btn-outline-danger" id="hr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-link btn-outline-danger" id="rr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
                     <div class="card text-info bg-dark">
                         <div class="card-body">
                             <p class="card-text font-weight-bold" style="transition: 0.5s;" id="blink2">18 Respiration Rate</p>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-link btn-outline-danger" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-link btn-outline-danger" id="rr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
                     <div class="card text-white bg-dark">
                         <div class="card-body">
                             <p class="card-text font-weight-bold" style="transition: 0.5s;" id="sys_vol"> 
@@ -430,6 +430,10 @@
             blink1.style.opacity = (blink1.style.opacity == 0 ? 1 : 0);
             blink2.style.opacity = (blink2.style.opacity == 0 ? 1 : 0);
         }, 500);
+        document.getElementById("hr_plus").onclick = function() {
+            const inc_val = Integer.parseInt(currtext.match(/\d/g)) + 1;
+            blink1.textContent = inc_val.toString() + ' Heart Rate';
+        };
     </script>
 
     <!-- JavaScript Libraries -->
