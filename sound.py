@@ -10,7 +10,7 @@ def audioFunc1():
     bpm = 60
     delay=60/bpm
     while True:
-        sd.play(data1, fs1, device=1)   #speakers
+        sd.play(data1, fs1, device=2)   #speakers
         time.sleep(delay)
 
 def audioFunc2():
@@ -24,4 +24,4 @@ def audioFunc2():
 
 if __name__ == '__main__':
     Thread(target = audioFunc1).start()
-    Thread(target = audioFunc2).start()
+    #Thread(target = audioFunc2).start()
