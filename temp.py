@@ -1,60 +1,58 @@
-import dash
-import dash_html_components as html
 import dash_core_components as dcc
-from dash.dependencies import Input, Output, State
-import neurokit2 as nk
+import dash_html_components as html
+from dash import callback_context
+import dash_table
+import pandas as pd
+import numpy as np
+import dash_bootstrap_components as dbc
+import dash
 
-# Example data (a circle).
-resolution = 1000
-rsp = nk.rsp_simulate(duration=10, respiratory_rate=15)
-time = list(range(10001))
 
-# Example app.
-figure = dict(
-    data=[{'x': time, 'y': rsp, 'line': {'color': 'blue'}}],
-    layout=dict(
-        xaxis=dict(range=[0, 10000]),
-        yaxis=dict(range=[-1, 1]),
-        plot_bgcolor='black',  # Set background color to black
-        paper_bgcolor='black',  # Set paper color to black
-        font=dict(color='white'),  # Set font color to white
-    )
-)
+app = dash.Dash(__name__)
 
-app = dash.Dash(__name__, update_title=None)  # remove "Updating..." from title
+
+tblcols=[{"label": "id", "id": "id"},
+    {"label": "x", "id": "x"},
+        {"label": "y", "id": "y"}]
+
+df_table = pd.DataFrame([{'id': 'id_0', 'x': 0, 'y': 0}], columns=[col['label'] for col in tblcols])
+
+
+
+def getData(id):
+    n = np.random.random(1)[0]
+    return {'id':f'id_{id}', 'x': n, 'y': n}
+    
 app.layout = html.Div([
-    dcc.Graph(id='graph', figure=dict(figure)),
-    dcc.Interval(id="interval", interval=25),
-    dcc.Store(id='offset', data=0),
-    dcc.Store(id='store', data=dict(x=time, y=rsp, resolution=resolution)),
+      html.H4('Dashboard'),
+      html.Button('Add Row', id='add-btn', n_clicks=0),
+      dcc.Interval('table-update', interval=1_000, n_intervals = 0),
+      dash_table.DataTable(
+          id='table',
+          data= df_table.to_dict('records'), 
+          columns=tblcols
+      )
 ])
 
-app.clientside_callback(
-    """
-    function (n_intervals, data, offset) {
-        offset = offset % data.x.length;
-        const end = Math.min((offset + 10), data.x.length);
-        
-        // Check if it's the initial case
-        if (offset === 0) {
-            return [[{x: [data.x.slice(0, 10)], y: [data.y.slice(0, 10)]}, [0], 9500], end]
-        }
+@app.callback(
+        dash.dependencies.Output('table','data'),
+        [dash.dependencies.Input('table-update', 'n_intervals')])
+def updateTable(n):
+    global df_table
+    for id in range(len(df_table)):
+        n = np.random.random(1)[0]
+        df_table.loc[df_table['id'] == f'id_{id}', ['x', 'y']] = [n, n + 6]
+    return df_table.to_dict('records')
 
-        const xSubset = data.x.slice(offset, end);
-        const ySubset = data.y.slice(offset, end);
-
-        // Remove the last point only if not reaching the end of the data
-        if (end < data.x.length) {
-            xSubset.push(null);
-            ySubset.push(null);
-        }
-
-        return [[{x: [xSubset], y: [ySubset]}, [0], 9500], end]
-    }
-    """,
-    [Output('graph', 'extendData'), Output('offset', 'data')],
-    [Input('interval', 'n_intervals')], [State('store', 'data'), State('offset', 'data')]
-)
+@app.callback(
+        dash.dependencies.Output('table','data'),
+        [dash.dependencies.Input('add-btn', 'n_clicks')])
+def addRow(n):
+    global df_table
+    changed_id = [p['prop_id'] for p in callback_context.triggered][0]
+    if 'add-btn' in changed_id: 
+        df_table = df_table.append(getData(len(df_table)), ignore_index=True)
+        return df_table.to_dict('records')
 
 if __name__ == '__main__':
-    app.run_server()
+     app.run_server(debug=False)

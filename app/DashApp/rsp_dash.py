@@ -4,9 +4,12 @@ from dash.dependencies import Input, Output, State
 import neurokit2 as nk
 from django_plotly_dash import DjangoDash
 
+rr_show = 15
+
 # Example data (a circle).
 resolution = 1000
 rsp = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=1000)[:5000]
+print('Respiratory rate updated in RR App to {}'.format(rr_show))
 max_height, min_height = max(rsp), min(rsp)
 time = list(range(5001))
 

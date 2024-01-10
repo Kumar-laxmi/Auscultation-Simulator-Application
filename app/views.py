@@ -3,13 +3,21 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext
 
-import plotly.graph_objects as go
-from plotly.offline import plot
-import numpy as np
-import pandas as pd
-import neurokit2 as nk
 from .DashApp import ecg_dash, rsp_dash
+
+hr_show = ecg_dash.hr_show
+rr_show = rsp_dash.rr_show
 
 # Create your views here.
 def index(request):
+    global hr_show
+    global rr_show
+    # Updating the Heart Rate and Respiration Rate graph
+    if request.method == "POST":
+        hr_show = int(request.form.get('hr_show'))
+        ecg_dash.hr_show = hr_show
+        rr_show = int(request.form.get('rr_show'))
+        rsp_dash.rr_show = rr_show
+
+
     return render(request, 'heart.html', {})

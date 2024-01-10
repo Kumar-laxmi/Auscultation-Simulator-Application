@@ -2,9 +2,14 @@ from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import neurokit2 as nk
 from django_plotly_dash import DjangoDash
+import sys
+
+sys.path.append('../../app')
+
+hr_show = 60
 
 resolution = 1000
-ecg = nk.ecg_simulate(duration=10, heart_rate=70, sampling_rate=1000)[:5000]
+ecg = nk.ecg_simulate(duration=10, heart_rate=hr_show, sampling_rate=1000)[:5000]
 max_height, min_height = max(ecg), min(ecg)
 time = list(range(5001))
 

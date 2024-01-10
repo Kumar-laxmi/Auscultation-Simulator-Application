@@ -117,14 +117,14 @@
                     <button type="button" class="btn btn-link btn-outline-danger" id="hr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
                     <div class="card text-success bg-dark" style="width: fit-content; block-size: fit-content;">
                         <div class="card-body">
-                            <p class="card-text text-success" style="transition: 0.5s;" id="blink1">60 Heart Rate</p>
+                            <p class="card-text text-success" style="transition: 0.5s;" id="hr_show">60</p>
                         </div>
                     </div>
                     <button type="button" class="btn btn-link btn-outline-danger" id="hr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
                     <button type="button" class="btn btn-link btn-outline-danger" id="rr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
                     <div class="card text-info bg-dark">
                         <div class="card-body">
-                            <p class="card-text font-weight-bold" style="transition: 0.5s;" id="blink2">18 Respiration Rate</p>
+                            <p class="card-text font-weight-bold" style="transition: 0.5s;" id="rr_show">18</p>
                         </div>
                     </div>
                     <button type="button" class="btn btn-link btn-outline-danger" id="rr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
@@ -424,16 +424,55 @@
     </script>
 
     <script>
-        var blink1 = document.getElementById('blink1');
-        var blink2 = document.getElementById('blink2');
+        var blink1 = document.getElementById('hr_show');
+        var blink2 = document.getElementById('rr_show');
         setInterval(function() {
             blink1.style.opacity = (blink1.style.opacity == 0 ? 1 : 0);
             blink2.style.opacity = (blink2.style.opacity == 0 ? 1 : 0);
         }, 500);
-        document.getElementById("hr_plus").onclick = function() {
-            const inc_val = Integer.parseInt(currtext.match(/\d/g)) + 1;
-            blink1.textContent = inc_val.toString() + ' Heart Rate';
+    </script>
+
+    <script>
+        const heartRate = document.getElementById("hr_show");
+        const respRate = document.getElementById("rr_show");
+
+        var count1 = 60;
+        var count2 = 15;
+
+        heartRate.innerHTML = count1 + ' Heart Rate';
+        respRate.innerHTML = count2 + ' Respiration Rate';
+
+        const inc_hr = () => {
+            count1++;
+            heartRate.innerHTML = count1 + ' Heart Rate';
+            $.ajax({
+                type: POST,
+                url: '',
+                data: {'hr_show': count1, 'rr_show': count2}
+            })
         };
+        const dec_hr = () => {
+            count1--;
+            heartRate.innerHTML = count1 + ' Heart Rate';
+        };
+        const inc_rr = () => {
+            count2++;
+            respRate.innerHTML = count2 + ' Respiration Rate';
+        };
+        const dec_rr = () => {
+            count2--;
+            respRate.innerHTML = count2 + ' Respiration Rate';
+        };
+
+        const hr_plus_btn = document.getElementById("hr_plus");
+        const hr_minus_btn = document.getElementById("hr_minus");
+        const rr_plus_btn = document.getElementById("rr_plus");
+        const rr_minus_btn = document.getElementById("rr_minus");
+
+        hr_plus_btn.addEventListener("click", inc_hr);
+        hr_minus_btn.addEventListener("click", dec_hr);
+        rr_plus_btn.addEventListener("click", inc_rr);
+        rr_minus_btn.addEventListener("click", dec_rr);
     </script>
 
     <!-- JavaScript Libraries -->
