@@ -10,6 +10,7 @@ hr_show = 60
 
 resolution = 1000
 ecg = nk.ecg_simulate(duration=10, heart_rate=hr_show, sampling_rate=1000)[:5000]
+print('Heart rate updated in ECG App to {}'.format(hr_show))
 max_height, min_height = max(ecg), min(ecg)
 time = list(range(5001))
 

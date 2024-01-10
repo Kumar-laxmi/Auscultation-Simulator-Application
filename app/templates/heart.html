@@ -363,13 +363,14 @@
 
     <!-- Custom JS Function -->
     <script>
-        var normal_heart = new Audio("{% static 'audio/heart_tones/normal.mp3' %}");
+        var normal_heart = new Audio("{% static 'audio/heart/normal_heart/A/4.wav' %}");
         var split_first_heart = new Audio("");
         var split_second_heart = new Audio("{% static 'audio/heart_tones/splits21.mp3' %}"); 
         var third_heart = new Audio("{% static 'audio/heart_tones/s31.mp3' %}");
         var fourth_heart = new Audio("{% static 'audio/heart_tones/s41.mp3' %}");
         function heartAudio(letter) {
             if(letter == 'a') {
+                normal_heart.loop = true;
                 normal_heart.play();
             }
             else if(letter == 'b') {
