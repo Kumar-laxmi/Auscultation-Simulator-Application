@@ -31,3 +31,6 @@ class lungAudio(models.Model):
         upload_to='app/static/audio/lungs/{}/{}/'.format(sound_name, sound_type),
         storage=OverwriteStorage()
     )
+
+    def __str__(self):
+        return f"lungs_{self.sound_name}_{self.sound_type}"
