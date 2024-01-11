@@ -15,7 +15,7 @@ class heartAudio(models.Model):
     sound_name = models.CharField(max_length=50, choices=SOUND_NAME_CHOICES)
     sound_type = models.CharField(max_length=1, choices=SOUND_TYPE_CHOICES)
     audio_file = models.FileField(
-        upload_to='app/static/audio/heart/{}/{}/'.format(sound_name, sound_type),
+        upload_to='heart/{}/{}/'.format(sound_name, sound_type),
         storage=OverwriteStorage()
     )
 
@@ -28,7 +28,7 @@ class lungAudio(models.Model):
     sound_name = models.CharField(max_length=50, choices=SOUND_NAME_CHOICES)
     sound_type = models.CharField(max_length=3, choices=SOUND_TYPE_CHOICES)
     audio_file = models.FileField(
-        upload_to='app/static/audio/lungs/{}/{}/'.format(sound_name, sound_type),
+        upload_to='lungs/{}/{}/'.format(sound_name, sound_type),
         storage=OverwriteStorage()
     )
 
