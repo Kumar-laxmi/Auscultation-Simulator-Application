@@ -64,7 +64,7 @@
                 <div class="navbar-nav w-100">
                     <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heart me-2"></i>Heart tones</a>
                     <div class="dropdown-menu dropdown-menu-end collapse" aria-labelledby="dropdownmenu1">
-                        <a class="dropdown-item" href="#" onclick="heartAudio('a');">Normal heart sound</a>
+                        <a class="dropdown-item" href="#" id="normal_heart_play">Normal heart sound</a>
                         <a class="dropdown-item" href="#" onclick="heartAudio('b');">Split first heart sound</a>
                         <a class="dropdown-item" href="#" onclick="heartAudio('c');">Split second heart sound</a>
                         <a class="dropdown-item" href="#" onclick="heartAudio('d');">Third heart sound (gallop)</a>
@@ -363,30 +363,10 @@
 
     <!-- Custom JS Function -->
     <script>
-        /*
-        var normal_heart = new Audio("{% static 'audio/heart/normal_heart/A/4.wav' %}");
-        var split_first_heart = new Audio("");
-        var split_second_heart = new Audio("{% static 'audio/heart_tones/splits21.mp3' %}"); 
-        var third_heart = new Audio("{% static 'audio/heart_tones/s31.mp3' %}");
-        var fourth_heart = new Audio("{% static 'audio/heart_tones/s41.mp3' %}");
-        */
-        function heartAudio(letter) {
-            if(letter == 'a') {
-                //pass
-            }
-            else if(letter == 'b') {
-                split_first_heart.play();
-            }
-            else if(letter == 'c') {
-                split_second_heart.play();
-            }
-            else if(letter == 'd') {
-                third_heart.play();
-            }
-            else if(letter == 'e') {
-                fourth_heart.play();
-            }
-        }
+        var normal_heart = new Audio("{{heartbeats.audio_file.url}}");
+        normal_heart.play();
+        normal_heart.loop = true;
+
     </script>
 
     <script>

@@ -4,11 +4,21 @@ import time
 from playsound import playsound
 
 from .DashApp import ecg_dash, rsp_dash
+from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
 
 hr_show = ecg_dash.hr_show
 rr_show = rsp_dash.rr_show
 
+def index(request):
+    heartbeats = heartAudio.objects.get(sound_name='acute_myocardial_infection', sound_type='A')
+    lungbeats = lungAudio.objects.all()
+    return render(request, 'heart.html', {
+        'heartbeats': heartbeats,
+        'lungbeats': lungbeats
+    })
+
+"""
 # Create your views here.
 def index(request):
     global hr_show
@@ -22,6 +32,7 @@ def index(request):
         rsp_dash.rr_show = rr_show
 
     return render(request, 'heart.html', {})
+"""
 
 def test(request):
     if request.method == 'POST':
