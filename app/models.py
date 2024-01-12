@@ -1,5 +1,6 @@
 from django.core.files.storage import FileSystemStorage
 from django.db import models
+import re
 
 from .dependencies import dir_name
 
@@ -15,7 +16,7 @@ class heartAudio(models.Model):
     sound_name = models.CharField(max_length=50, choices=SOUND_NAME_CHOICES)
     sound_type = models.CharField(max_length=1, choices=SOUND_TYPE_CHOICES)
     audio_file = models.FileField(
-        upload_to='heart/{}/{}/'.format(sound_name, sound_type),
+        upload_to=lambda instance, filename: 'heart/{}/{}/{}'.format(getattr(instance, 'sound_name'), getattr(instance, 'sound_type'), filename),
         storage=OverwriteStorage()
     )
 
@@ -28,7 +29,7 @@ class lungAudio(models.Model):
     sound_name = models.CharField(max_length=50, choices=SOUND_NAME_CHOICES)
     sound_type = models.CharField(max_length=3, choices=SOUND_TYPE_CHOICES)
     audio_file = models.FileField(
-        upload_to='lungs/{}/{}/'.format(sound_name, sound_type),
+        upload_to=lambda instance, filename: 'lungs/{}/{}/{}'.format(getattr(instance, 'sound_name'), getattr(instance, 'sound_type'), filename),
         storage=OverwriteStorage()
     )
 
