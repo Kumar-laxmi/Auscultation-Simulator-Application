@@ -11,7 +11,7 @@ hr_show = ecg_dash.hr_show
 rr_show = rsp_dash.rr_show
 
 # Create your views here.
-def index(request):
+def index_heart(request):
     global hr_show
     global rr_show
     # Updating the Heart Rate and Respiration Rate graph
