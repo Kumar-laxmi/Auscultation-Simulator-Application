@@ -1,57 +1,70 @@
+import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import neurokit2 as nk
 from django_plotly_dash import DjangoDash
-import sys
+import time
+import numpy as np
 
-sys.path.append('../../app')
+# Create Dash app
+app = DjangoDash('ecgDash')
 
 hr_show = 60
 
-resolution = 1000
-ecg = nk.ecg_simulate(duration=10, heart_rate=hr_show, sampling_rate=1000)[:5000]
-print('Heart rate updated in ECG App to {}'.format(hr_show))
-max_height, min_height = max(ecg), min(ecg)
-time = list(range(5001))
+# Generate and store ECG signal
+duration = 10
+sampling_rate = 1000
+ecg_signal = nk.ecg_simulate(duration=duration, sampling_rate=sampling_rate)
+x_values = np.linspace(0, duration, len(ecg_signal))
+ecg_data = {'x_values': x_values.tolist(), 'ecg_signal': ecg_signal.tolist()}
 
-# Example app.
-figure = dict(
-    data=[{'x': time, 'y': ecg, 'line': {'color': 'red'}}],
-    layout=dict(
-        xaxis=dict(range=[0, 5000]),
-        yaxis=dict(range=[min_height, max_height]),
-        plot_bgcolor='black',  # Set background color to black
-        paper_bgcolor='black',  # Set paper color to black
-        font=dict(color='white'),  # Set font color to white
-    )
-)
-
-app = DjangoDash('ecgDash')
-
+# Layout of the app
 app.layout = html.Div([
-    dcc.Graph(id='graph', figure=dict(figure), style={'height': '90vh'}),
-    dcc.Interval(id="interval", interval=20),
-    dcc.Store(id='offset', data=0),
-    dcc.Store(id='store', data=dict(x=time, y=ecg, resolution=resolution)),
+    dcc.Graph(id='animated-ecg-chart', style={'height': '95vh'}),
+    dcc.Store(id='ecg-data-store', data=ecg_data),
+    dcc.Store(id='interval-store', data=time.time()),  # Store the start time
+    dcc.Interval(
+        id='interval-component',
+        interval=50,  # Interval in milliseconds
+        n_intervals=0
+    )
 ])
 
+# Clientside callback to update the graph
 app.clientside_callback(
     """
-    function (n_intervals, data, offset) {
-        offset = offset % data.x.length;
-        const end = Math.min((offset + 10), data.x.length);
-        const xSubset = data.x.slice(offset, end);
-        const ySubset = data.y.slice(offset, end);
+    function(n, ecgData, startTime) {
+        // Get the ECG signal and x_values from the stored data
+        var xValues = ecgData['x_values'];
+        var ecgSignal = ecgData['ecg_signal'];
 
-        // Remove the last point to prevent connecting to the first point
-        if (end < data.x.length) {
-            xSubset.push(null);
-            ySubset.push(null);
-        }
+        // Calculate the time passed since the start
+        var currentTime = new Date().getTime() / 1000;  // Convert milliseconds to seconds
+        var elapsedTime = currentTime - startTime;
 
-        return [[{x: [xSubset], y: [ySubset]}, [0], 4950], end]
+        // Calculate the position of the vertical line
+        var linePosition = Math.floor(elapsedTime * xValues.length / 10) % xValues.length;  // 10 seconds duration
+
+        // Create the figure
+        var figure = {
+            data: [
+                {x: xValues, y: ecgSignal, mode: 'lines', line: {color: 'red'}},
+                {x: [xValues[linePosition], xValues[linePosition]], y: [-1,1.2], mode: 'lines', line: {color: 'black', width: 10}}
+            ],
+            layout: {
+                showlegend: false,  // Remove legend
+                paper_bgcolor: 'black',  // Set background color to black
+                plot_bgcolor: 'black'    // Set plot background color to black
+            }
+        };
+        
+        // Return the updated figure and startTime
+        return [figure, startTime];
     }
     """,
-    [Output('graph', 'extendData'), Output('offset', 'data')],
-    [Input('interval', 'n_intervals')], [State('store', 'data'), State('offset', 'data')]
+    Output('animated-ecg-chart', 'figure'),
+    Output('interval-store', 'data'),
+    Input('interval-component', 'n_intervals'),
+    State('ecg-data-store', 'data'),
+    State('interval-store', 'data')
 )

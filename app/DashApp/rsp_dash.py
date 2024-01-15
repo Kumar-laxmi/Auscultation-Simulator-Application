@@ -1,59 +1,70 @@
-import dash_html_components as html
-import dash_core_components as dcc
+import dash
+from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import neurokit2 as nk
 from django_plotly_dash import DjangoDash
+import time
+import numpy as np
+
+# Create Dash app
+app = DjangoDash('rspDash')
 
 rr_show = 15
 
-# Example data (a circle).
-resolution = 1000
-rsp = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=1000)[:5000]
-print('Respiratory rate updated in RR App to {}'.format(rr_show))
-max_height, min_height = max(rsp), min(rsp)
-time = list(range(5001))
+# Generate and store ECG signal
+duration = 10
+sampling_rate = 1000
+rsp_signal = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=1000)
+x_values = np.linspace(0, duration, len(rsp_signal))
+rsp_data = {'x_values': x_values.tolist(), 'rsp_signal': rsp_signal.tolist()}
 
-# Example app.
-figure = dict(
-    data=[{'x': time, 'y': rsp, 'line': {'color': 'blue'}}],
-    layout=dict(
-        xaxis=dict(range=[0, 5000]),
-        yaxis=dict(range=[min_height, max_height]),
-        plot_bgcolor='black',  # Set background color to black
-        paper_bgcolor='black',  # Set paper color to black
-        font=dict(color='white'),  # Set font color to white
-    )
-)
-
-app = DjangoDash('rspDash')
-
+# Layout of the app
 app.layout = html.Div([
-    dcc.Graph(id='graph', figure=dict(figure), style={'height': '90vh'}),
-    dcc.Interval(id="interval", interval=20),
-    dcc.Store(id='offset', data=0),
-    dcc.Store(id='store', data=dict(x=time, y=rsp, resolution=resolution)),
+    dcc.Graph(id='animated-rsp-chart', style={'height': '95vh'}),
+    dcc.Store(id='ecg-data-store', data=rsp_data),
+    dcc.Store(id='interval-store', data=time.time()),  # Store the start time
+    dcc.Interval(
+        id='interval-component',
+        interval=50,  # Interval in milliseconds
+        n_intervals=0
+    )
 ])
 
+# Clientside callback to update the graph
 app.clientside_callback(
     """
-    function (n_intervals, data, offset) {
-        offset = offset % data.x.length;
-        const end = Math.min((offset + 10), data.x.length);
-        const xSubset = data.x.slice(offset, end);
-        const ySubset = data.y.slice(offset, end);
+    function(n, rspData, startTime) {
+        // Get the RSP signal and x_values from the stored data
+        var xValues = rspData['x_values'];
+        var rspSignal = rspData['rsp_signal'];
 
-        // Remove the last point only if not reaching the end of the data
-        if (end < data.x.length) {
-            xSubset.push(null);
-            ySubset.push(null);
-        }
+        // Calculate the time passed since the start
+        var currentTime = new Date().getTime() / 1000;  // Convert milliseconds to seconds
+        var elapsedTime = currentTime - startTime;
 
-        return [[{x: [xSubset], y: [ySubset]}, [0], 4950], end]
+        // Calculate the position of the vertical line
+        var linePosition = Math.floor(elapsedTime * xValues.length / 10) % xValues.length;  // 10 seconds duration
+
+        // Create the figure
+        var figure = {
+            data: [
+                {x: xValues, y: rspSignal, mode: 'lines', line: {color: 'blue'}},
+                {x: [xValues[linePosition], xValues[linePosition]], y: [-1,1.2], mode: 'lines', line: {color: 'black', width: 10}}
+            ],
+            layout: {
+                showlegend: false,  // Remove legend
+                paper_bgcolor: 'black',  // Set background color to black
+                plot_bgcolor: 'black'    // Set plot background color to black
+            }
+        };
+        
+        // Return the updated figure and startTime
+        return [figure, startTime];
     }
     """,
-    [Output('graph', 'extendData'), Output('offset', 'data')],
-    [Input('interval', 'n_intervals')], [State('store', 'data'), State('offset', 'data')]
+    Output('animated-rsp-chart', 'figure'),
+    Output('interval-store', 'data'),
+    Input('interval-component', 'n_intervals'),
+    State('ecg-data-store', 'data'),
+    State('interval-store', 'data')
 )
-
-if __name__ == '__main__':
-    app.run_server()

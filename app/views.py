@@ -3,12 +3,12 @@ from django.shortcuts import render, redirect
 import time
 from playsound import playsound
 
-from .DashApp import ecg_dash, rsp_dash
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
+from .DashApp import ecg_dash, rsp_dash
 
-hr_show = ecg_dash.hr_show
-rr_show = rsp_dash.rr_show
+hr_show = 60
+rr_show = 15
 
 # Create your views here.
 def index_heart(request):
@@ -18,9 +18,8 @@ def index_heart(request):
     if request.method == "POST":
         hr_show = int(request.form.get('hr_show'))
         print(hr_show)
-        ecg_dash.hr_show = hr_show
         rr_show = int(request.form.get('rr_show'))
-        rsp_dash.rr_show = rr_show
+        print(rr_show)
 
     return render(request, 'heart.html', {})
 
