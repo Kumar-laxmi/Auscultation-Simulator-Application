@@ -289,3 +289,9 @@
 }
 
 /* Time and Clock */
+
+
+area{
+    display: block;
+    background-color: red;
+}

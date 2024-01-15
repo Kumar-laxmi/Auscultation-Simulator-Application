@@ -32,6 +32,12 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        area{
+            display: block;
+            background-color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -193,7 +199,10 @@
                         <div class="row">
                             <div class="bg-secondary text-center rounded p-4">
                                 <div class="col-12">
-                                    <img class="img-fluid" src="{% static 'image/human_torso_back_front.jpeg' %}" style="width: 100%; object-fit: cover;" />
+                                    <img class="img-fluid" src="{% static 'image/human_torso_back_front.jpeg' %}" style="width: 100%; object-fit: cover;" usemap="#body_dots" />
+                                    <map name="body_dots">
+                                        <area shape="circle" coords="55,82,2"> 
+                                    </map>
                                 </div>
                             </div>
                         </div>
