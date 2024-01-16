@@ -2,11 +2,12 @@ import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
 from pydub import AudioSegment
+from django_plotly_dash import DjangoDash
 import numpy as np
 import time
 
 # Create Dash app
-app = dash.Dash(__name__)
+app = DjangoDash('hbrDash')
 
 # Load and process audio file
 audio_path = 'app/static/audio/heart/normal_heart/A/combined_audio.wav'  # Replace with the path to your WAV audio file
@@ -73,7 +74,3 @@ app.clientside_callback(
     State('audio-data-store', 'data'),
     State('interval-store', 'data')
 )
-
-# Run the app
-if __name__ == '__main__':
-    app.run_server(debug=True)

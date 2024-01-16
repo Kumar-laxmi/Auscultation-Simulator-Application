@@ -326,6 +326,9 @@
             <div class="container-fluid px-3">
                 <div class="row">
                     <div class="col-12">
+                        <div class="row" id="hbr_div" style="display:none;">
+                            {% plotly_app name="hbrDash" ratio=0.3 %}
+                        </div>
                         <div class="row" id="ecg_div" style="display:none;">
                             {% plotly_app name="ecgDash" ratio=0.3 %}
                         </div>
@@ -347,7 +350,7 @@
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">4x</button>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">HBR</button>
+                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="hbr_btn">HBR</button>
                                 </div>
                                 <div class="col-1">
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="ecg_btn">ECG</button>
@@ -378,6 +381,16 @@
     </div>
 
     <script>
+        document.getElementById("hbr_btn").onclick = function() {
+            var ecgDiv = document.getElementById("hbr_div");
+            if (ecgDiv.style.display === "none") {
+                ecgDiv.style.display = "block";
+                document.getElementById("hbr_btn").classList.add('active');
+            } else {
+                ecgDiv.style.display = "none";
+                document.getElementById("hbr_btn").classList.remove('active');
+            }
+        };
         document.getElementById("ecg_btn").onclick = function() {
             var ecgDiv = document.getElementById("ecg_div");
             if (ecgDiv.style.display === "none") {

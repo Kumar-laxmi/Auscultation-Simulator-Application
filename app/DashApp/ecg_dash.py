@@ -25,7 +25,7 @@ app.layout = html.Div([
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time
     dcc.Interval(
         id='interval-component',
-        interval=50,  # Interval in milliseconds
+        interval=25,  # Interval in milliseconds
         n_intervals=0
     )
 ])
@@ -48,7 +48,7 @@ app.clientside_callback(
         // Create the figure
         var figure = {
             data: [
-                {x: xValues, y: ecgSignal, mode: 'lines', line: {color: 'red'}},
+                {x: xValues, y: ecgSignal, mode: 'lines', name: 'ECG Signal', line: {color: 'red'}},
                 {x: [xValues[linePosition], xValues[linePosition]], y: [-1,1.2], mode: 'lines', line: {color: 'black', width: 10}}
             ],
             layout: {

@@ -14,7 +14,7 @@ audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
 
-target_duration = 2
+target_duration = 10
 num_repeats = int(np.ceil(target_duration / audio_duration))
 audio_data = np.tile(audio_data, num_repeats)
 sample_rate = 44100
@@ -47,11 +47,15 @@ app.clientside_callback(
         // Calculate the position of the vertical line
         var linePosition = Math.floor((elapsedTime % audioDuration) * audioArray.length / audioDuration);
 
+        // Define the chunk size to avoid maximum call stack size exceeded
+        var chunkSize = 1000;
+        var subsetAudioArray = audioArray.slice(linePosition, linePosition + chunkSize);
+
         // Create the figure
         var figure = {
             data: [
-                {y: audioArray, type: 'line', name: 'HBR Signal', line: {color: 'green'}},
-                {x: [linePosition, linePosition], y: [Math.min.apply(null, audioArray), Math.max.apply(null, audioArray)], mode: 'lines', line: {color: 'black', width: 10}}
+                {y: subsetAudioArray, type: 'line', name: 'HBR Signal', line: {color: 'green'}},
+                {x: [0, 0], y: [Math.min.apply(null, subsetAudioArray), Math.max.apply(null, subsetAudioArray)], mode: 'lines', line: {color: 'black', width: 10}}
             ],
             layout: {
                 title: 'Animated Audio with Vertical Line',
@@ -62,7 +66,7 @@ app.clientside_callback(
                 plot_bgcolor: 'black'    // Set plot background color to black
             }
         };
-        
+
         // Return the updated figure and startTime
         return [figure, startTime];
     }
