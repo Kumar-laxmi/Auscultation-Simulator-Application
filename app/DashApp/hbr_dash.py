@@ -14,8 +14,10 @@ audio_path = 'app/static/audio/heart/normal_heart/A/combined_audio.wav'  # Repla
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
+subsampling_factor = 57
+audio_data = audio_data[::subsampling_factor]
 
-target_duration = 2
+target_duration = 5
 num_repeats = int(np.ceil(target_duration / audio_duration))
 audio_data = np.tile(audio_data, num_repeats)
 sample_rate = 44100
@@ -46,7 +48,7 @@ app.clientside_callback(
         var elapsedTime = currentTime - startTime;
 
         // Calculate the position of the vertical line
-        var linePosition = Math.floor((elapsedTime % audioDuration) * audioArray.length / audioDuration);
+        var linePosition = Math.floor((elapsedTime % 5) * audioArray.length / 5);
 
         // Create the figure
         var figure = {
@@ -55,9 +57,7 @@ app.clientside_callback(
                 {x: [linePosition, linePosition], y: [Math.min.apply(null, audioArray), Math.max.apply(null, audioArray)], mode: 'lines', line: {color: 'black', width: 10}}
             ],
             layout: {
-                title: 'Animated Audio with Vertical Line',
-                xaxis: {title: 'Sample'},
-                yaxis: {title: 'Amplitude'},
+                title: 'Normal Heart sound (Mitral valve)',
                 showlegend: false,
                 paper_bgcolor: 'black',  // Set background color to black
                 plot_bgcolor: 'black'    // Set plot background color to black

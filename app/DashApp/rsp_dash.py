@@ -14,7 +14,7 @@ rr_show = 15
 # Generate and store ECG signal
 duration = 10
 sampling_rate = 1000
-rsp_signal = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=1000)
+rsp_signal = nk.rsp_simulate(duration=10, respiratory_rate=15, sampling_rate=1000)[:5000]
 x_values = np.linspace(0, duration, len(rsp_signal))
 rsp_data = {'x_values': x_values.tolist(), 'rsp_signal': rsp_signal.tolist()}
 
@@ -43,7 +43,7 @@ app.clientside_callback(
         var elapsedTime = currentTime - startTime;
 
         // Calculate the position of the vertical line
-        var linePosition = Math.floor(elapsedTime * xValues.length / 10) % xValues.length;  // 10 seconds duration
+        var linePosition = Math.floor(elapsedTime * xValues.length / 5) % xValues.length;  // 10 seconds duration
 
         // Create the figure
         var figure = {
