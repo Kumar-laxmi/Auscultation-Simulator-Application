@@ -23,7 +23,7 @@ duration = len(audio_data) / sample_rate
 
 # Layout of the app
 app.layout = html.Div([
-    dcc.Graph(id='animated-audio-chart'),
+    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}),
     dcc.Store(id='audio-data-store', data={'audio_data': audio_data.tolist(), 'audio_duration': audio_duration}),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time
     dcc.Interval(
