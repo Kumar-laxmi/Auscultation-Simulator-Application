@@ -61,7 +61,9 @@
                         <span>Student</span>
                     </div>
                 </div>
-                <div class="navbar-nav w-100">
+
+                <!-- Heart's Navbar -->
+                <div class="navbar-nav w-100" id="heart_nav_bar">
                     <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Heart tones</a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu1">
                         <a type="button" class="dropdown-item" href="#">Normal heart sound</a>
@@ -131,6 +133,63 @@
                         <a type="button" class="dropdown-item" href="#">Ebstein's anomaly</a>
                     </div>
                 </div>
+
+                <!-- Lung's Navbar -->
+                <div class="navbar-nav w-100" id="lung_nav_bar" style="display:none;">
+                    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu8" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Normal breath sounds</a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu8">
+                        <a type="button" class="dropdown-item" href="#">Brochial respiration</a>
+                        <a type="button" class="dropdown-item" href="#">Bronchovesicular respiration</a>
+                        <a type="button" class="dropdown-item" href="#">Vesicular respiration</a>
+                        <a type="button" class="dropdown-item" href="#">Diminished vesicular respiration</a>
+                    </div>
+
+                    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu9" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Adventitious sounds</a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu9">
+                        <a type="button" class="dropdown-item" href="#">Coarse crackles</a>
+                        <a type="button" class="dropdown-item" href="#">Fine crackles</a>
+                        <a type="button" class="dropdown-item" href="#">Wheezes</a>
+                        <a type="button" class="dropdown-item" href="#">Rhonchi</a>
+                        <a type="button" class="dropdown-item" href="#">Gurgling rhonchi</a>
+                        <a type="button" class="dropdown-item" href="#">Stridor</a>
+                        <a type="button" class="dropdown-item" href="#">Pleural friction rub</a>
+                        <a type="button" class="dropdown-item" href="#">Amphoric respiration</a>
+                        <a type="button" class="dropdown-item" href="#">Harsh respiration</a>
+                    </div>
+
+                    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu10" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Pathologies</a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu10">
+                        <a type="button" class="dropdown-item" href="#">Asthma</a>
+                        <a type="button" class="dropdown-item" href="#">Covid-19</a>
+                        <a type="button" class="dropdown-item" href="#">Right-sided pneumothorax</a>
+                        <a type="button" class="dropdown-item" href="#">Left-sided pneumothorax</a>
+                        <a type="button" class="dropdown-item" href="#">Pneumonia</a>
+                    </div>
+                </div>
+
+                <!-- Bowel's Navbar -->
+                <div class="navbar-nav w-100" id="bowel_nav_bar" style="display:none;">
+                    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu11" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Bowel sounds</a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu11">
+                        <a type="button" class="dropdown-item" href="#">Normal bowel sound</a>
+                        <a type="button" class="dropdown-item" href="#">Hyperactive sounds</a>
+                        <a type="button" class="dropdown-item" href="#">Hypoactive sounds</a>
+                        <a type="button" class="dropdown-item" href="#">Borborygmus</a>
+                        <a type="button" class="dropdown-item" href="#">Captement</a>
+                        <a type="button" class="dropdown-item" href="#">Peritoneal friction rub</a>
+                        <a type="button" class="dropdown-item" href="#">Normal bowel sound with bruits</a>
+                    </div>
+
+                    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu12" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Pathologies</a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu12">
+                        <a type="button" class="dropdown-item" href="#">Irritable bowel syndrome</a>
+                        <a type="button" class="dropdown-item" href="#">Diarrhea</a>
+                        <a type="button" class="dropdown-item" href="#">Bruits due to renal arteries stenosis</a>
+                        <a type="button" class="dropdown-item" href="#">Constipation</a>
+                        <a type="button" class="dropdown-item" href="#">Ulcerative colitis</a>
+                        <a type="button" class="dropdown-item" href="#">Crohn's disease</a>
+                        <a type="button" class="dropdown-item" href="#">Paralytic ileus</a>
+                    </div>
             </nav>
         </div>
         <!-- Sidebar End -->
@@ -205,16 +264,16 @@
                         <div class="row gx-2">
                             <div class="bg-secondary text-center rounded px-2 py-4">
                                 <!-- Four square buttons in first row -->
-                                <button type="button" class="btn btn-outline-danger btn-square-md active" data-mdb-ripple-color="dark">
+                                <button type="button" id="heart_btn" class="btn btn-outline-danger btn-square-md active" data-mdb-ripple-color="dark">
                                     <img class="img-fluid" src="{% static 'icon/heart.png' %}" />
                                 </button>
-                                <button type="button" class="btn btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">
+                                <button type="button" id="lungs_anterior_btn" class="btn btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">
                                     <img class="img-fluid" src="{% static 'icon/lungs_anterior.png' %}" />
                                 </button>
-                                <button type="button" class="btn btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">
+                                <button type="button" id="lungs_posterior_btn" class="btn btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">
                                     <img class="img-fluid" src="{% static 'icon/lungs_posterior.png' %}" />
                                 </button>
-                                <button type="button" class="btn btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">
+                                <button type="button" id="bowel_btn" class="btn btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">
                                     <img class="img-fluid" src="{% static 'icon/intestine.png' %}" />
                                 </button>
 
@@ -379,6 +438,64 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+
+    <script>
+        document.getElementById("heart_btn").onclick = function() {
+            var heartNav = document.getElementById("heart_nav_bar");
+            var lungs_nav = document.getElementById("lung_nav_bar");
+            var bowel_nav = document.getElementById("bowel_nav_bar");
+            if (heartNav.style.display === "none") {
+                heartNav.style.display = "block";
+                lungs_nav.style.display = "none";
+                document.getElementById("heart_btn").classList.add('active');
+                document.getElementById("lungs_anterior_btn").classList.remove('active');
+                document.getElementById("lung_posterior_btn").classList.remove('active');
+                document.getElementById("bowel_btn").classList.remove('active');
+            }
+        };
+        document.getElementById("lungs_anterior_btn").onclick = function() {
+            var heartNav = document.getElementById("heart_nav_bar");
+            var lungs_nav = document.getElementById("lung_nav_bar");
+            var bowel_nav = document.getElementById("bowel_nav_bar");
+            if (lungs_nav.style.display === "none") {
+                heartNav.style.display = "none";
+                lungs_nav.style.display = "block";
+                bowel_nav.style.display = "none";
+                document.getElementById("heart_btn").classList.remove('active');
+                document.getElementById("lungs_anterior_btn").classList.add('active');
+                document.getElementById("lung_posterior_btn").classList.remove('active');
+                document.getElementById("bowel_btn").classList.remove('active');
+            }
+        };
+        document.getElementById("lungs_posterior_btn").onclick = function() {
+            var heartNav = document.getElementById("heart_nav_bar");
+            var lungs_nav = document.getElementById("lung_nav_bar");
+            var bowel_nav = document.getElementById("bowel_nav_bar");
+            if (lungs_nav.style.display === "none") {
+                heartNav.style.display = "none";
+                lungs_nav.style.display = "block";
+                bowel_nav.style.display = "none";
+                document.getElementById("heart_btn").classList.remove('active');
+                document.getElementById("lungs_anterior_btn").classList.remove('active');
+                document.getElementById("lung_posterior_btn").classList.add('active');
+                document.getElementById("bowel_btn").classList.remove('active');
+            }
+        };
+        document.getElementById("bowel_btn").onclick = function() {
+            var heartNav = document.getElementById("heart_nav_bar");
+            var lungs_nav = document.getElementById("lung_nav_bar");
+            var bowel_nav = document.getElementById("bowel_nav_bar");
+            if (bowel_nav.style.display === "none") {
+                heartNav.style.display = "none";
+                lungs_nav.style.display = "none";
+                bowel_nav.style.display = "block";
+                document.getElementById("heart_btn").classList.remove('active');
+                document.getElementById("lungs_anterior_btn").classList.remove('active');
+                document.getElementById("lung_posterior_btn").classList.remove('active');
+                document.getElementById("bowel_btn").classList.add('active');
+            }
+        };
+    </script>
 
     <script>
         document.getElementById("hbr_btn").onclick = function() {
