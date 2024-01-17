@@ -14,6 +14,7 @@ con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
 df1 = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 df2 = pd.read_sql_query("SELECT * FROM app_lungaudio", con)
+df3 = pd.read_sql_query("SELECT * FROM app_bowelaudio", con)
 
 audio_path = df2.loc[(df2['sound_name'] == 'amphoric_respiration') & (df2['sound_type'] == 'LLB'), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
