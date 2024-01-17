@@ -4,13 +4,17 @@ from dash.dependencies import Input, Output, State
 from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
 import numpy as np
+import pandas as pd
 import time
+import sqlite3
 
 # Create Dash app
 app = DjangoDash('hbrDash')
+con = sqlite3.connect("db.sqlite3")
+cur = con.cursor()
+df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-# Load and process audio file
-audio_path = 'app/static/audio/heart/normal_heart/A/combined_audio.wav'  # Replace with the path to your WAV audio file
+audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'T'), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
