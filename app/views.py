@@ -5,7 +5,7 @@ from playsound import playsound
 
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
-from .DashApp import ecg_dash, rsp_dash, hbr_dash
+from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 hr_show = 60
 rr_show = 15

@@ -388,6 +388,9 @@
                         <div class="row" id="hbr_div" style="display:none;">
                             {% plotly_app name="hbrDash" ratio=0.3 %}
                         </div>
+                        <div class="row" id="comp_div" style="display: none;">
+                            {% plotly_app name="compDash" ratio=0.3 %}
+                        </div>
                         <div class="row" id="ecg_div" style="display:none;">
                             {% plotly_app name="ecgDash" ratio=0.3 %}
                         </div>
@@ -418,7 +421,7 @@
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="rsp_btn">RR</button>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">Compare</button>
+                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="compare_btn">Compare</button>
                                 </div>
                                 <div class="col-1">
                                     <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark"><i class="fa fa-pause" aria-hidden="true"></i></button>
@@ -506,6 +509,16 @@
             } else {
                 ecgDiv.style.display = "none";
                 document.getElementById("hbr_btn").classList.remove('active');
+            }
+        };
+        document.getElementById("compare_btn").onclick = function() {
+            var compDiv = document.getElementById("comp_div");
+            if (compDiv.style.display === "none") {
+                compDiv.style.display = "block";
+                document.getElementById("comp_btn").classList.add('active');
+            } else {
+                compDiv.style.display = "none";
+                document.getElementById("comp_btn").classList.remove('active');
             }
         };
         document.getElementById("ecg_btn").onclick = function() {
