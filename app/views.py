@@ -1,4 +1,5 @@
 from urllib import request
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import time
 from playsound import playsound
@@ -7,21 +8,27 @@ from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
-hr_show = 60
-rr_show = 15
-
 # Create your views here.
 def index_heart(request):
-    global hr_show
-    global rr_show
-    # Updating the Heart Rate and Respiration Rate graph
-    if request.method == "POST":
-        hr_show = int(request.form.get('hr_show'))
-        print(hr_show)
-        rr_show = int(request.form.get('rr_show'))
-        print(rr_show)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        current_hr = request.session.get('current_hr', 60)
 
-    return render(request, 'heart.html', {})
+        # Update the heart rate based on the action
+        if action == 'increase':
+            current_hr += 1
+            print(current_hr)
+        elif action == 'decrease':
+            current_hr -= 1
+            print(current_hr)
+
+        # Return the updated heart rate as JSON
+        return JsonResponse({'current_hr': current_hr})
+    else:
+        current_hr = request.session.get('current_hr', 60)
+        print(current_hr)
+        context = {'current_hr': current_hr}
+        return render(request, 'heart.html', context)
 
 def test(request):
     if request.method == 'POST':

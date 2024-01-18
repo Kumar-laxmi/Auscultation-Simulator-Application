@@ -35,3 +35,9 @@ class lungAudio(models.Model):
 
     def __str__(self):
         return f"lungs_{self.sound_name}_{self.sound_type}"
+    
+class heartRate(models.Model):
+    heartrate = models.CharField(max_length=5)
+
+    def __str__(self):
+        return f"{self.heartrate}"

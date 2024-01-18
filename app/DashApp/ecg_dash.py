@@ -6,15 +6,19 @@ from django_plotly_dash import DjangoDash
 import time
 import numpy as np
 
+hr_show = 60
+
+def set_hr_value(x):
+    global hr_show
+    hr_show = x
+
 # Create Dash app
 app = DjangoDash('ecgDash')
-
-hr_show = 60
 
 # Generate and store ECG signal
 duration = 10
 sampling_rate = 1000
-ecg_signal = nk.ecg_simulate(duration=duration, sampling_rate=sampling_rate)[:5000]
+ecg_signal = nk.ecg_simulate(duration=duration, heart_rate=hr_show, sampling_rate=sampling_rate)[:5000]
 x_values = np.linspace(0, duration, len(ecg_signal))
 ecg_data = {'x_values': x_values.tolist(), 'ecg_signal': ecg_signal.tolist()}
 
