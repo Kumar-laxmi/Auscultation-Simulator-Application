@@ -244,13 +244,41 @@
                     <input class="form-control bg-dark border-0" type="search" placeholder="Search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto gap-3">
-                    <button type="button" class="btn btn-link btn-outline-danger" id="rr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
-                    <div class="card text-info bg-dark">
-                        <div class="card-body">
-                            <p class="card-text font-weight-bold" style="transition: 0.5s;" id="rr_show">18</p>
+                    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-auto">
+                                <button type="submit" name="hr_plus" class="btn btn-link btn-outline-danger" id="hr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
+                            </div>
+                            <div class="col-auto">
+                                <div class="card text-info bg-dark">
+                                    <div class="card-body">
+                                        <p class="card-text font-weight-bold text-success" style="transition: 0.5s;" id="hr_show">{{ hr_show }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" name="hr_minus" class="btn btn-link btn-outline-danger" id="hr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
+                            </div>
                         </div>
-                    </div>
-                    <button type="button" class="btn btn-link btn-outline-danger" id="rr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
+                    </form>
+
+                    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-auto">
+                                <button type="submit" name="rr_plus" class="btn btn-link btn-outline-danger" id="rr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
+                            </div>
+                            <div class="col-auto">
+                                <div class="card text-info bg-dark">
+                                    <div class="card-body">
+                                        <p class="card-text font-weight-bold" style="transition: 0.5s;" id="rr_show">{{ rr_show }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" name="rr_minus" class="btn btn-link btn-outline-danger" id="rr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                    </form>
 
                     <div class="card text-white bg-dark">
                         <div class="card-body">

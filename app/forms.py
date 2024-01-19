@@ -13,20 +13,6 @@ class lungAudioForm(forms.ModelForm):
 
 
 class updateHeartRateForm(forms.Form):
-    hr_plus = forms.CharField(widget=forms.TextInput(attrs={
-        'type': 'button',
-        'class': 'btn btn-link btn-outline-danger',
-        'id': 'hr_plus',
-        'data-mdb-ripple-color': 'dark'
-    }))
-    hr_minus = forms.CharField(widget=forms.TextInput(attrs={
-        'type': 'button',
-        'class': 'btn btn-link btn-outline-danger',
-        'id': 'hr_minus',
-        'data-mdb-ripple-color': 'dark'
-    }))
-    card_text = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'card-text text-success',
-        'style': 'transition: 0.5s;',
-        'id': 'hr_show'
-    }))
+    class Meta:
+        model = heartRate
+        fields = ['heartrate']
