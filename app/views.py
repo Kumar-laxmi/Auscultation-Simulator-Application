@@ -18,12 +18,16 @@ def index_heart(request):
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
             hr_show += 1
+            print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'hr_minus' in request.POST:
             hr_show -= 1
+            print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'rr_plus' in request.POST:
             rr_show += 1
+            print('\nBreath Rate updated to: {}'.format(rr_show))
         elif 'rr_minus' in request.POST:
             rr_show -= 1
+            print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             hr_show += 0
             rr_show += 0
@@ -32,6 +36,7 @@ def index_heart(request):
             'rr_show': rr_show
         }
     else:
+        print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
