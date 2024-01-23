@@ -44,7 +44,7 @@ def index_heart(request):
             rr_show += 0
 
         if 'normal_heart_sound' in request.POST:
-            print('Button clicked')
+            Thread(target = NormalHeartSound).start()
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
