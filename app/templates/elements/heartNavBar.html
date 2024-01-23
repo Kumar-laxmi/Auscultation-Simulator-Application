@@ -1,70 +1,72 @@
-<div class="navbar-nav w-100" id="heart_nav_bar">
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Heart tones</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu1">
-        <a type="button" class="dropdown-item text-wrap" href="#">Normal heart sound</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Split first heart sound</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Split second heart sound</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Third heart sound (gallop)</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Fourth heart sound (gallop)</a>
-    </div>
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="navbar-nav w-100" id="heart_nav_bar">
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heartbeat me-2"></i>Heart tones</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu1">
+            <button type="submit" name="normal_heart_sound" class="btn dropdown-item text-wrap">Normal heart sound</button>
+            <button type="submit" name="split_first_heart_sound" class="btn dropdown-item text-wrap">Split first heart sound</button>
+            <button type="submit" name="split_second_heart_sound" class="btn dropdown-item text-wrap">Split second heart sound</button>
+            <button type="submit" name="third_heart_sound" class="btn dropdown-item text-wrap">Third heart sound (gallop)</button>
+            <button type="submit" name="fourth_heart_sound" class="btn dropdown-item text-wrap">Fourth heart sound (gallop)</button>
+        </div>
 
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu2" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Murmurs</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu2">
-        <a type="button" class="dropdown-item text-wrap" href="#">Functional murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Diastolic murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Opening snap</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Holosystolic murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Early systolic murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Mid-systolic murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Continuous murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Austin Flint murmur</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Pericardial rub</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Graham Steell murmur</a>
-    </div>
-    
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu3" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Aortic Value</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu3">
-        <a type="button" class="dropdown-item text-wrap" href="#">Aortic Valve Regurgitation</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Aortic Valve Stenosis</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Aortic Stenosis and Regurgitation</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Congenital Aortic Stenosis</a>
-    </div>
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu2" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Murmurs</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu2">
+            <a type="button" class="dropdown-item text-wrap" href="#">Functional murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Diastolic murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Opening snap</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Holosystolic murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Early systolic murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Mid-systolic murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Continuous murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Austin Flint murmur</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Pericardial rub</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Graham Steell murmur</a>
+        </div>
+        
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu3" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Aortic Value</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu3">
+            <a type="button" class="dropdown-item text-wrap" href="#">Aortic Valve Regurgitation</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Aortic Valve Stenosis</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Aortic Stenosis and Regurgitation</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Congenital Aortic Stenosis</a>
+        </div>
 
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu4" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Mitral Value</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu4">
-        <a type="button" class="dropdown-item text-wrap" href="#">Mitral Valve Regurgitation</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Mitral Valve Stenosis</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Mitral Valve Prelapse</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Mitral Stenosis and Regurgitation</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Mitral Stenosis and Tricuspid Regurgitation</a>
-    </div>
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu4" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Mitral Value</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu4">
+            <a type="button" class="dropdown-item text-wrap" href="#">Mitral Valve Regurgitation</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Mitral Valve Stenosis</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Mitral Valve Prelapse</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Mitral Stenosis and Regurgitation</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Mitral Stenosis and Tricuspid Regurgitation</a>
+        </div>
 
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu5" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Pulmonary Value</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu5">
-        <a type="button" class="dropdown-item text-wrap" href="#">Pulmonary Valve Stenosis</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Pulmonary Valve Regurgitation</a>
-    </div>
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu5" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Pulmonary Value</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu5">
+            <a type="button" class="dropdown-item text-wrap" href="#">Pulmonary Valve Stenosis</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Pulmonary Valve Regurgitation</a>
+        </div>
 
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu6" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Tricuspid Value</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu6">
-        <a type="button" class="dropdown-item text-wrap" href="#">Tricuspid Valve Regurgitation</a>
-    </div>
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu6" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Tricuspid Value</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu6">
+            <a type="button" class="dropdown-item text-wrap" href="#">Tricuspid Valve Regurgitation</a>
+        </div>
 
-    <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu7" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Pathologies</a>
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu7">
-        <a type="button" class="dropdown-item text-wrap" href="#">Coarctation of the Aorta</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Hypertrophic cardiomyopathy</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Patent ductus arteriosus</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Atrial septal defect</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Ventricular septal defect</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Acute Myocardial Infarction</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Congestive Heart Failure</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Systemic Hypertension</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Acute Pericarditis</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Dilated Cardiomyopathy</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Pulmonary Hypertension</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Tetralogy of Fallot</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Ventricular Aneurysm</a>
-        <a type="button" class="dropdown-item text-wrap" href="#">Ebstein's anomaly</a>
+        <a href="#" class="nav-item nav-link dropdown dropdown-toggle" data-toggle="collapse" id="dropdownmenu7" role="button" data-bs-toggle="dropdown"><i class="fa fa-heartbeat me-2"></i>Pathologies</a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark collapse" aria-labelledby="dropdownmenu7">
+            <a type="button" class="dropdown-item text-wrap" href="#">Coarctation of the Aorta</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Hypertrophic cardiomyopathy</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Patent ductus arteriosus</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Atrial septal defect</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Ventricular septal defect</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Acute Myocardial Infarction</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Congestive Heart Failure</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Systemic Hypertension</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Acute Pericarditis</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Dilated Cardiomyopathy</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Pulmonary Hypertension</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Tetralogy of Fallot</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Ventricular Aneurysm</a>
+            <a type="button" class="dropdown-item text-wrap" href="#">Ebstein's anomaly</a>
+        </div>
     </div>
-</div>
+</form>

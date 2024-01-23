@@ -5,12 +5,12 @@ from threading import Thread
 import time
 
 def audioFunc1():
-    audio1 = "app/static/audio/heart/normal_heart/A/4.wav"
+    audio1 = "app/static/audio/heart/normal_heart/A/combined_audio.wav"
     data1, fs1 = sf.read(audio1, dtype='float32')
     bpm = 60
     delay=60/bpm
     while True:
-        sd.play(data1, fs1, device=2)   #speakers
+        sd.play(data1, fs1, device=8)   #speakers
         time.sleep(delay)
 
 def audioFunc2():

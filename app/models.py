@@ -41,3 +41,7 @@ class heartRate(models.Model):
 
     def __str__(self):
         return f"{self.heartrate}"
+    
+class heartNavButton(models.Model):
+    def __str__(self):
+        return "Button Clicked"
