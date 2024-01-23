@@ -63,16 +63,16 @@
                     </div>
                 </div>
 
-                <!-- Heart's Navbar -->
+                <!-- Heart's Left Vertical Navbar -->
                 {% include 'elements/LeftVerticalNavBar/heartNavBar.html' %}
 
-                <!-- Lung's Front Navbar -->
+                <!-- Lung's Front Left Vertical Navbar -->
                 {% include 'elements/LeftVerticalNavBar/lungFrontNavBar.html' %}
 
-                <!-- Lung's Back Navbar -->
+                <!-- Lung's Back Left Vertical Navbar -->
                 {% include 'elements/LeftVerticalNavBar/lungBackNavBar.html' %}
 
-                <!-- Bowel's Navbar -->
+                <!-- Bowel's Left Vertical Navbar -->
                 {% include 'elements/LeftVerticalNavBar/bowelNavBar.html' %}
             </nav>
         </div>
@@ -151,106 +151,12 @@
                                     <img class="img-fluid" src="{% static 'icon/intestine.png' %}" />
                                 </button>
 
-                                <!-- Sound variation chager -->
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-square-md" data-mdb-ripple-color="dark">Mitral valve</button>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-adjust" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-volume-up" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="range" class="form-range" min="0" max="100" value="0" step="1" id="mitral_valve_range">
-                                    </div>
-                                    <div class="col-1">
-                                        <p id="mitral_valve_range_value">50%</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-square-md" data-mdb-ripple-color="dark">Aortic valve</button>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-adjust" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-volume-up" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="range" class="form-range" min="0" max="100" value="0" step="1" id="aortic_valve_range">
-                                    </div>
-                                    <div class="col-1">
-                                        <p id="aortic_valve_range_value">50%</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-square-md" data-mdb-ripple-color="dark">Pulmonary valve</button>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-adjust" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-volume-up" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="range" class="form-range" min="0" max="100" value="0" step="1" id="pulmonary_valve_range">
-                                    </div>
-                                    <div class="col-1">
-                                        <p id="pulmonary_valve_range_value">50%</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-square-md" data-mdb-ripple-color="dark">Tricuspid valve</button>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-adjust" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-volume-up" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="range" class="form-range" min="0" max="100" value="0" step="1" id="tricuspid_valve_range">
-                                    </div>
-                                    <div class="col-1">
-                                        <p id="tricuspid_valve_range_value">50%</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-square-md" data-mdb-ripple-color="dark">Erb's point</button>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-adjust" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fa fa-volume-up" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="range" class="form-range" min="0" max="100" value="0" step="1" id="erbs_point_range">
-                                    </div>
-                                    <div class="col-1">
-                                        <p id="erbs_point_range_value">50%</p>
-                                    </div>
-                                </div>
+                                <!-- Volume Control -->
+                                {% include 'elements/RightVerticalNavBar/heartNavBar.html' %}
+
+
                             </div>
-                            <div class="bg-secondary text-center rounded px-2 py-2 gy-1">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">Mute All</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">Default</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">Max Volume</button>
-                                    </div>
-                                </div>
-                            </div>
+                            {% include 'elements/RightVerticalNavBar/volume.html' %}
                         </div>
                     </div>
                 </div>
@@ -275,42 +181,7 @@
                 </div>
             </div>
 
-            <div class="container-fluid px-3 pt-2 fixed-bottom">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="bg-secondary text-center rounded px-2 py-2 gy-1">
-                            <div class="row">
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">1x</button>
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">2x</button>
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark">4x</button>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="hbr_btn">HBR</button>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="ecg_btn">ECG</button>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="rsp_btn">RR</button>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark" id="compare_btn">Compare</button>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark"><i class="fa fa-pause" aria-hidden="true"></i></button>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn btn-link btn-outline-danger btn-square-md" data-mdb-ripple-color="dark"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% include 'elements/Footer/footer.html' %}
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -318,15 +189,23 @@
 
     <script>
         document.getElementById("heart_btn").onclick = function() {
-            var heartNav = document.getElementById("heart_nav_bar");
-            var lungs_front_nav = document.getElementById("lung_front_nav_bar");
-            var lungs_back_nav = document.getElementById("lung_back_nav_bar");
-            var bowel_nav = document.getElementById("bowel_nav_bar");
-            if (heartNav.style.display === "none") {
-                heartNav.style.display = "block";
+            var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+            var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+            var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+            var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+            var heartRightNavBar = document.getElementById("heart_right_nav_bar");
+
+            if (heartLeftNavBar.style.display === "none") {
+                heartLeftNavBar.style.display = "block";
+                heartRightNavBar.style.display = "block";
+
                 lungs_front_nav.style.display = "none";
+
                 lungs_back_nav.style.display = "none";
+
                 bowel_nav.style.display = "none";
+
                 document.getElementById("heart_btn").classList.add('active');
                 document.getElementById("lungs_anterior_btn").classList.remove('active');
                 document.getElementById("lungs_posterior_btn").classList.remove('active');
@@ -334,15 +213,23 @@
             }
         };
         document.getElementById("lungs_anterior_btn").onclick = function() {
-            var heartNav = document.getElementById("heart_nav_bar");
-            var lungs_front_nav = document.getElementById("lung_front_nav_bar");
-            var lungs_back_nav = document.getElementById("lung_back_nav_bar");
-            var bowel_nav = document.getElementById("bowel_nav_bar");
+            var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+            var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+            var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+            var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+            var heartRightNavBar = document.getElementById("heart_right_nav_bar");
+
             if (lungs_front_nav.style.display === "none") {
-                heartNav.style.display = "none";
+                heartLeftNavBar.style.display = "none";
+                heartRightNavBar.style.display = "none";
+
                 lungs_front_nav.style.display = "block";
+
                 lungs_back_nav.style.display = "none";
+
                 bowel_nav.style.display = "none";
+
                 document.getElementById("heart_btn").classList.remove('active');
                 document.getElementById("lungs_anterior_btn").classList.add('active');
                 document.getElementById("lungs_posterior_btn").classList.remove('active');
@@ -350,15 +237,23 @@
             }
         };
         document.getElementById("lungs_posterior_btn").onclick = function() {
-            var heartNav = document.getElementById("heart_nav_bar");
-            var lungs_front_nav = document.getElementById("lung_front_nav_bar");
-            var lungs_back_nav = document.getElementById("lung_back_nav_bar");
-            var bowel_nav = document.getElementById("bowel_nav_bar");
+            var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+            var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+            var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+            var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+            var heartRightNavBar = document.getElementById("heart_right_nav_bar");
+
             if (lungs_back_nav.style.display === "none") {
-                heartNav.style.display = "none";
+                heartLeftNavBar.style.display = "none";
+                heartRightNavBar.style.display = "none";
+
                 lungs_front_nav.style.display = "none";
+
                 lungs_back_nav.style.display = "block";
+
                 bowel_nav.style.display = "none";
+
                 document.getElementById("heart_btn").classList.remove('active');
                 document.getElementById("lungs_anterior_btn").classList.remove('active');
                 document.getElementById("lungs_posterior_btn").classList.add('active');
@@ -366,15 +261,23 @@
             }
         };
         document.getElementById("bowel_btn").onclick = function() {
-            var heartNav = document.getElementById("heart_nav_bar");
-            var lungs_front_nav = document.getElementById("lung_front_nav_bar");
-            var lungs_back_nav = document.getElementById("lung_back_nav_bar");
-            var bowel_nav = document.getElementById("bowel_nav_bar");
+            var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+            var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+            var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+            var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+            var heartRightNavBar = document.getElementById("heart_right_nav_bar");
+
             if (bowel_nav.style.display === "none") {
-                heartNav.style.display = "none";
+                heartLeftNavBar.style.display = "none";
+                heartRightNavBar.style.display = "none";
+
                 lungs_front_nav.style.display = "none";
+
                 lungs_back_nav.style.display = "none";
+
                 bowel_nav.style.display = "block";
+
                 document.getElementById("heart_btn").classList.remove('active');
                 document.getElementById("lungs_anterior_btn").classList.remove('active');
                 document.getElementById("lungs_posterior_btn").classList.remove('active');
@@ -383,95 +286,12 @@
         };
     </script>
 
-    <script>
-        document.getElementById("hbr_btn").onclick = function() {
-            var ecgDiv = document.getElementById("hbr_div");
-            if (ecgDiv.style.display === "none") {
-                ecgDiv.style.display = "block";
-                document.getElementById("hbr_btn").classList.add('active');
-            } else {
-                ecgDiv.style.display = "none";
-                document.getElementById("hbr_btn").classList.remove('active');
-            }
-        };
-        document.getElementById("compare_btn").onclick = function() {
-            var compDiv = document.getElementById("comp_div");
-            if (compDiv.style.display === "none") {
-                compDiv.style.display = "block";
-                document.getElementById("compare_btn").classList.add('active');
-            } else {
-                compDiv.style.display = "none";
-                document.getElementById("compare_btn").classList.remove('active');
-            }
-        };
-        document.getElementById("ecg_btn").onclick = function() {
-            var ecgDiv = document.getElementById("ecg_div");
-            if (ecgDiv.style.display === "none") {
-                ecgDiv.style.display = "block";
-                document.getElementById("ecg_btn").classList.add('active');
-            } else {
-                ecgDiv.style.display = "none";
-                document.getElementById("ecg_btn").classList.remove('active');
-            }
-        };
-        document.getElementById("rsp_btn").onclick = function() {
-            var rspDiv = document.getElementById("rsp_div");
-            if (rspDiv.style.display === "none") {
-                rspDiv.style.display = "block";
-                document.getElementById("rsp_btn").classList.add('active');
-            } else {
-                rspDiv.style.display = "none";
-                document.getElementById("rsp_btn").classList.remove('active');
-            }
-        };
-    </script>
+    {% include 'elements/Scripts/footerButtons.html' %}
 
+    <!-- Range Input Controls -->
+    {% include 'elements/Scripts/rangeInput/heartRange.html' %}
 
-
-    <script>
-        // Get the range input and the output text element
-        const rangeInput1 = document.getElementById('mitral_valve_range');
-        const outputText1 = document.getElementById('mitral_valve_range_value');
-        const rangeInput2 = document.getElementById('aortic_valve_range');
-        const outputText2 = document.getElementById('aortic_valve_range_value');
-        const rangeInput3 = document.getElementById('pulmonary_valve_range');
-        const outputText3 = document.getElementById('pulmonary_valve_range_value');
-        const rangeInput4 = document.getElementById('tricuspid_valve_range');
-        const outputText4 = document.getElementById('tricuspid_valve_range_value');
-        const rangeInput5 = document.getElementById('erbs_point_range');
-        const outputText5 = document.getElementById('erbs_point_range_value');
-
-        outputText1.textContent = '0%';
-        outputText2.textContent = '0%';
-        outputText3.textContent = '0%';
-        outputText4.textContent = '0%';
-        outputText5.textContent = '0%';
-
-        rangeInput1.addEventListener('input', function() {
-            outputText1.textContent = rangeInput1.value + '%';
-        });
-        rangeInput2.addEventListener('input', function() {
-            outputText2.textContent = rangeInput2.value + '%';
-        });
-        rangeInput3.addEventListener('input', function() {
-            outputText3.textContent = rangeInput3.value + '%';
-        });
-        rangeInput4.addEventListener('input', function() {
-            outputText4.textContent = rangeInput4.value + '%';
-        });
-        rangeInput5.addEventListener('input', function() {
-            outputText5.textContent = rangeInput5.value + '%';
-        });
-    </script>
-
-    <script>
-        var blink1 = document.getElementById('hr_show');
-        var blink2 = document.getElementById('rr_show');
-        setInterval(function() {
-            blink1.style.opacity = (blink1.style.opacity == 0 ? 1 : 0);
-            blink2.style.opacity = (blink2.style.opacity == 0 ? 1 : 0);
-        }, 500);
-    </script>
+    {% include 'elements/Scripts/blink.html' %}
 
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
