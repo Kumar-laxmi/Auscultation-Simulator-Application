@@ -3,3 +3,4 @@
 - ipAddress of Wifi:                            ipconfig getifaddr en0
 - to execute:                                   python3 manage.py runserver <ip_addr>:<port_no>
 - to clear table in SQLite:                     <model_name>.objects.all().delete()
+- Log of all Git Commits:                       https://api.github.com/repos/Kumar-laxmi/Auscultation-Simulator-Application/commits
