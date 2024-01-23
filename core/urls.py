@@ -22,8 +22,7 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index_heart),
-    path('test/', test),
+    path('', index),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 

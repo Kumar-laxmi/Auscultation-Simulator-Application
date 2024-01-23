@@ -23,7 +23,7 @@ def NormalHeartSound():
         time.sleep(delay)
 
 # Create your views here.
-def index_heart(request):
+def index(request):
     global hr_show
     global rr_show
     if request.method == 'POST':
@@ -58,14 +58,4 @@ def index_heart(request):
             'hr_show': hr_show,
             'rr_show': rr_show
         }
-    return render(request, 'heart.html', context)
-
-def test(request):
-    if request.method == 'POST':
-        form = heartAudioForms(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-    else:
-        form = heartAudioForms()
-
-    return render(request, 'test.html', {'form': form})
+    return render(request, 'index.html', context)
