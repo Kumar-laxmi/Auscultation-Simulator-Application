@@ -1,19 +1,21 @@
 <script>
+    let heartSound = 'normal_heart_sound_';
+
     // Get the range input and the output text element
-    const rangeInput1 = document.getElementById('normal_heart_sound_mitral_valve_range');
-    const outputText1 = document.getElementById('normal_heart_sound_mitral_valve_range_value');
+    const rangeInput1 = document.getElementById(heartSound + 'mitral_valve_range');
+    const outputText1 = document.getElementById(heartSound + 'mitral_valve_range_value');
 
-    const rangeInput2 = document.getElementById('normal_heart_sound_aortic_valve_range');
-    const outputText2 = document.getElementById('normal_heart_sound_aortic_valve_range_value');
+    const rangeInput2 = document.getElementById(heartSound + 'aortic_valve_range');
+    const outputText2 = document.getElementById(heartSound + 'aortic_valve_range_value');
 
-    const rangeInput3 = document.getElementById('normal_heart_sound_pulmonary_valve_range');
-    const outputText3 = document.getElementById('normal_heart_sound_pulmonary_valve_range_value');
+    const rangeInput3 = document.getElementById(heartSound + 'pulmonary_valve_range');
+    const outputText3 = document.getElementById(heartSound + 'pulmonary_valve_range_value');
 
-    const rangeInput4 = document.getElementById('normal_heart_sound_tricuspid_valve_range');
-    const outputText4 = document.getElementById('normal_heart_sound_tricuspid_valve_range_value');
+    const rangeInput4 = document.getElementById(heartSound + 'tricuspid_valve_range');
+    const outputText4 = document.getElementById(heartSound + 'tricuspid_valve_range_value');
     
-    const rangeInput5 = document.getElementById('normal_heart_sound_erbs_point_range');
-    const outputText5 = document.getElementById('normal_heart_sound_erbs_point_range_value');
+    const rangeInput5 = document.getElementById(heartSound + 'erbs_point_range');
+    const outputText5 = document.getElementById(heartSound + 'erbs_point_range_value');
 
     outputText1.textContent = '0%';
     outputText2.textContent = '0%';

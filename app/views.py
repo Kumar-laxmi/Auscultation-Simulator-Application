@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 import time
 import sounddevice as sd
 import soundfile as sf
-from threading import Thread
 
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm, heartNavBarForm
@@ -13,13 +12,12 @@ from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 hr_show = 60
 rr_show = 15
 
-def NormalHeartSound():
-    audio1 = "app/static/audio/heart/normal_heart/A/combined_audio.wav"
-    data1, fs1 = sf.read(audio1, dtype='float32')
-    bpm = 60
+def NormalHeartSound(type, bpm=60):
+    audio = "app/static/audio/heart/normal_heart/{}/combined_audio.wav".format(type)
+    data, fs = sf.read(audio, dtype='float32')
     delay=60/bpm
     while True:
-        sd.play(data1, fs1, device=8)   #speakers
+        sd.play(data, fs, device=8)   #speakers
         time.sleep(delay)
 
 # Create your views here.
@@ -43,15 +41,15 @@ def index(request):
             hr_show += 0
             rr_show += 0
 
-        if 'normal_heart_sound' in request.POST:
-            Thread(target = NormalHeartSound).start()
+        if 'normal_heart_sound_mitral_valve' in request.POST:
+            NormalHeartSound('M')
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
         }
     else:
-        if 'normal_heart_sound' in request.POST:
-            Thread(target = NormalHeartSound).start()
+        if 'normal_heart_sound_mitral_valve' in request.POST:
+            NormalHeartSound('M')
 
         print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
         context = {
