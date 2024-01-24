@@ -152,7 +152,7 @@
                                 </button>
 
                                 <!-- Volume Control -->
-                                {% include 'elements/RightVerticalNavBar/heartNavBar.html' %}
+                                {% include 'elements/RightVerticalNavBar/Heart/normal_heart_sound.html' %}
 
 
                             </div>
@@ -188,6 +188,18 @@
     </div>
 
     <script>
+        document.getElementById("normal_heart_sound").onclick = function() {
+            var heartRightNavBar = document.getElementById("heart_right_nav_bar");
+            
+            if (heartRightNavBar.style.display === "none") {
+                heartRightNavBar.style.display = "block";
+
+                document.getElementById("normal_heart_sound").classList.add('active');
+            }
+        }
+    </script>
+
+    <script>
         document.getElementById("heart_btn").onclick = function() {
             var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
             var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
@@ -198,12 +210,8 @@
 
             if (heartLeftNavBar.style.display === "none") {
                 heartLeftNavBar.style.display = "block";
-                heartRightNavBar.style.display = "block";
-
                 lungs_front_nav.style.display = "none";
-
                 lungs_back_nav.style.display = "none";
-
                 bowel_nav.style.display = "none";
 
                 document.getElementById("heart_btn").classList.add('active');
