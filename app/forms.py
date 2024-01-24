@@ -1,5 +1,5 @@
 from django import forms
-from .models import heartAudio, lungAudio, heartRate, heartNavButton
+from .models import heartAudio, lungAudio, heartRate, heartSound
 
 class heartAudioForms(forms.ModelForm):
     class Meta:
@@ -17,7 +17,7 @@ class updateHeartRateForm(forms.Form):
         model = heartRate
         fields = ['heartrate']
 
-class heartNavBarForm(forms.Form):
+class heartSoundForm(forms.Form):
     class Meta:
-        model = heartNavButton
+        model = heartSound
         fields = []

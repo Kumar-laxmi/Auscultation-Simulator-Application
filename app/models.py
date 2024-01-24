@@ -1,6 +1,5 @@
 from django.core.files.storage import FileSystemStorage
 from django.db import models
-import re
 
 from .dependencies import dir_name
 
@@ -42,6 +41,6 @@ class heartRate(models.Model):
     def __str__(self):
         return f"{self.heartrate}"
     
-class heartNavButton(models.Model):
+class heartSound(models.Model):
     def __str__(self):
         return "Button Clicked"

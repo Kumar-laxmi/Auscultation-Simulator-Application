@@ -153,6 +153,7 @@
 
                                 <!-- Volume Control -->
                                 {% include 'elements/RightVerticalNavBar/Heart/normal_heart_sound.html' %}
+                                {% include 'elements/RightVerticalNavBar/Heart/split_first_heart_sound.html' %}
 
 
                             </div>
@@ -188,14 +189,15 @@
     </div>
 
     <script>
-        document.getElementById("normal_heart_sound").onclick = function() {
+        if(document.getElementById("normal_heart_sound").clicked == true) {
             var heartRightNavBar = document.getElementById("normal_heart_sound_volume");
-            
-            if (heartRightNavBar.style.display === "none") {
-                heartRightNavBar.style.display = "block";
-
-                document.getElementById("normal_heart_sound").classList.add('active');
-            }
+            heartRightNavBar.style.display = "block";
+            document.getElementById("normal_heart_sound").classList.add('active');
+        }
+        else if(document.getElementById("split_first_heart_sound").clicked == true) {
+            var heartRightNavBar = document.getElementById("normal_heart_sound_volume");
+            heartRightNavBar.style.display = "none";
+            document.getElementById("normal_heart_sound").classList.remove('active');
         }
     </script>
 

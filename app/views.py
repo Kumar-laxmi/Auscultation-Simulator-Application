@@ -5,8 +5,8 @@ import time
 import sounddevice as sd
 import soundfile as sf
 
-from .models import heartAudio, lungAudio
-from .forms import heartAudioForms, lungAudioForm, heartNavBarForm
+from .models import heartAudio, lungAudio, heartSound
+from .forms import heartAudioForms, lungAudioForm, heartSoundForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 hr_show = 60
@@ -42,14 +42,14 @@ def index(request):
             rr_show += 0
 
         if 'normal_heart_sound_mitral_valve' in request.POST:
-            NormalHeartSound('M')
+            print('mitral heart sound')
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
         }
     else:
         if 'normal_heart_sound_mitral_valve' in request.POST:
-            NormalHeartSound('M')
+            print('mitral heart sound')
 
         print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
         context = {
