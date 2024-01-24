@@ -18,6 +18,7 @@ def NormalHeartSound(type, bpm=60):
     delay=60/bpm
     while True:
         sd.play(data, fs, device=8)   #speakers
+        print('Normal Heart Sound: {}'.format(type))
         time.sleep(delay)
 
 # Create your views here.
