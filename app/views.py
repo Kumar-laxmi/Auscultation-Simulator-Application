@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 import time
 import sounddevice as sd
 import soundfile as sf
+from threading import Thread
 
 from .models import heartAudio, lungAudio, heartSound
 from .forms import heartAudioForms, lungAudioForm, heartSoundForm
@@ -17,7 +18,7 @@ def NormalHeartSound(type, bpm=60):
     data, fs = sf.read(audio, dtype='float32')
     delay=60/bpm
     while True:
-        sd.play(data, fs, device=8)   #speakers
+        sd.play(data, fs, device=2)   #speakers
         print('Normal Heart Sound: {}'.format(type))
         time.sleep(delay)
 
@@ -25,6 +26,9 @@ def NormalHeartSound(type, bpm=60):
 def index(request):
     global hr_show
     global rr_show
+
+    t1 = Thread(target = NormalHeartSound, args=('M'))
+
 
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
@@ -44,7 +48,7 @@ def index(request):
             rr_show += 0
 
         if 'normal_heart_sound_mitral_valve' in request.POST:
-            NormalHeartSound('M')
+            NormalHeartSound('M') 
         elif 'normal_heart_sound_aortic_valve' in request.POST:
             NormalHeartSound('A')
         elif 'normal_heart_sound_pulmonary_valve' in request.POST:

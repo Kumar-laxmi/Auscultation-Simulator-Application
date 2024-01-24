@@ -23,5 +23,5 @@ def audioFunc2():
         time.sleep(delay)
 
 if __name__ == '__main__':
-    audioFunc1()
-    #Thread(target = audioFunc2).start()
+    Thread(target = audioFunc1).start()
+    Thread(target = audioFunc2).start()
