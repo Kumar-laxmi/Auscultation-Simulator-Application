@@ -44,6 +44,14 @@ def index(request):
 
         if 'normal_heart_sound_mitral_valve' in request.POST:
             NormalHeartSound('M')
+        elif 'normal_heart_sound_aortic_valve' in request.POST:
+            NormalHeartSound('A')
+        elif 'normal_heart_sound_pulmonary_valve' in request.POST:
+            NormalHeartSound('P')
+        elif 'normal_heart_sound_tricuspid_valve' in request.POST:
+            NormalHeartSound('T')
+        elif 'normal_heart_sound_erb_point' in request.POST:
+            NormalHeartSound('E')
 
         context = {
             'hr_show': hr_show,
