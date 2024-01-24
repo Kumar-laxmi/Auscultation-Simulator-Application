@@ -24,6 +24,7 @@ def NormalHeartSound(type, bpm=60):
 def index(request):
     global hr_show
     global rr_show
+
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
             hr_show += 1
@@ -42,15 +43,13 @@ def index(request):
             rr_show += 0
 
         if 'normal_heart_sound_mitral_valve' in request.POST:
-            print('mitral heart sound')
+            NormalHeartSound('M')
+
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
         }
     else:
-        if 'normal_heart_sound_mitral_valve' in request.POST:
-            print('mitral heart sound')
-
         print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
         context = {
             'hr_show': hr_show,
