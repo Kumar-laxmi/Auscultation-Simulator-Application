@@ -1,0 +1,77 @@
+<script>
+    document.getElementById("heart_btn").onclick = function() {
+        var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+        var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+        var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+        var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+        if (heartLeftNavBar.style.display === "none") {
+            heartLeftNavBar.style.display = "block";
+            lungs_front_nav.style.display = "none";
+            lungs_back_nav.style.display = "none";
+            bowel_nav.style.display = "none";
+
+            document.getElementById("heart_btn").classList.add('active');
+            document.getElementById("lungs_anterior_btn").classList.remove('active');
+            document.getElementById("lungs_posterior_btn").classList.remove('active');
+            document.getElementById("bowel_btn").classList.remove('active');
+        }
+    };
+
+    document.getElementById("lungs_anterior_btn").onclick = function() {
+        var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+        var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+        var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+        var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+        if (lungs_front_nav.style.display === "none") {
+            heartLeftNavBar.style.display = "none";
+            lungs_front_nav.style.display = "block";
+            lungs_back_nav.style.display = "none";
+            bowel_nav.style.display = "none";
+
+            document.getElementById("heart_btn").classList.remove('active');
+            document.getElementById("lungs_anterior_btn").classList.add('active');
+            document.getElementById("lungs_posterior_btn").classList.remove('active');
+            document.getElementById("bowel_btn").classList.remove('active');
+        }
+    };
+
+    document.getElementById("lungs_posterior_btn").onclick = function() {
+        var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+        var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+        var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+        var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+        if (lungs_back_nav.style.display === "none") {
+            heartLeftNavBar.style.display = "none";
+            lungs_front_nav.style.display = "none";
+            lungs_back_nav.style.display = "block";
+            bowel_nav.style.display = "none";
+
+            document.getElementById("heart_btn").classList.remove('active');
+            document.getElementById("lungs_anterior_btn").classList.remove('active');
+            document.getElementById("lungs_posterior_btn").classList.add('active');
+            document.getElementById("bowel_btn").classList.remove('active');
+        }
+    };
+    
+    document.getElementById("bowel_btn").onclick = function() {
+        var heartLeftNavBar = document.getElementById("heart_left_nav_bar");
+        var lungs_front_nav = document.getElementById("lung_front_left_nav_bar");
+        var lungs_back_nav = document.getElementById("lung_back_left_nav_bar");
+        var bowel_nav = document.getElementById("bowel_left_nav_bar");
+
+        if (bowel_nav.style.display === "none") {
+            heartLeftNavBar.style.display = "none";
+            lungs_front_nav.style.display = "none";
+            lungs_back_nav.style.display = "none";
+            bowel_nav.style.display = "block";
+
+            document.getElementById("heart_btn").classList.remove('active');
+            document.getElementById("lungs_anterior_btn").classList.remove('active');
+            document.getElementById("lungs_posterior_btn").classList.remove('active');
+            document.getElementById("bowel_btn").classList.add('active');
+        }
+    };
+</script>
