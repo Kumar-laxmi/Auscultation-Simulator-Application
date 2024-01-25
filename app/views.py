@@ -1,10 +1,10 @@
 from urllib import request
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-import time
 import sounddevice as sd
 import soundfile as sf
-from threading import Thread
+import threading
+import time
 
 from .models import heartAudio, lungAudio, heartSound
 from .forms import heartAudioForms, lungAudioForm, heartSoundForm
@@ -12,7 +12,10 @@ from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 hr_show = 60
 rr_show = 15
+current_audio_stream = False
 
+
+"""
 def NormalHeartSound(type, bpm=60):
     audio = "app/static/audio/heart/normal_heart/{}/combined_audio.wav".format(type)
     data, fs = sf.read(audio, dtype='float32')
@@ -21,14 +24,13 @@ def NormalHeartSound(type, bpm=60):
         sd.play(data, fs, device=2)   #speakers
         print('Normal Heart Sound: {}'.format(type))
         time.sleep(delay)
+"""
 
 # Create your views here.
 def index(request):
     global hr_show
     global rr_show
-
-    t1 = Thread(target = NormalHeartSound, args=('M'))
-
+    global current_audio_stream
 
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
@@ -47,16 +49,38 @@ def index(request):
             hr_show += 0
             rr_show += 0
 
+        audio_path1 = 'app/static/audio/heart/normal_heart/M/combined_audio.wav'
+        audio_path2 = 'app/static/audio/heart/normal_heart/A/combined_audio.wav'
+        audio_path3 = 'app/static/audio/heart/normal_heart/P/combined_audio.wav'
+        audio_path4 = 'app/static/audio/heart/normal_heart/T/combined_audio.wav'
+        audio_path5 = 'app/static/audio/heart/normal_heart/E/combined_audio.wav'
+        
+        if current_audio_stream:
+            sd.stop()
+            current_audio_stream = False
+        
         if 'normal_heart_sound_mitral_valve' in request.POST:
-            NormalHeartSound('M') 
+            data, fs = sf.read(audio_path1, dtype='float32')
+            sd.play(data, fs, device=8, loop = True)
+            current_audio_stream = True
         elif 'normal_heart_sound_aortic_valve' in request.POST:
-            NormalHeartSound('A')
+            data, fs = sf.read(audio_path2, dtype='float32')
+            sd.play(data, fs, device=8, loop = True)
+            current_audio_stream = True
         elif 'normal_heart_sound_pulmonary_valve' in request.POST:
-            NormalHeartSound('P')
+            data, fs = sf.read(audio_path2, dtype='float32')
+            sd.play(data, fs, device=8, loop = True)
+            current_audio_stream = True
         elif 'normal_heart_sound_tricuspid_valve' in request.POST:
-            NormalHeartSound('T')
+            data, fs = sf.read(audio_path2, dtype='float32')
+            sd.play(data, fs, device=8, loop = True)
+            current_audio_stream = True
         elif 'normal_heart_sound_erb_point' in request.POST:
-            NormalHeartSound('E')
+            data, fs = sf.read(audio_path2, dtype='float32')
+            sd.play(data, fs, device=8, loop = True)
+            current_audio_stream = True
+        else:
+            pass
 
         context = {
             'hr_show': hr_show,
