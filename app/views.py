@@ -12,16 +12,14 @@ from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 hr_show, rr_show = 60, 15
 current_audio_stream = False
-con = sqlite3.connect("../db.sqlite3")
-cur = con.cursor()
-df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
 # Create your views here.
 def index(request):
     global hr_show
     global rr_show
     global current_audio_stream
-    global df_heart
+    con = sqlite3.connect("../db.sqlite3")
+    df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
@@ -39,12 +37,6 @@ def index(request):
         else:
             hr_show += 0
             rr_show += 0
-
-        audio_path1 = 'app/static/audio/heart/normal_heart/M/combined_audio.wav'
-        audio_path2 = 'app/static/audio/heart/normal_heart/A/combined_audio.wav'
-        audio_path3 = 'app/static/audio/heart/normal_heart/P/combined_audio.wav'
-        audio_path4 = 'app/static/audio/heart/normal_heart/T/combined_audio.wav'
-        audio_path5 = 'app/static/audio/heart/normal_heart/E/combined_audio.wav'
         
         if current_audio_stream:
             sd.stop()
