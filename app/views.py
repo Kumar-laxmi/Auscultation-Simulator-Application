@@ -18,7 +18,10 @@ def index(request):
     global hr_show
     global rr_show
     global current_audio_stream
-    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3")
+    try:
+        con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3")
+    except:
+        con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3")
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
     if request.method == 'POST':
