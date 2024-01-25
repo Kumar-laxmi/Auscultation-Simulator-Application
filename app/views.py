@@ -3,34 +3,25 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import sounddevice as sd
 import soundfile as sf
-import threading
-import time
+import sqlite3
+import pandas as pd
 
 from .models import heartAudio, lungAudio, heartSound
 from .forms import heartAudioForms, lungAudioForm, heartSoundForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
-hr_show = 60
-rr_show = 15
+hr_show, rr_show = 60, 15
 current_audio_stream = False
-
-
-"""
-def NormalHeartSound(type, bpm=60):
-    audio = "app/static/audio/heart/normal_heart/{}/combined_audio.wav".format(type)
-    data, fs = sf.read(audio, dtype='float32')
-    delay=60/bpm
-    while True:
-        sd.play(data, fs, device=2)   #speakers
-        print('Normal Heart Sound: {}'.format(type))
-        time.sleep(delay)
-"""
+con = sqlite3.connect("../db.sqlite3")
+cur = con.cursor()
+df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
 # Create your views here.
 def index(request):
     global hr_show
     global rr_show
     global current_audio_stream
+    global df_heart
 
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
@@ -60,23 +51,23 @@ def index(request):
             current_audio_stream = False
         
         if 'normal_heart_sound_mitral_valve' in request.POST:
-            data, fs = sf.read(audio_path1, dtype='float32')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_aortic_valve' in request.POST:
-            data, fs = sf.read(audio_path2, dtype='float32')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_pulmonary_valve' in request.POST:
-            data, fs = sf.read(audio_path3, dtype='float32')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_tricuspid_valve' in request.POST:
-            data, fs = sf.read(audio_path4, dtype='float32')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_erb_point' in request.POST:
-            data, fs = sf.read(audio_path5, dtype='float32')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         else:
