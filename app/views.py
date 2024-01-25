@@ -68,15 +68,15 @@ def index(request):
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_pulmonary_valve' in request.POST:
-            data, fs = sf.read(audio_path2, dtype='float32')
+            data, fs = sf.read(audio_path3, dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_tricuspid_valve' in request.POST:
-            data, fs = sf.read(audio_path2, dtype='float32')
+            data, fs = sf.read(audio_path4, dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_erb_point' in request.POST:
-            data, fs = sf.read(audio_path2, dtype='float32')
+            data, fs = sf.read(audio_path5, dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         else:
