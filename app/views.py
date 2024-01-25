@@ -18,7 +18,7 @@ def index(request):
     global hr_show
     global rr_show
     global current_audio_stream
-    con = sqlite3.connect("\\sounds.sqlite3")
+    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3")
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
     if request.method == 'POST':
