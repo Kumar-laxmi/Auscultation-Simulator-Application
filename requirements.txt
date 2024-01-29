@@ -54,6 +54,7 @@ prompt-toolkit==3.0.43
 psutil==5.9.8
 ptyprocess==0.7.0
 pure-eval==0.2.2
+PyAudio==0.2.14
 pycparser==2.21
 pydub==0.25.1
 Pygments==2.17.2
