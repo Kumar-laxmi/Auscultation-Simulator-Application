@@ -65,6 +65,10 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
+        elif 'split_first_heart_sound_mitral_valve' in request.POST:
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0], dtype='float32')
+            sd.play(data, fs, device=2, loop = True)
+            current_audio_stream = True
         else:
             pass
 
