@@ -46,26 +46,32 @@ def index(request):
             current_audio_stream = False
         
         if 'normal_heart_sound_mitral_valve' in request.POST:
+            print('Sound Played: Normal Heart, Location: Mitral Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_aortic_valve' in request.POST:
+            print('Sound Played: Normal Heart, Location: Aortic Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_pulmonary_valve' in request.POST:
+            print('Sound Played: Normal Heart, Location: Pulmonary Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_tricuspid_valve' in request.POST:
+            print('Sound Played: Normal Heart, Location: Tricuspid Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'normal_heart_sound_erb_point' in request.POST:
+            print('Sound Played: Normal Heart, Location: Erb Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=8, loop = True)
             current_audio_stream = True
         elif 'split_first_heart_sound_mitral_valve' in request.POST:
+            print('Sound Played: Split First Heart, Location: Mitral Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0], dtype='float32')
             sd.play(data, fs, device=2, loop = True)
             current_audio_stream = True
