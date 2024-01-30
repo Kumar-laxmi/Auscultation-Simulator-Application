@@ -17,9 +17,11 @@ current_audio_stream = False
 
 speakers = sc.all_speakers()
 playing_thread = None  # Global variable to keep track of the currently playing thread
+stop_flag = threading.Event()
 
-def play(index, samples, samplerate, stop_flag):
+def play(index, samples, samplerate):
     global speakers
+    global stop_flag
     while not stop_flag.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
@@ -30,6 +32,7 @@ def index(request):
     global rr_show
     global current_audio_stream
     global playing_thread
+    global stop_flag
 
     try:
         con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3")
@@ -58,8 +61,6 @@ def index(request):
             if playing_thread and playing_thread.is_alive():
                 playing_thread.join()  # Stop the currently playing audio
             current_audio_stream = False
-
-        stop_flag = threading.Event()
         
         if 'normal_heart_sound_mitral_valve' in request.POST:
             print('Sound Played: Normal Heart, Location: Mitral Valve')
@@ -67,31 +68,31 @@ def index(request):
                 playing_thread.join()  # Stop the currently playing audio
             current_audio_stream = False
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread = threading.Thread(target=play, args=(1, data, fs, stop_flag))
+            playing_thread = threading.Thread(target=play, args=(1, data, fs))
             playing_thread.start()
             current_audio_stream = True
         elif 'normal_heart_sound_aortic_valve' in request.POST:
             print('Sound Played: Normal Heart, Location: Aortic Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
-            playing_thread = threading.Thread(target=play, args=(1, data, fs, stop_flag))
+            playing_thread = threading.Thread(target=play, args=(1, data, fs))
             playing_thread.start()
             current_audio_stream = True
         elif 'normal_heart_sound_pulmonary_valve' in request.POST:
             print('Sound Played: Normal Heart, Location: Pulmonary Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
-            playing_thread = threading.Thread(target=play, args=(1, data, fs, stop_flag))
+            playing_thread = threading.Thread(target=play, args=(1, data, fs))
             playing_thread.start()
             current_audio_stream = True
         elif 'normal_heart_sound_tricuspid_valve' in request.POST:
             print('Sound Played: Normal Heart, Location: Tricuspid Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
-            playing_thread = threading.Thread(target=play, args=(1, data, fs, stop_flag))
+            playing_thread = threading.Thread(target=play, args=(1, data, fs))
             playing_thread.start()
             current_audio_stream = True
         elif 'normal_heart_sound_erb_point' in request.POST:
             print('Sound Played: Normal Heart, Location: Erb Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
-            playing_thread = threading.Thread(target=play, args=(1, data, fs, stop_flag))
+            playing_thread = threading.Thread(target=play, args=(1, data, fs))
             playing_thread.start()
             current_audio_stream = True
         elif 'split_first_heart_sound_mitral_valve' in request.POST:
@@ -100,7 +101,7 @@ def index(request):
                 playing_thread.join()  # Stop the currently playing audio
             current_audio_stream = False
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread = threading.Thread(target=play, args=(2, data, fs, stop_flag))
+            playing_thread = threading.Thread(target=play, args=(2, data, fs))
             playing_thread.start()
             current_audio_stream = True
         else:
