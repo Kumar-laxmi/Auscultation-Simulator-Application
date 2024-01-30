@@ -101,6 +101,30 @@ def index(request):
             playing_thread = threading.Thread(target=play, args=(2, data, fs))
             playing_thread.start()
             current_audio_stream = True
+        elif 'split_first_heart_sound_aortic_valve' in request.POST:
+            print('Sound Played: Split First Heart, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
+            playing_thread = threading.Thread(target=play, args=(2, data, fs))
+            playing_thread.start()
+            current_audio_stream = True
+        elif 'split_first_heart_sound_pulmonary_valve' in request.POST:
+            print('Sound Played: Split First Heart, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
+            playing_thread = threading.Thread(target=play, args=(2, data, fs))
+            playing_thread.start()
+            current_audio_stream = True
+        elif 'split_first_heart_sound_tricuspid_valvee' in request.POST:
+            print('Sound Played: Split First Heart, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
+            playing_thread = threading.Thread(target=play, args=(2, data, fs))
+            playing_thread.start()
+            current_audio_stream = True
+        elif 'split_first_heart_sound_erb_point' in request.POST:
+            print('Sound Played: Split First Heart, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
+            playing_thread = threading.Thread(target=play, args=(2, data, fs))
+            playing_thread.start()
+            current_audio_stream = True
         else:
             pass
 
