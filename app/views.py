@@ -63,6 +63,8 @@ def index(request):
                 playing_thread.join()  # Stop the currently playing audio
             current_audio_stream = False
         
+        stop_flag = threading.Event()
+        
         if 'normal_heart_sound_mitral_valve' in request.POST:
             print('Sound Played: Normal Heart, Location: Mitral Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
