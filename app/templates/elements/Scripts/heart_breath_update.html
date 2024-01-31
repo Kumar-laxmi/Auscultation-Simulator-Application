@@ -1,0 +1,73 @@
+<script>
+    // Heart Rate: Increment
+    $(document).ready(function () {
+        $("#hr_plus").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'heartUpdate/',
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}', 'hr_plus': true},
+                success: function (response) {
+                    console.log(response);
+                    $("#hr_show").text(response.hr_show);
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+        });
+    });
+
+    // Heart Rate: Decrement
+    $(document).ready(function () {
+        $("#hr_minus").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'heartUpdate/',
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}', 'hr_minus': true},
+                success: function (response) {
+                    console.log(response);
+                    $("#hr_show").text(response.hr_show);
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+        });
+    });
+
+    // Breath Rate: Increment
+    $(document).ready(function () {
+        $("#rr_plus").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'breathUpdate/',
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}', 'rr_plus': true},
+                success: function (response) {
+                    console.log(response);
+                    $("#rr_show").text(response.rr_show);
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+        });
+    });
+
+    // Breath Rate: Decrement
+    $(document).ready(function () {
+        $("#rr_minus").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'breathUpdate/',
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}', 'rr_minus': true},
+                success: function (response) {
+                    console.log(response);
+                    $("#rr_show").text(response.rr_show);
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+        });
+    });
+</script>

@@ -23,6 +23,8 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+    path('heartUpdate/', heartUpdate),
+    path('breathUpdate/', breathUpdate),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 

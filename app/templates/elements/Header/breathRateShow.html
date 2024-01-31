@@ -1,17 +1,15 @@
-<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-    <div class="row">
-        <div class="col-auto">
-            <button type="submit" name="rr_plus" class="btn btn-link btn-outline-danger" id="rr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
-        </div>
-        <div class="col-auto">
-            <div class="card text-info bg-dark">
-                <div class="card-body">
-                    <p class="card-text font-weight-bold" style="transition: 0.5s;" id="rr_show">{{ rr_show }}</p>
-                </div>
+<div class="row">
+    <div class="col-auto">
+        <button type="submit" name="rr_plus" class="btn btn-link btn-outline-danger" id="rr_plus" data-mdb-ripple-color="dark"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="col-auto">
+        <div class="card text-info bg-dark">
+            <div class="card-body">
+                <p class="card-text font-weight-bold" style="transition: 0.5s;" id="rr_show">{{ rr_show }}</p>
             </div>
         </div>
-        <div class="col-auto">
-            <button type="submit" name="rr_minus" class="btn btn-link btn-outline-danger" id="rr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
-        </div>
     </div>
-</form>
+    <div class="col-auto">
+        <button type="submit" name="rr_minus" class="btn btn-link btn-outline-danger" id="rr_minus" data-mdb-ripple-color="dark"><i class="fa fa-minus"></i></button>
+    </div>
+</div>

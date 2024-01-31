@@ -1,6 +1,7 @@
 from urllib import request
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 import sounddevice as sd
 import soundcard as sc
 import soundfile as sf
@@ -16,9 +17,9 @@ hr_show, rr_show = 60, 15
 current_audio_stream = False
 
 try:
-    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3")
+    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 except:
-    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3")
+    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 cursor = con.cursor()
 
 speakers = sc.all_speakers()
@@ -37,38 +38,44 @@ def heartUpdate(request):
     global con
     global cursor
 
-    if request.method == 'GET':
-        if 'hr_plus' in request.GET:
+    if request.method == 'POST':
+        if 'hr_plus' in request.POST:
             hr_show += 1
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate + 1 WHERE default_col=1""")
             con.commit()
             print('\nHeart Rate updated to: {}'.format(hr_show))
-        elif 'hr_minus' in request.GET:
+        elif 'hr_minus' in request.POST:
             hr_show -= 1
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate - 1 WHERE default_col=1""")
             con.commit()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         else:
             hr_show += 0
+        return JsonResponse({'message': 'Success!', 'hr_show': hr_show})
+    else:
+        return HttpResponse("Request method is not a POST")
 
 def breathUpdate(request):
     global rr_show
     global con
     global cursor
 
-    if request.method == 'GET':
-        if 'rr_plus' in request.GET:
+    if request.method == 'POST':
+        if 'rr_plus' in request.POST:
             rr_show += 1
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate + 1 WHERE default_col=1""")
             con.commit()
             print('\nBreath Rate updated to: {}'.format(rr_show))
-        elif 'rr_minus' in request.GET:
+        elif 'rr_minus' in request.POST:
             rr_show -= 1
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate - 1 WHERE default_col=1""")
             con.commit()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             rr_show += 0
+        return JsonResponse({'message': 'Success!', 'rr_show': rr_show})
+    else:
+        return HttpResponse("Request method is not a POST")
 
 # Create your views here.
 def index(request):
@@ -79,9 +86,9 @@ def index(request):
     global stop_flag
 
     try:
-        con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3")
+        con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
     except:
-        con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3")
+        con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
     if request.method == 'POST':
