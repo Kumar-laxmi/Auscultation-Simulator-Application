@@ -59,6 +59,7 @@ pycparser==2.21
 pydub==0.25.1
 pygame==2.5.2
 Pygments==2.17.2
+pyo==1.0.5
 pyobjc==10.1
 pyobjc-core==10.1
 pyobjc-framework-Accessibility==10.1

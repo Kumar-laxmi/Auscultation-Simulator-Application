@@ -8,12 +8,18 @@ import sqlite3
 import pandas as pd
 import threading
 
-from .models import heartAudio, lungAudio, heartSound
-from .forms import heartAudioForms, lungAudioForm, heartSoundForm
+from .models import heartAudio, lungAudio
+from .forms import heartAudioForms, lungAudioForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 hr_show, rr_show = 60, 15
 current_audio_stream = False
+
+try:
+    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3")
+except:
+    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3")
+cursor = con.cursor()
 
 speakers = sc.all_speakers()
 playing_thread = None  # Global variable to keep track of the currently playing thread
@@ -25,6 +31,44 @@ def play(index, samples, samplerate):
     while not stop_flag.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
+
+def heartUpdate(request):
+    global hr_show
+    global con
+    global cursor
+
+    if request.method == 'GET':
+        if 'hr_plus' in request.GET:
+            hr_show += 1
+            cursor.execute("""UPDATE heartrate SET heartrate = heartrate + 1 WHERE default_col=1""")
+            con.commit()
+            print('\nHeart Rate updated to: {}'.format(hr_show))
+        elif 'hr_minus' in request.GET:
+            hr_show -= 1
+            cursor.execute("""UPDATE heartrate SET heartrate = heartrate - 1 WHERE default_col=1""")
+            con.commit()
+            print('\nHeart Rate updated to: {}'.format(hr_show))
+        else:
+            hr_show += 0
+
+def breathUpdate(request):
+    global rr_show
+    global con
+    global cursor
+
+    if request.method == 'GET':
+        if 'rr_plus' in request.GET:
+            rr_show += 1
+            cursor.execute("""UPDATE breathrate SET breathrate = breathrate + 1 WHERE default_col=1""")
+            con.commit()
+            print('\nBreath Rate updated to: {}'.format(rr_show))
+        elif 'rr_minus' in request.GET:
+            rr_show -= 1
+            cursor.execute("""UPDATE breathrate SET breathrate = breathrate - 1 WHERE default_col=1""")
+            con.commit()
+            print('\nBreath Rate updated to: {}'.format(rr_show))
+        else:
+            rr_show += 0
 
 # Create your views here.
 def index(request):
@@ -41,22 +85,6 @@ def index(request):
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
     if request.method == 'POST':
-        if 'hr_plus' in request.POST:
-            hr_show += 1
-            print('\nHeart Rate updated to: {}'.format(hr_show))
-        elif 'hr_minus' in request.POST:
-            hr_show -= 1
-            print('\nHeart Rate updated to: {}'.format(hr_show))
-        elif 'rr_plus' in request.POST:
-            rr_show += 1
-            print('\nBreath Rate updated to: {}'.format(rr_show))
-        elif 'rr_minus' in request.POST:
-            rr_show -= 1
-            print('\nBreath Rate updated to: {}'.format(rr_show))
-        else:
-            hr_show += 0
-            rr_show += 0
-        
         if current_audio_stream:
             if playing_thread and playing_thread.is_alive():
                 stop_flag.set()
@@ -164,6 +192,10 @@ def index(request):
         }
     else:
         print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
+        cursor.execute("""UPDATE heartrate SET heartrate = '60'""")
+        con.commit()
+        cursor.execute("""UPDATE breathrate SET breathrate = '15'""")
+        con.commit()
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
