@@ -43,16 +43,15 @@ def heartUpdate(request):
             hr_show += 1
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate + 1 WHERE default_col=1""")
             con.commit()
-            cursor.close()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'hr_minus' in request.POST:
             hr_show -= 1
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate - 1 WHERE default_col=1""")
             con.commit()
-            cursor.close()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         else:
             hr_show += 0
+        cursor.close()
         return JsonResponse({'message': 'Success!', 'hr_show': hr_show})
     else:
         return HttpResponse("Request method is not a POST")
@@ -67,16 +66,15 @@ def breathUpdate(request):
             rr_show += 1
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate + 1 WHERE default_col=1""")
             con.commit()
-            cursor.close()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         elif 'rr_minus' in request.POST:
             rr_show -= 1
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate - 1 WHERE default_col=1""")
             con.commit()
-            cursor.close()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             rr_show += 0
+        cursor.close()
         return JsonResponse({'message': 'Success!', 'rr_show': rr_show})
     else:
         return HttpResponse("Request method is not a POST")
