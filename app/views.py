@@ -20,7 +20,6 @@ try:
     con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 except:
     con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
-cursor = con.cursor()
 
 speakers = sc.all_speakers()
 playing_thread = None  # Global variable to keep track of the currently playing thread
@@ -36,18 +35,21 @@ def play(index, samples, samplerate):
 def heartUpdate(request):
     global hr_show
     global con
-    global cursor
 
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
             hr_show += 1
+            cursor = con.cursor()
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate + 1 WHERE default_col=1""")
             con.commit()
+            cursor.close()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'hr_minus' in request.POST:
             hr_show -= 1
+            cursor = con.cursor()
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate - 1 WHERE default_col=1""")
             con.commit()
+            cursor.close()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         else:
             hr_show += 0
@@ -58,18 +60,21 @@ def heartUpdate(request):
 def breathUpdate(request):
     global rr_show
     global con
-    global cursor
 
     if request.method == 'POST':
         if 'rr_plus' in request.POST:
             rr_show += 1
+            cursor = con.cursor()
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate + 1 WHERE default_col=1""")
             con.commit()
+            cursor.close()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         elif 'rr_minus' in request.POST:
             rr_show -= 1
+            cursor = con.cursor()
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate - 1 WHERE default_col=1""")
             con.commit()
+            cursor.close()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             rr_show += 0
