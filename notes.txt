@@ -5,3 +5,6 @@
 - to clear table in SQLite:                     <model_name>.objects.all().delete()
 - Log of all Git Commits:                       https://api.github.com/repos/Kumar-laxmi/Auscultation-Simulator-Application/commits
 - Activate Virtual Environment:                 source virtualenv/bin/activate
+
+ROUGH Work
+
