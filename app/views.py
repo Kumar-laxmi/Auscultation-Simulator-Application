@@ -45,6 +45,7 @@ def play_mitral(index, samples, samplerate):
     global speakers
     global stop_flag_mitral
     while not stop_flag_mitral.is_set():
+        print('M', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -52,6 +53,7 @@ def play_aortic(index, samples, samplerate):
     global speakers
     global stop_flag_aortic
     while not stop_flag_aortic.is_set():
+        print('A', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -59,6 +61,7 @@ def play_pulmonary(index, samples, samplerate):
     global speakers
     global stop_flag_pulmonary
     while not stop_flag_pulmonary.is_set():
+        print('P', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -66,6 +69,7 @@ def play_tricuspid(index, samples, samplerate):
     global speakers
     global stop_flag_tricuspid
     while not stop_flag_tricuspid.is_set():
+        print('T', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -73,6 +77,7 @@ def play_erb(index, samples, samplerate):
     global speakers
     global stop_flag_erb
     while not stop_flag_erb.is_set():
+        print('E', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
         
@@ -141,27 +146,32 @@ def index(request):
             if playing_thread_mitral and playing_thread_mitral.is_alive():
                 stop_flag_mitral.set()
                 playing_thread_mitral.join()
-            current_audio_stream_mitral = False
+                print('Destroyed Mitral thread')
+                current_audio_stream_mitral = False
         elif current_audio_stream_aortic:
             if playing_thread_aortic and playing_thread_aortic.is_alive():
                 stop_flag_aortic.set()
                 playing_thread_aortic.join()
-            current_audio_stream_aortic = False
+                print('Destroyed Aortic thread')
+                current_audio_stream_aortic = False
         elif current_audio_stream_pulmonary:
             if playing_thread_pulmonary and playing_thread_pulmonary.is_alive():
                 stop_flag_pulmonary.set()
                 playing_thread_pulmonary.join()
-            current_audio_stream_pulmonary = False
+                print('Destroyed Pulmonary thread')
+                current_audio_stream_pulmonary = False
         elif current_audio_stream_tricuspid:
             if playing_thread_tricuspid and playing_thread_tricuspid.is_alive():
                 stop_flag_tricuspid.set()
                 playing_thread_tricuspid.join()
-            current_audio_stream_tricuspid = False
+                print('Destroyed Tricuspid thread')
+                current_audio_stream_tricuspid = False
         elif current_audio_stream_erb:
             if playing_thread_erb and playing_thread_erb.is_alive():
                 stop_flag_erb.set()
                 playing_thread_erb.join()
-            current_audio_stream_erb = False
+                print('Destroyed Erb thread')
+                current_audio_stream_erb = False
         
         stop_flag_mitral = threading.Event()
         stop_flag_aortic = threading.Event()
