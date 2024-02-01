@@ -189,6 +189,12 @@ def index(request):
                 stop_flag_erb.set()
                 playing_thread_erb.join()
             current_audio_stream_erb = False
+        
+        stop_flag_mitral = threading.Event()
+        stop_flag_aortic = threading.Event()
+        stop_flag_pulmonary = threading.Event()
+        stop_flag_tricuspid = threading.Event()
+        stop_flag_erb = threading.Event()
 
         
         if 'normal_heart_sound_mitral_valve' in request.POST:
