@@ -328,8 +328,6 @@ def index(request):
             playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
             playing_thread_erb.start()
             current_audio_stream_erb = True
-        else:
-            pass
 
         context = {
             'hr_show': hr_show,
