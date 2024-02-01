@@ -142,26 +142,22 @@ def index(request):
                 stop_flag_mitral.set()
                 playing_thread_mitral.join()
             current_audio_stream_mitral = False
-        
-        if current_audio_stream_aortic:
+        elif current_audio_stream_aortic:
             if playing_thread_aortic and playing_thread_aortic.is_alive():
                 stop_flag_aortic.set()
                 playing_thread_aortic.join()
             current_audio_stream_aortic = False
-        
-        if current_audio_stream_pulmonary:
+        elif current_audio_stream_pulmonary:
             if playing_thread_pulmonary and playing_thread_pulmonary.is_alive():
                 stop_flag_pulmonary.set()
                 playing_thread_pulmonary.join()
             current_audio_stream_pulmonary = False
-        
-        if current_audio_stream_tricuspid:
+        elif current_audio_stream_tricuspid:
             if playing_thread_tricuspid and playing_thread_tricuspid.is_alive():
                 stop_flag_tricuspid.set()
                 playing_thread_tricuspid.join()
             current_audio_stream_tricuspid = False
-        
-        if current_audio_stream_erb:
+        elif current_audio_stream_erb:
             if playing_thread_erb and playing_thread_erb.is_alive():
                 stop_flag_erb.set()
                 playing_thread_erb.join()
