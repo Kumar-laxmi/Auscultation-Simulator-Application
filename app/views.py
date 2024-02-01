@@ -148,25 +148,29 @@ def index(request):
                 playing_thread_mitral.join()
                 print('Destroyed Mitral thread')
                 current_audio_stream_mitral = False
-        elif current_audio_stream_aortic:
+        
+        if current_audio_stream_aortic:
             if playing_thread_aortic and playing_thread_aortic.is_alive():
                 stop_flag_aortic.set()
                 playing_thread_aortic.join()
                 print('Destroyed Aortic thread')
                 current_audio_stream_aortic = False
-        elif current_audio_stream_pulmonary:
+        
+        if current_audio_stream_pulmonary:
             if playing_thread_pulmonary and playing_thread_pulmonary.is_alive():
                 stop_flag_pulmonary.set()
                 playing_thread_pulmonary.join()
                 print('Destroyed Pulmonary thread')
                 current_audio_stream_pulmonary = False
-        elif current_audio_stream_tricuspid:
+        
+        if current_audio_stream_tricuspid:
             if playing_thread_tricuspid and playing_thread_tricuspid.is_alive():
                 stop_flag_tricuspid.set()
                 playing_thread_tricuspid.join()
                 print('Destroyed Tricuspid thread')
                 current_audio_stream_tricuspid = False
-        elif current_audio_stream_erb:
+        
+        if current_audio_stream_erb:
             if playing_thread_erb and playing_thread_erb.is_alive():
                 stop_flag_erb.set()
                 playing_thread_erb.join()
