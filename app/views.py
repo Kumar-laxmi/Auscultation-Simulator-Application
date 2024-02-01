@@ -39,6 +39,7 @@ def heartUpdate(request):
     global cursor
 
     if request.method == 'POST':
+        cursor = con.cursor()
         if 'hr_plus' in request.POST:
             hr_show += 1
             cursor.execute("""UPDATE heartrate SET heartrate = heartrate + 1 WHERE default_col=1""")
@@ -62,6 +63,7 @@ def breathUpdate(request):
     global cursor
 
     if request.method == 'POST':
+        cursor = con.cursor()
         if 'rr_plus' in request.POST:
             rr_show += 1
             cursor.execute("""UPDATE breathrate SET breathrate = breathrate + 1 WHERE default_col=1""")
