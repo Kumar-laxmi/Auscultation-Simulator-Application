@@ -148,6 +148,7 @@ def index(request):
                 playing_thread_mitral.join()
                 print('Destroyed Mitral thread')
                 current_audio_stream_mitral = False
+                stop_flag_mitral = threading.Event()
         
         if current_audio_stream_aortic:
             if playing_thread_aortic and playing_thread_aortic.is_alive():
@@ -155,6 +156,7 @@ def index(request):
                 playing_thread_aortic.join()
                 print('Destroyed Aortic thread')
                 current_audio_stream_aortic = False
+                stop_flag_aortic = threading.Event()
         
         if current_audio_stream_pulmonary:
             if playing_thread_pulmonary and playing_thread_pulmonary.is_alive():
@@ -162,6 +164,7 @@ def index(request):
                 playing_thread_pulmonary.join()
                 print('Destroyed Pulmonary thread')
                 current_audio_stream_pulmonary = False
+                stop_flag_pulmonary = threading.Event()
         
         if current_audio_stream_tricuspid:
             if playing_thread_tricuspid and playing_thread_tricuspid.is_alive():
@@ -169,6 +172,7 @@ def index(request):
                 playing_thread_tricuspid.join()
                 print('Destroyed Tricuspid thread')
                 current_audio_stream_tricuspid = False
+                stop_flag_tricuspid = threading.Event()
         
         if current_audio_stream_erb:
             if playing_thread_erb and playing_thread_erb.is_alive():
@@ -176,12 +180,7 @@ def index(request):
                 playing_thread_erb.join()
                 print('Destroyed Erb thread')
                 current_audio_stream_erb = False
-        
-        stop_flag_mitral = threading.Event()
-        stop_flag_aortic = threading.Event()
-        stop_flag_pulmonary = threading.Event()
-        stop_flag_tricuspid = threading.Event()
-        stop_flag_erb = threading.Event()
+                stop_flag_erb = threading.Event()
 
         # Buttons for Mitral Valve
         if 'normal_heart_sound_mitral_valve' in request.POST:
