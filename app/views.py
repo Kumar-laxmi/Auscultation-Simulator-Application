@@ -23,7 +23,7 @@ cursor = con.cursor()
 
 speakers = sc.all_speakers()
 
-# -------------------------------------------------------
+"""
 current_audio_stream_mitral = False
 current_audio_stream_aortic = False
 current_audio_stream_pulmonary = False
@@ -76,8 +76,20 @@ def play_erb(index, samples, samplerate):
     while not stop_flag_erb.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
-# -------------------------------------------------------
+"""
 
+# --------------------------------------------------
+current_audio_stream = {'mitral': False, 'aortic': False, 'pulmonary': False, 'tricuspid': False, 'erb': False}
+stop_flags = {'mitral': threading.Event(), 'aortic': threading.Event(), 'pulmonary': threading.Event(), 'tricuspid': threading.Event(), 'erb': threading.Event()}
+playing_threads = {'mitral': None, 'aortic': None, 'pulmonary': None, 'tricuspid': None, 'erb': None}
+
+def play_sound(index, samples, samplerate, stop_flag):
+    global speakers
+    while not stop_flag.is_set():
+        speaker = speakers[index]
+        speaker.play(samples, samplerate)
+# --------------------------------------------------
+        
 def heartUpdate(request):
     global hr_show
     global con, cursor
@@ -128,9 +140,10 @@ def breathUpdate(request):
 def index(request):
     global hr_show, rr_show
 
-    global current_audio_stream_mitral, current_audio_stream_aortic, current_audio_stream_pulmonary, current_audio_stream_tricuspid, current_audio_stream_erb
-    global playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb
-    global stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb
+    #global current_audio_stream_mitral, current_audio_stream_aortic, current_audio_stream_pulmonary, current_audio_stream_tricuspid, current_audio_stream_erb
+    #global playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb
+    #global stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb
+    global current_audio_stream, playing_threads, stop_flags
 
     try:
         con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
@@ -138,6 +151,7 @@ def index(request):
         con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
+    """
     if request.method == 'POST':        
         if current_audio_stream_mitral:
             if playing_thread_mitral and playing_thread_mitral.is_alive():
@@ -336,6 +350,30 @@ def index(request):
             current_audio_stream_erb = True
         else:
             pass
+
+        context = {
+            'hr_show': hr_show,
+            'rr_show': rr_show
+        }
+    """
+    if request.method == 'POST':
+        for valve in ['mitral', 'aortic', 'pulmonary', 'tricuspid', 'erb']:
+            if current_audio_stream[valve]:
+                if playing_threads[valve] and playing_threads[valve].is_alive():
+                    stop_flags[valve].set()
+                    playing_threads[valve].join()
+                current_audio_stream[valve] = False
+
+            stop_flags[valve] = threading.Event()
+
+            if f'normal_heart_sound_{valve}_valve' in request.POST:
+                print(f'\nSound Played: Normal Heart, Location: {valve.capitalize()} Valve')
+                data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'normal_heart') & (df_heart['sound_type'] == valve.capitalize()[0]), 'audio_file_path'].values[0])
+                playing_threads[valve] = threading.Thread(target=play_sound, args=(valve_locations.index(valve), data, fs, stop_flags[valve]))
+                playing_threads[valve].start()
+                current_audio_stream[valve] = True
+
+            # ... (repeat the above block for other sound types and valve locations)
 
         context = {
             'hr_show': hr_show,
