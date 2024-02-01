@@ -14,7 +14,6 @@ from .forms import heartAudioForms, lungAudioForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 hr_show, rr_show = 60, 15
-current_audio_stream = False
 
 try:
     con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
@@ -23,8 +22,6 @@ except:
 cursor = con.cursor()
 
 speakers = sc.all_speakers()
-playing_thread = None  # Global variable to keep track of the currently playing thread
-stop_flag = threading.Event()
 
 # -------------------------------------------------------
 current_audio_stream_mitral = False
@@ -81,18 +78,9 @@ def play_erb(index, samples, samplerate):
         speaker.play(samples, samplerate)
 # -------------------------------------------------------
 
-
-def play(index, samples, samplerate):
-    global speakers
-    global stop_flag
-    while not stop_flag.is_set():
-        speaker = speakers[index]
-        speaker.play(samples, samplerate)
-
 def heartUpdate(request):
     global hr_show
-    global con
-    global cursor
+    global con, cursor
 
     if request.method == 'POST':
         cursor = con.cursor()
@@ -115,8 +103,7 @@ def heartUpdate(request):
 
 def breathUpdate(request):
     global rr_show
-    global con
-    global cursor
+    global con, cursor
 
     if request.method == 'POST':
         cursor = con.cursor()
@@ -139,11 +126,7 @@ def breathUpdate(request):
 
 # Create your views here.
 def index(request):
-    global hr_show
-    global rr_show
-    global current_audio_stream
-    global playing_thread
-    global stop_flag
+    global hr_show, rr_show
 
     global current_audio_stream_mitral, current_audio_stream_aortic, current_audio_stream_pulmonary, current_audio_stream_tricuspid, current_audio_stream_erb
     global playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb
@@ -155,15 +138,7 @@ def index(request):
         con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-    if request.method == 'POST':
-        if current_audio_stream:
-            if playing_thread and playing_thread.is_alive():
-                stop_flag.set()
-                playing_thread.join()  # Stop the currently playing audio
-            current_audio_stream = False
-        
-        stop_flag = threading.Event()
-        
+    if request.method == 'POST':        
         if current_audio_stream_mitral:
             if playing_thread_mitral and playing_thread_mitral.is_alive():
                 stop_flag_mitral.set()
