@@ -197,12 +197,6 @@
 
         function hideAll() {
             var temp = [
-                "mitral_valve_regurgitation_sound",
-                            "mitral_valve_stenosis_sound",
-                            "mitral_valve_prelapse_sound",
-                            "mitral_stenosis_and_regurgitation_sound",
-                            "mitral_stenosis_and_tricuspid_regurgitation_sound" ,
-
                             "pulmonary_valve_stenosis_sound",
                             "pulmonary_valve_regurgitation_sound",
 
@@ -232,6 +226,7 @@
                             /* Aortic Value */
                             "aortic_valve_regurgitation_sound","aortic_valve_stenosis_sound","aortic_valve_stenosis_regurgitation_sound","congenital_aortic_stenosis_sound",
                             /* Mitral Value */
+                            "mitral_valve_regurgitation_sound","mitral_valve_stenosis_sound","mitral_valve_prelapse_sound","mitral_stenosis_regurgitation_sound","mitral_stenosis_tricuspid_regurgitation_sound",
                             /* Pulmonary Value */
                             /* Tricuspid Value */
                             /* Pathologies */
@@ -305,6 +300,21 @@
         };
         document.getElementById("congenital_aortic_stenosis_sound").onclick = function() {
             showElement("congenital_aortic_stenosis_sound");
+        };
+        document.getElementById("mitral_valve_regurgitation_sound").onclick = function() {
+            showElement("mitral_valve_regurgitation_sound");
+        };
+        document.getElementById("mitral_valve_stenosis_sound").onclick = function() {
+            showElement("mitral_valve_stenosis_sound");
+        };
+        document.getElementById("mitral_valve_prelapse_sound").onclick = function() {
+            showElement("mitral_valve_prelapse_sound");
+        };
+        document.getElementById("mitral_stenosis_regurgitation_sound").onclick = function() {
+            showElement("mitral_stenosis_regurgitation_sound");
+        };
+        document.getElementById("mitral_stenosis_tricuspid_regurgitation_sound").onclick = function() {
+            showElement("mitral_stenosis_tricuspid_regurgitation_sound");
         };
     </script>
 
