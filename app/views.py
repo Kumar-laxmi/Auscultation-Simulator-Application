@@ -45,7 +45,6 @@ def play_mitral(index, samples, samplerate):
     global speakers
     global stop_flag_mitral
     while not stop_flag_mitral.is_set():
-        print('M', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -53,7 +52,6 @@ def play_aortic(index, samples, samplerate):
     global speakers
     global stop_flag_aortic
     while not stop_flag_aortic.is_set():
-        print('A', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -61,7 +59,6 @@ def play_pulmonary(index, samples, samplerate):
     global speakers
     global stop_flag_pulmonary
     while not stop_flag_pulmonary.is_set():
-        print('P', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -69,7 +66,6 @@ def play_tricuspid(index, samples, samplerate):
     global speakers
     global stop_flag_tricuspid
     while not stop_flag_tricuspid.is_set():
-        print('T', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
@@ -77,7 +73,6 @@ def play_erb(index, samples, samplerate):
     global speakers
     global stop_flag_erb
     while not stop_flag_erb.is_set():
-        print('E', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
         
