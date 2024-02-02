@@ -191,86 +191,77 @@
     {% include 'elements/Scripts/heart_breath_update.html' %}
 
     <script>
-        var normal_heart_sound = document.getElementById("normal_heart_sound_volume");
-        var split_first_heart_sound = document.getElementById("split_first_heart_sound_volume");
-        var split_second_heart_sound = document.getElementById("split_second_heart_sound_volume");
-        var third_heart_sound = document.getElementById("third_heart_sound_volume");
-        var fourth_heart_sound = document.getElementById("fourth_heart_sound_volume");
-        
-        document.getElementById("normal_heart_sound").onclick = function() {
-            if (normal_heart_sound.style.display === "none") {
-                normal_heart_sound.style.display = "block";
-                split_first_heart_sound.style.display = "none";
-                split_second_heart_sound.style.display = "none";
-                third_heart_sound.style.display = "none";
-                fourth_heart_sound.style.display = "none";
+        function getElement(id) {
+            return document.getElementById(id + "_volume");
+        }
 
-                document.getElementById("normal_heart_sound").classList.add('active');
-                document.getElementById("split_first_heart_sound").classList.remove('active');
-                document.getElementById("split_second_heart_sound").classList.remove('active');
-                document.getElementById("third_heart_sound").classList.remove('active');
-                document.getElementById("fourth_heart_sound").classList.remove('active');
-            }
+        function hideAll() {
+            var heart_tones = ["normal_heart_sound","split_first_heart_sound","split_second_heart_sound","third_heart_sound","fourth_heart_sound"]
+            var murmurs = ["functional_murmur_sound","diastolic_murmur_sound","opening_snap_sound","holosystolic_murmur_sound","early_systolic_murmur_sound","mid_systolic_murmur_sound","continuous_murmur_sound","austin_flint_murmur_sound","pericardial_rub_sound","graham_steell_murmur_sound"]
+            var aortic_value = []
+            var mitral_value = []
+            var pulmonary_value = []
+            var tricuspid_value = []
+            var pathologies = []
+
+            var elements = [...heart_tones,...murmurs,...aortic_value,...mitral_value,...pulmonary_value,...tricuspid_value,...pathologies]
+
+            elements.forEach(function (element) {
+                getElement(element).style.display = "none";
+                document.getElementById(element).classList.remove('active');
+            });
+        }
+
+        function showElement(id) {
+            hideAll();
+            getElement(id).style.display = "block";
+            document.getElementById(id).classList.add('active');
+        }
+
+        document.getElementById("normal_heart_sound").onclick = function() {
+            showElement("normal_heart_sound");
         };
         document.getElementById("split_first_heart_sound").onclick = function() {
-            if (split_first_heart_sound.style.display === "none") {
-                normal_heart_sound.style.display = "none";
-                split_first_heart_sound.style.display = "block";
-                split_second_heart_sound.style.display = "none";
-                third_heart_sound.style.display = "none";
-                fourth_heart_sound.style.display = "none";
-
-                document.getElementById("normal_heart_sound").classList.remove('active');
-                document.getElementById("split_first_heart_sound").classList.add('active');
-                document.getElementById("split_second_heart_sound").classList.remove('active');
-                document.getElementById("third_heart_sound").classList.remove('active');
-                document.getElementById("fourth_heart_sound").classList.remove('active');
-            }
+            showElement("split_first_heart_sound");
         };
         document.getElementById("split_second_heart_sound").onclick = function() {
-            if (split_second_heart_sound.style.display === "none") {
-                normal_heart_sound.style.display = "none";
-                split_first_heart_sound.style.display = "none";
-                split_second_heart_sound.style.display = "block";
-                third_heart_sound.style.display = "none";
-                fourth_heart_sound.style.display = "none";
-
-                document.getElementById("normal_heart_sound").classList.remove('active');
-                document.getElementById("split_first_heart_sound").classList.remove('active');
-                document.getElementById("split_second_heart_sound").classList.add('active');
-                document.getElementById("third_heart_sound").classList.remove('active');
-                document.getElementById("fourth_heart_sound").classList.remove('active');
-            }
+            showElement("split_second_heart_sound");
         };
         document.getElementById("third_heart_sound").onclick = function() {
-            if (third_heart_sound.style.display === "none") {
-                normal_heart_sound.style.display = "none";
-                split_first_heart_sound.style.display = "none";
-                split_second_heart_sound.style.display = "none";
-                third_heart_sound.style.display = "block";
-                fourth_heart_sound.style.display = "none";
-
-                document.getElementById("normal_heart_sound").classList.remove('active');
-                document.getElementById("split_first_heart_sound").classList.remove('active');
-                document.getElementById("split_second_heart_sound").classList.remove('active');
-                document.getElementById("third_heart_sound").classList.add('active');
-                document.getElementById("fourth_heart_sound").classList.remove('active');
-            }
+            showElement("third_heart_sound");
         };
         document.getElementById("fourth_heart_sound").onclick = function() {
-            if (fourth_heart_sound.style.display === "none") {
-                normal_heart_sound.style.display = "none";
-                split_first_heart_sound.style.display = "none";
-                split_second_heart_sound.style.display = "none";
-                third_heart_sound.style.display = "none";
-                fourth_heart_sound.style.display = "block";
-
-                document.getElementById("normal_heart_sound").classList.remove('active');
-                document.getElementById("split_first_heart_sound").classList.remove('active');
-                document.getElementById("split_second_heart_sound").classList.remove('active');
-                document.getElementById("third_heart_sound").classList.remove('active');
-                document.getElementById("fourth_heart_sound").classList.add('active');
-            }
+            showElement("fourth_heart_sound");
+        };
+        document.getElementById("functional_murmur_sound").onclick = function() {
+            showElement("functional_murmur_sound");
+        };
+        document.getElementById("diastolic_murmur_sound").onclick = function() {
+            showElement("diastolic_murmur_sound");
+        };
+        document.getElementById("opening_snap_sound").onclick = function() {
+            showElement("opening_snap_sound");
+        };
+        document.getElementById("holosystolic_murmur_sound").onclick = function() {
+            showElement("holosystolic_murmur_sound");
+        };
+        document.getElementById("early_systolic_murmur_sound").onclick = function() {
+            showElement("early_systolic_murmur_sound");
+        };
+        document.getElementById("mid_systolic_murmur_sound").onclick = function() {
+            showElement("mid_systolic_murmur_sound");
+        };
+        document.getElementById("continuous_murmur_sound").onclick = function() {
+            showElement("continuous_murmur_sound");
+        };
+        document.getElementById("austin_flint_murmur_sound").onclick = function() {
+            showElement("austin_flint_murmur_sound");
+        };
+        document.getElementById("pericardial_rub_sound").onclick = function() {
+            showElement("pericardial_rub_sound");
+        };
+        document.getElementById("graham_steell_murmur_sound").onclick = function() {
+            showElement("graham_steell_murmur_sound");
         };
     </script>
 
