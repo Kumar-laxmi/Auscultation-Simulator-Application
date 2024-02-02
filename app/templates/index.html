@@ -197,12 +197,6 @@
 
         function hideAll() {
             var temp = [
-                            "pulmonary_valve_stenosis_sound",
-                            "pulmonary_valve_regurgitation_sound",
-
-                            "tricuspid_valve_regurgitation_sound",
-
-
                             "coarctation_of_the_aorta_sound",
                             "hypertrophic_cardiomyopathy_sound",
                             "patent_ductus_arteriosus_sound",
@@ -228,7 +222,9 @@
                             /* Mitral Value */
                             "mitral_valve_regurgitation_sound","mitral_valve_stenosis_sound","mitral_valve_prelapse_sound","mitral_stenosis_regurgitation_sound","mitral_stenosis_tricuspid_regurgitation_sound",
                             /* Pulmonary Value */
+                            "pulmonary_valve_stenosis_sound","pulmonary_valve_regurgitation_sound",
                             /* Tricuspid Value */
+                            "tricuspid_valve_regurgitation_sound",
                             /* Pathologies */
                         ]
 
@@ -315,6 +311,15 @@
         };
         document.getElementById("mitral_stenosis_tricuspid_regurgitation_sound").onclick = function() {
             showElement("mitral_stenosis_tricuspid_regurgitation_sound");
+        };
+        document.getElementById("pulmonary_valve_stenosis_sound").onclick = function() {
+            showElement("pulmonary_valve_stenosis_sound");
+        };
+        document.getElementById("pulmonary_valve_regurgitation_sound").onclick = function() {
+            showElement("pulmonary_valve_regurgitation_sound");
+        };
+        document.getElementById("tricuspid_valve_regurgitation_sound").onclick = function() {
+            showElement("tricuspid_valve_regurgitation_sound");
         };
     </script>
 
