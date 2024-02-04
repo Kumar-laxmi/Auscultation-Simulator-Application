@@ -23,62 +23,52 @@ cursor = con.cursor()
 
 speakers = sc.all_speakers()
 
-current_audio_stream_mitral = False
-current_audio_stream_aortic = False
-current_audio_stream_pulmonary = False
-current_audio_stream_tricuspid = False
-current_audio_stream_erb = False
+heart_tones = ["normal_heart_sound","split_first_heart_sound","split_second_heart_sound","third_heart_sound","fourth_heart_sound"]
+murmurs = ["functional_murmur_sound", "diastolic_murmur_sound", "opening_snap_sound", "holosystolic_murmur_sound", "early_systolic_murmur_sound", "mid_systolic_murmur_sound", "continuous_murmur_sound", "austin_flint_murmur_sound", "pericardial_rub_sound", "graham_steell_murmur_sound"]
+aortic_valve = ["aortic_valve_regurgitation_sound","aortic_valve_stenosis_sound","aortic_valve_stenosis_regurgitation_sound","congenital_aortic_stenosis_sound"]
+mitral_valve = ["mitral_valve_regurgitation_sound","mitral_valve_stenosis_sound","mitral_valve_prelapse_sound","mitral_stenosis_regurgitation_sound","mitral_stenosis_tricuspid_regurgitation_sound"]
+pulmonary_valve = ["pulmonary_valve_stenosis_sound","pulmonary_valve_regurgitation_sound"]
+tricuspid_valve = ["tricuspid_valve_regurgitation_sound"]
+pathology = ["coarctation_of_the_aorta_sound","hypertrophic_cardiomyopathy_sound","patent_ductus_arteriosus_sound","atrial_septal_defect_sound","ventricular_septal_defect_sound","acute_myocardial_infarction_sound","congestive_heart_failure_sound","systemic_hypertension_sound","acute_pericarditis_sound","dilated_cardiomyopathy_sound","pulmonary_hypertension_sound","tetralogy_of_fallot_sound","ventricular_aneurysm_sound","ebstein_anomaly_sound"]
 
-playing_thread_mitral = None
-playing_thread_aortic = None
-playing_thread_pulmonary = None
-playing_thread_tricuspid = None
-playing_thread_erb = None
+original_sounds = heart_tones + murmurs + aortic_valve + mitral_valve + pulmonary_valve + tricuspid_valve + pathology
 
-stop_flag_mitral = threading.Event()
-stop_flag_aortic = threading.Event()
-stop_flag_pulmonary = threading.Event()
-stop_flag_tricuspid = threading.Event()
-stop_flag_erb = threading.Event()
+current_audio_stream_mitral, current_audio_stream_aortic, current_audio_stream_pulmonary, current_audio_stream_tricuspid, current_audio_stream_erb = False, False, False, False, False
+playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb = None, None, None, None, None
+stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb = threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event()
 
 def play_mitral(index, samples, samplerate):
-    global speakers
-    global stop_flag_mitral
+    global speakers, stop_flag_mitral
     while not stop_flag_mitral.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_aortic(index, samples, samplerate):
-    global speakers
-    global stop_flag_aortic
+    global speakers, stop_flag_aortic
     while not stop_flag_aortic.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_pulmonary(index, samples, samplerate):
-    global speakers
-    global stop_flag_pulmonary
+    global speakers, stop_flag_pulmonary
     while not stop_flag_pulmonary.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_tricuspid(index, samples, samplerate):
-    global speakers
-    global stop_flag_tricuspid
+    global speakers, stop_flag_tricuspid
     while not stop_flag_tricuspid.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_erb(index, samples, samplerate):
-    global speakers
-    global stop_flag_erb
+    global speakers, stop_flag_erb
     while not stop_flag_erb.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
         
 def heartUpdate(request):
-    global hr_show
-    global con, cursor
+    global hr_show, con, cursor
 
     if request.method == 'POST':
         cursor = con.cursor()
@@ -100,8 +90,7 @@ def heartUpdate(request):
         return HttpResponse("Request method is not a POST")
 
 def breathUpdate(request):
-    global rr_show
-    global con, cursor
+    global rr_show, con, cursor
 
     if request.method == 'POST':
         cursor = con.cursor()
@@ -124,11 +113,12 @@ def breathUpdate(request):
 
 # Create your views here.
 def index(request):
-    global hr_show, rr_show
-
+    global hr_show, rr_show, original_sounds
     global current_audio_stream_mitral, current_audio_stream_aortic, current_audio_stream_pulmonary, current_audio_stream_tricuspid, current_audio_stream_erb
     global playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb
     global stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb
+
+    suffix1, suffix2, suffix3, suffix4, suffix5 = "_mitral_valve","_aortic_valve","_pulmonary_valve","_tricuspid_valve","_erb_point"
 
     try:
         con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
@@ -137,11 +127,11 @@ def index(request):
     df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
     if request.method == 'POST':
-        current_audio_stream_mitral = any(x in ['normal_heart_sound_mitral_valve','split_first_heart_sound_mitral_valve','split_second_heart_sound_mitral_valve','third_heart_sound_mitral_valve','fourth_heart_sound_mitral_valve'] for x in request.POST)
-        current_audio_stream_aortic = any(x in ['normal_heart_sound_aortic_valve','split_first_heart_sound_aortic_valve','split_second_heart_sound_aortic_valve','third_heart_sound_aortic_valve','fourth_heart_sound_aortic_valve'] for x in request.POST)
-        current_audio_stream_pulmonary = any(x in ['normal_heart_sound_pulmonary_valve','split_first_heart_sound_pulmonary_valve','split_second_heart_sound_pulmonary_valve','third_heart_sound_pulmonary_valve','fourth_heart_sound_pulmonary_valve'] for x in request.POST)
-        current_audio_stream_tricuspid = any(x in ['normal_heart_sound_tricuspid_valve','split_first_heart_sound_tricuspid_valvee','split_second_heart_sound_tricuspid_valve','third_heart_sound_tricuspid_valve','fourth_heart_sound_tricuspid_valve'] for x in request.POST)
-        current_audio_stream_erb = any(x in ['normal_heart_sound_erb_point','split_first_heart_sound_erb_point','split_second_heart_sound_erb_point','third_heart_sound_erb_point','fourth_heart_sound_erb_point'] for x in request.POST)
+        current_audio_stream_mitral = any(x in [sound + suffix1 for sound in original_sounds] for x in request.POST)
+        current_audio_stream_aortic = any(x in [sound + suffix2 for sound in original_sounds] for x in request.POST)
+        current_audio_stream_pulmonary = any(x in [sound + suffix3 for sound in original_sounds] for x in request.POST)
+        current_audio_stream_tricuspid = any(x in [sound + suffix4 for sound in original_sounds] for x in request.POST)
+        current_audio_stream_erb = any(x in [sound + suffix5 for sound in original_sounds] for x in request.POST)
 
         if current_audio_stream_mitral:
             if playing_thread_mitral and playing_thread_mitral.is_alive():
@@ -209,6 +199,13 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'fourth_heart_sound_gallop') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
             playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
             playing_thread_mitral.start()
+        # 'functional_murmur_sound_mitral_valve','diastolic_murmur_sound_mitral_valve','opening_snap_sound_mitral_valve',
+        
+        #'holosystolic_murmur_sound_mitral_valve','early_systolic_murmur_sound_mitral_valve','mid_systolic_murmur_sound_mitral_valve',
+        
+        #'continuous_murmur_sound_mitral_valve','austin_flint_murmur_sound_mitral_valve','pericardial_rub_sound_mitral_valve',
+        
+        #'graham_steell_murmur_sound_mitral_valve'
 
         # Buttons for Aortic Valve
         if 'normal_heart_sound_aortic_valve' in request.POST:
@@ -236,6 +233,13 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'fourth_heart_sound_gallop') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
             playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
             playing_thread_aortic.start()
+        # 'functional_murmur_sound_mitral_valve','diastolic_murmur_sound_mitral_valve','opening_snap_sound_mitral_valve',
+        
+        #'holosystolic_murmur_sound_mitral_valve','early_systolic_murmur_sound_mitral_valve','mid_systolic_murmur_sound_mitral_valve',
+        
+        #'continuous_murmur_sound_mitral_valve','austin_flint_murmur_sound_mitral_valve','pericardial_rub_sound_mitral_valve',
+        
+        #'graham_steell_murmur_sound_mitral_valve'
         
         # Buttons for Pulmonary Valve
         if 'normal_heart_sound_pulmonary_valve' in request.POST:
@@ -263,6 +267,13 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'fourth_heart_sound_gallop') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
             playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
             playing_thread_pulmonary.start()
+        # 'functional_murmur_sound_mitral_valve','diastolic_murmur_sound_mitral_valve','opening_snap_sound_mitral_valve',
+        
+        #'holosystolic_murmur_sound_mitral_valve','early_systolic_murmur_sound_mitral_valve','mid_systolic_murmur_sound_mitral_valve',
+        
+        #'continuous_murmur_sound_mitral_valve','austin_flint_murmur_sound_mitral_valve','pericardial_rub_sound_mitral_valve',
+        
+        #'graham_steell_murmur_sound_mitral_valve'
 
         # Buttons for Tricuspid Valve
         if 'normal_heart_sound_tricuspid_valve' in request.POST:
@@ -290,6 +301,13 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'fourth_heart_sound_gallop') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
             playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
             playing_thread_tricuspid.start()
+        # 'functional_murmur_sound_mitral_valve','diastolic_murmur_sound_mitral_valve','opening_snap_sound_mitral_valve',
+        
+        #'holosystolic_murmur_sound_mitral_valve','early_systolic_murmur_sound_mitral_valve','mid_systolic_murmur_sound_mitral_valve',
+        
+        #'continuous_murmur_sound_mitral_valve','austin_flint_murmur_sound_mitral_valve','pericardial_rub_sound_mitral_valve',
+        
+        #'graham_steell_murmur_sound_mitral_valve'
         
         # Buttons for Erb Point Valve
         if 'normal_heart_sound_erb_point' in request.POST:
@@ -322,6 +340,13 @@ def index(request):
             playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
             playing_thread_erb.start()
             current_audio_stream_erb = True
+        # 'functional_murmur_sound_mitral_valve','diastolic_murmur_sound_mitral_valve','opening_snap_sound_mitral_valve',
+        
+        #'holosystolic_murmur_sound_mitral_valve','early_systolic_murmur_sound_mitral_valve','mid_systolic_murmur_sound_mitral_valve',
+        
+        #'continuous_murmur_sound_mitral_valve','austin_flint_murmur_sound_mitral_valve','pericardial_rub_sound_mitral_valve',
+        
+        #'graham_steell_murmur_sound_mitral_valve'
 
         context = {
             'hr_show': hr_show,
