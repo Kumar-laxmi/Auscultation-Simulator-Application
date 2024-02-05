@@ -3,56 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wavesurfer.js Animated Looping Waveform</title>
+    <title>Wavesurfer.js Multiple Waveforms</title>
     <!-- Include Wavesurfer.js -->
     <script src="https://unpkg.com/wavesurfer.js"></script>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .waveform-container {
+            width: 100%;
+            margin-bottom: 20px; /* Adjust spacing between waveforms */
+        }
+    </style>
 </head>
-<body style="background-color: black;"> <!-- Set the background color of the body -->
-    <!-- Container for the waveform -->
-    <div id="waveform"></div>
+<body>
+    <!-- Container for the first and second waveform -->
+    <div class="waveform-container">
+        <div id="waveform1"></div>
+        <div id="waveform2"></div>
+        <button class="btn" onclick="togglePlayback()">Play/Pause</button>
+    </div>
 
-    <!-- Button to toggle play/pause -->
-    <button id="btn">Play</button>
-
-    <!-- Your script to initialize Wavesurfer.js -->
     <script>
-        // Initialize Wavesurfer with the scrollParent option and reduced line width
-        var wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'black', // Set the waveColor to black
+        // Initialize Wavesurfer for the first audio file
+        var wavesurfer1 = WaveSurfer.create({
+            container: '#waveform1',
+            waveColor: 'black',
             progressColor: 'green',
             cursorWidth: 0,
-            scrollParent: true,
             loop: true,
-            autoplay: false, // Disable autoplay initially
-            volume: 0,  // Set volume to 0
-            barWidth: 1 // Adjust the barWidth to your desired value (e.g., 1)
+            autoplay: false,
+            volume: 0, // Start muted
+            barWidth: 1
         });
-
-        // Load your audio file
-        wavesurfer.load('combined_audio.wav');
+        wavesurfer1.load('app/static/audio/heart/acute_myocardial_infarction/A/combined_audio.wav');
 
         // Set the volume to 0 again to ensure it stays muted
-        wavesurfer.setVolume(0);
+        wavesurfer1.setVolume(0);
 
-        // Function to toggle play/pause when the button is clicked
+        // Initialize Wavesurfer for the second audio file
+        var wavesurfer2 = WaveSurfer.create({
+            container: '#waveform2',
+            waveColor: 'black',
+            progressColor: 'green',
+            cursorWidth: 0,
+            loop: true,
+            autoplay: false,
+            volume: 0, // Start muted
+            barWidth: 1
+        });
+        wavesurfer2.load('output.wav');
+
+        // Set the volume to 0 again to ensure it stays muted
+        wavesurfer2.setVolume(0);
+
+        // Function to toggle play/pause for both waveforms
         function togglePlayback() {
-            if (wavesurfer.isPlaying()) {
-                wavesurfer.pause();
-                document.getElementById('btn').innerText = 'Play';
+            if (wavesurfer1.isPlaying() || wavesurfer2.isPlaying()) {
+                wavesurfer1.pause();
+                wavesurfer2.pause();
             } else {
-                wavesurfer.play();
-                document.getElementById('btn').innerText = 'Pause';
+                wavesurfer1.play();
+                wavesurfer2.play();
             }
         }
 
-        // Set up click event for the button
-        document.getElementById('btn').addEventListener('click', togglePlayback);
+        // Handle the 'finish' event to loop the audio
+        wavesurfer1.on('finish', function () {
+            wavesurfer1.seekTo(0); // Seek to the beginning
+            wavesurfer1.play();    // Resume playback
+        });
 
         // Handle the 'finish' event to loop the audio
-        wavesurfer.on('finish', function () {
-            wavesurfer.seekTo(0); // Seek to the beginning
-            wavesurfer.play();    // Resume playback
+        wavesurfer2.on('finish', function () {
+            wavesurfer2.seekTo(0); // Seek to the beginning
+            wavesurfer2.play();    // Resume playback
         });
     </script>
 </body>
