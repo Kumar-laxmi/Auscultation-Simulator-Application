@@ -58,6 +58,7 @@ def play_pulmonary(index, samples, samplerate):
 def play_tricuspid(index, samples, samplerate):
     global speakers, stop_flag_tricuspid
     while not stop_flag_tricuspid.is_set():
+        print('T', end="")
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
