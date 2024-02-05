@@ -18,11 +18,11 @@ audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
-subsampling_factor = 57
+subsampling_factor = 1
 audio_data = audio_data[::subsampling_factor]
 
-target_duration = 5
-num_repeats = int(np.ceil(target_duration / audio_duration))
+target_duration = 0.877
+num_repeats = 1
 audio_data = np.tile(audio_data, num_repeats)
 sample_rate = 44100
 duration = len(audio_data) / sample_rate

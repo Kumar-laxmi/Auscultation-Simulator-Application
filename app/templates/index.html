@@ -166,7 +166,7 @@
                 <div class="row gy-0">
                     <div class="col-12">
                         <div class="row" id="hbr_div" style="display:none;">
-                            <!-- {% plotly_app name="hbrDash" ratio=0.3 %} -->
+                            {% plotly_app name="hbrDash" ratio=0.3 %}
                         </div>
                         <div class="row" id="comp_div" style="display: none;">
                             {% plotly_app name="compDash" ratio=0.3 %}
@@ -349,34 +349,6 @@
         document.getElementById("ebstein_anomaly_sound").onclick = function() {
             showElement("ebstein_anomaly_sound");
         };
-    </script>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Create a Wavesurfer instance
-        var wavesurfer = WaveSurfer.create({
-            container: '#hbr_div',
-            waveColor: 'black',
-            progressColor: 'green',
-            loop: true,
-            autoplay: true,
-            volume: 0, // Start muted
-            barWidth: 1
-        });
-
-        // Load the audio file
-        wavesurfer.load('/static/audio/heart/acute_myocardial_infarction/A/combined_audio.wav');
-
-        // Add an event listener to play the audio when the waveform is ready
-        wavesurfer.on('ready', function () {
-            // Optional: Auto-play the audio
-            // wavesurfer.play();
-        });
-        wavesurfer.on('finish', function () {
-            wavesurfer.seekTo(0); // Seek to the beginning
-            wavesurfer.play();    // Resume playback
-        });
-    });
     </script>
 
     {% include 'elements/Scripts/showLeftNavBar.html' %}

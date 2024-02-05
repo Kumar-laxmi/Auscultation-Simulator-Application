@@ -12,16 +12,20 @@ import sqlite3
 app = DjangoDash('compDash')
 con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
-df1 = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
-df2 = pd.read_sql_query("SELECT * FROM app_lungaudio", con)
-df3 = pd.read_sql_query("SELECT * FROM app_bowelaudio", con)
+df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-audio_path = df2.loc[(df2['sound_name'] == 'amphoric_respiration') & (df2['sound_type'] == 'LLB'), 'audio_file_path'].values[0]
+audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'A'), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
-subsampling_factor = 57
+subsampling_factor = 1
 audio_data = audio_data[::subsampling_factor]
+
+target_duration = 0.877
+num_repeats = 1
+audio_data = np.tile(audio_data, num_repeats)
+sample_rate = 44100
+duration = len(audio_data) / sample_rate
 
 # Layout of the app
 app.layout = html.Div([
@@ -53,11 +57,11 @@ app.clientside_callback(
         // Create the figure
         var figure = {
             data: [
-                {y: audioArray, type: 'line', name: 'Lungs Signal', line: {color: 'green'}},
+                {y: audioArray, type: 'line', name: 'HBR Signal', line: {color: 'green'}},
                 {x: [linePosition, linePosition], y: [Math.min.apply(null, audioArray), Math.max.apply(null, audioArray)], mode: 'lines', line: {color: 'black', width: 10}}
             ],
             layout: {
-                title: 'Lungs Amphoric Respiration (LLB)',
+                title: 'Normal Heart sound (Mitral valve)',
                 showlegend: false,
                 paper_bgcolor: 'black',  // Set background color to black
                 plot_bgcolor: 'black'    // Set plot background color to black
