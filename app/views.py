@@ -250,6 +250,38 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
             playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
             playing_thread_mitral.start()
+        elif 'aortic_valve_regurgitation_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Regurgitation, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
+            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
+            playing_thread_mitral.start()
+        elif 'aortic_valve_stenosis_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
+            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
+            playing_thread_mitral.start()
+        elif 'aortic_valve_stenosis_regurgitation_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
+            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
+            playing_thread_mitral.start()
+        elif 'congenital_aortic_stenosis_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Congenital Aortic Stenosis, Location: Mitral Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'congenital_aortic_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
+            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
+            playing_thread_mitral.start()
+        # "mitral_valve_regurgitation_sound_mitral_valve","mitral_valve_stenosis_sound_mitral_valve","mitral_valve_prelapse_sound_mitral_valve"
+        # "mitral_stenosis_regurgitation_sound_mitral_valve", "mitral_stenosis_tricuspid_regurgitation_sound_mitral_valve"
+        
+        # "pulmonary_valve_stenosis_sound_mitral_valve","pulmonary_valve_regurgitation_sound_mitral_valve"
+        
+        # "tricuspid_valve_regurgitation_sound_mitral_valve"
+        
+        # "coarctation_of_the_aorta_sound_mitral_valve","hypertrophic_cardiomyopathy_sound_mitral_valve","patent_ductus_arteriosus_sound_mitral_valve"
+        # "atrial_septal_defect_sound_mitral_valve","ventricular_septal_defect_sound_mitral_valve","acute_myocardial_infarction_sound_mitral_valve"
+        # "congestive_heart_failure_sound_mitral_valve","systemic_hypertension_sound_mitral_valve","acute_pericarditis_sound_mitral_valve"
+        # "dilated_cardiomyopathy_sound_mitral_valve","pulmonary_hypertension_sound_mitral_valve","tetralogy_of_fallot_sound_mitral_valve"
+        # "ventricular_aneurysm_sound_mitral_valve","ebstein_anomaly_sound_mitral_valve"
 
         # Buttons for Aortic Valve
         if 'normal_heart_sound_aortic_valve' in request.POST:
@@ -327,6 +359,38 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
             playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
             playing_thread_aortic.start()
+        elif 'aortic_valve_regurgitation_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Regurgitation, Location: Aortic Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_regurgitation') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
+            playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
+            playing_thread_aortic.start()
+        elif 'aortic_valve_stenosis_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis, Location: Aortic Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
+            playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
+            playing_thread_aortic.start()
+        elif 'aortic_valve_stenosis_regurgitation_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Aortic Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
+            playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
+            playing_thread_aortic.start()
+        elif 'congenital_aortic_stenosis_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Congenital Aortic Stenosis, Location: Aortic Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'congenital_aortic_stenosis') & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
+            playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
+            playing_thread_aortic.start()
+        # "mitral_valve_regurgitation_sound_aortic_valve","mitral_valve_stenosis_sound_aortic_valve","mitral_valve_prelapse_sound_aortic_valve"
+        # "mitral_stenosis_regurgitation_sound_aortic_valve", "mitral_stenosis_tricuspid_regurgitation_sound_aortic_valve"
+        
+        # "pulmonary_valve_stenosis_sound_aortic_valve","pulmonary_valve_regurgitation_sound_aortic_valve"
+        
+        # "tricuspid_valve_regurgitation_sound_aortic_valve"
+            
+        # "coarctation_of_the_aorta_sound_aortic_valve","hypertrophic_cardiomyopathy_sound_aortic_valve","patent_ductus_arteriosus_sound_aortic_valve"
+        # "atrial_septal_defect_sound_aortic_valve","ventricular_septal_defect_sound_aortic_valve","acute_myocardial_infarction_sound_aortic_valve"
+        # "congestive_heart_failure_sound_aortic_valve","systemic_hypertension_sound_aortic_valve","acute_pericarditis_sound_aortic_valve"
+        # "dilated_cardiomyopathy_sound_aortic_valve","pulmonary_hypertension_sound_aortic_valve","tetralogy_of_fallot_sound_aortic_valve"
+        # "ventricular_aneurysm_sound_aortic_valve","ebstein_anomaly_sound_aortic_valve"
         
         # Buttons for Pulmonary Valve
         if 'normal_heart_sound_pulmonary_valve' in request.POST:
@@ -404,6 +468,38 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
             playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
             playing_thread_pulmonary.start()
+        elif 'aortic_valve_regurgitation_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Regurgitation, Location: Pulmonanary Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_regurgitation') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
+            playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
+            playing_thread_pulmonary.start()
+        elif 'aortic_valve_stenosis_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis, Location: Pulmonanary Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
+            playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
+            playing_thread_pulmonary.start()
+        elif 'aortic_valve_stenosis_regurgitation_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Pulmonanary Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
+            playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
+            playing_thread_pulmonary.start()
+        elif 'congenital_aortic_stenosis_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Congenital Aortic Stenosis, Location: Pulmonanary Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'congenital_aortic_stenosis') & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
+            playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
+            playing_thread_pulmonary.start()
+        # "mitral_valve_regurgitation_sound_pulmonary_valve","mitral_valve_stenosis_sound_pulmonary_valve","mitral_valve_prelapse_sound_pulmonary_valve"
+        # "mitral_stenosis_regurgitation_sound_pulmonary_valve", "mitral_stenosis_tricuspid_regurgitation_sound_pulmonary_valve"
+        
+        # "pulmonary_valve_stenosis_sound_pulmonary_valve","pulmonary_valve_regurgitation_sound_pulmonary_valve"
+        
+        # "tricuspid_valve_regurgitation_sound_pulmonary_valve"
+        
+        # "coarctation_of_the_aorta_sound_pulmonary_valve","hypertrophic_cardiomyopathy_sound_pulmonary_valve","patent_ductus_arteriosus_sound_pulmonary_valve"
+        # "atrial_septal_defect_sound_pulmonary_valve","ventricular_septal_defect_sound_pulmonary_valve","acute_myocardial_infarction_sound_pulmonary_valve"
+        # "congestive_heart_failure_sound_pulmonary_valve","systemic_hypertension_sound_pulmonary_valve","acute_pericarditis_sound_pulmonary_valve"
+        # "dilated_cardiomyopathy_sound_pulmonary_valve","pulmonary_hypertension_sound_pulmonary_valve","tetralogy_of_fallot_sound_pulmonary_valve"
+        # "ventricular_aneurysm_sound_pulmonary_valve","ebstein_anomaly_sound_pulmonary_valve"
 
         # Buttons for Tricuspid Valve
         if 'normal_heart_sound_tricuspid_valve' in request.POST:
@@ -481,6 +577,38 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
             playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
             playing_thread_tricuspid.start()
+        elif 'aortic_valve_regurgitation_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Regurgitation, Location: Tricuspid Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_regurgitation') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
+            playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
+            playing_thread_tricuspid.start()
+        elif 'aortic_valve_stenosis_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis, Location: Tricuspid Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
+            playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
+            playing_thread_tricuspid.start()
+        elif 'aortic_valve_stenosis_regurgitation_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Tricuspid Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
+            playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
+            playing_thread_tricuspid.start()
+        elif 'congenital_aortic_stenosis_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Congenital Aortic Stenosis, Location: Tricuspid Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'congenital_aortic_stenosis') & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
+            playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
+            playing_thread_tricuspid.start()
+        # "mitral_valve_regurgitation_sound_tricuspid_valve","mitral_valve_stenosis_sound_tricuspid_valve","mitral_valve_prelapse_sound_tricuspid_valve"
+        # "mitral_stenosis_regurgitation_sound_tricuspid_valve", "mitral_stenosis_tricuspid_regurgitation_sound_tricuspid_valve"
+        
+        # "pulmonary_valve_stenosis_sound_tricuspid_valve","pulmonary_valve_regurgitation_sound_tricuspid_valve"
+        
+        # "tricuspid_valve_regurgitation_sound_tricuspid_valve"
+        
+        # "coarctation_of_the_aorta_sound_tricuspid_valve","hypertrophic_cardiomyopathy_sound_tricuspid_valve","patent_ductus_arteriosus_sound_tricuspid_valve"
+        # "atrial_septal_defect_sound_tricuspid_valve","ventricular_septal_defect_sound_tricuspid_valve","acute_myocardial_infarction_sound_tricuspid_valve"
+        # "congestive_heart_failure_sound_tricuspid_valve","systemic_hypertension_sound_tricuspid_valve","acute_pericarditis_sound_tricuspid_valve"
+        # "dilated_cardiomyopathy_sound_tricuspid_valve","pulmonary_hypertension_sound_tricuspid_valve","tetralogy_of_fallot_sound_tricuspid_valve"
+        # "ventricular_aneurysm_sound_tricuspid_valve","ebstein_anomaly_sound_tricuspid_valve"
         
         # Buttons for Erb Point Valve
         if 'normal_heart_sound_erb_point' in request.POST:
@@ -513,7 +641,6 @@ def index(request):
             playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
             playing_thread_erb.start()
             current_audio_stream_erb = True
-        # changes from here
         elif 'functional_murmur_sound_erb_point' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Erb Valve')
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'functional_murmur') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
@@ -564,6 +691,38 @@ def index(request):
             data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
             playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
             playing_thread_erb.start()
+        elif 'aortic_valve_regurgitation_sound_erb_point' in request.POST:
+            print('\nSound Played: Aortic Valve Regurgitation, Location: Erb Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_regurgitation') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
+            playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
+            playing_thread_erb.start()
+        elif 'aortic_valve_stenosis_sound_erb_point' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis, Location: Erb Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
+            playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
+            playing_thread_erb.start()
+        elif 'aortic_valve_stenosis_regurgitation_sound_erb_point' in request.POST:
+            print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Erb Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
+            playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
+            playing_thread_erb.start()
+        elif 'congenital_aortic_stenosis_sound_erb_point' in request.POST:
+            print('\nSound Played: Congenital Aortic Stenosis, Location: Erb Valve')
+            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'congenital_aortic_stenosis') & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
+            playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
+            playing_thread_erb.start()
+        # "mitral_valve_regurgitation_sound_erb_point","mitral_valve_stenosis_sound_erb_point","mitral_valve_prelapse_sound_erb_point"
+        # "mitral_stenosis_regurgitation_sound_erb_point", "mitral_stenosis_tricuspid_regurgitation_sound_erb_point"
+        
+        # "pulmonary_valve_stenosis_sound_erb_point","pulmonary_valve_regurgitation_sound_erb_point"
+        
+        # "tricuspid_valve_regurgitation_sound_erb_point"
+        
+        # "coarctation_of_the_aorta_sound_erb_point","hypertrophic_cardiomyopathy_sound_erb_point","patent_ductus_arteriosus_sound_erb_point"
+        # "atrial_septal_defect_sound_erb_point","ventricular_septal_defect_sound_erb_point","acute_myocardial_infarction_sound_erb_point"
+        # "congestive_heart_failure_sound_erb_point","systemic_hypertension_sound_erb_point","acute_pericarditis_sound_erb_point"
+        # "dilated_cardiomyopathy_sound_erb_point","pulmonary_hypertension_sound_erb_point","tetralogy_of_fallot_sound_erb_point"
+        # "ventricular_aneurysm_sound_erb_point","ebstein_anomaly_sound_erb_point"
 
         context = {
             'hr_show': hr_show,
