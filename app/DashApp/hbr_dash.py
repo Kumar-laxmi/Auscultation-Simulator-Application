@@ -1,4 +1,5 @@
 import dash
+from urllib import request
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
 from pydub import AudioSegment
@@ -27,16 +28,14 @@ audio_data = np.tile(audio_data, num_repeats)
 sample_rate = 44100
 duration = len(audio_data) / sample_rate
 
+heartRate = 60
+
 # Layout of the app
 app.layout = html.Div([
-    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}),
+    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
     dcc.Store(id='audio-data-store', data={'audio_data': audio_data.tolist(), 'audio_duration': audio_duration}),
-    dcc.Store(id='interval-store', data=time.time()),  # Store the start time
-    dcc.Interval(
-        id='interval-component',
-        interval=25,  # Interval in milliseconds
-        n_intervals=0
-    )
+    dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
+    dcc.Interval(id='interval-component', interval=25, n_intervals=0) # Interval in milliseconds
 ])
 
 # Clientside callback to update the graph
@@ -46,13 +45,15 @@ app.clientside_callback(
         // Get the audio data and duration from the stored data
         var audioArray = audioData['audio_data'];
         var audioDuration = audioData['audio_duration'];
+        var heartRate = 60
 
         // Calculate the time passed since the start
         var currentTime = new Date().getTime() / 1000;  // Convert milliseconds to seconds
         var elapsedTime = currentTime - startTime;
 
         // Calculate the position of the vertical line
-        var linePosition = Math.floor((elapsedTime % 5) * audioArray.length / 5);
+        var timePerBeat = 60 / heartRate;
+        var linePosition = Math.floor((elapsedTime % timePerBeat) * audioArray.length / timePerBeat);
 
         // Create the figure
         var figure = {
@@ -68,7 +69,7 @@ app.clientside_callback(
             }
         };
         
-        // Return the updated figure and startTime
+        // Return the updated figure, startTime, and heartRate
         return [figure, startTime];
     }
     """,

@@ -1,7 +1,6 @@
 from urllib import request
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
 import sounddevice as sd
 import soundcard as sc
 import soundfile as sf
@@ -13,7 +12,8 @@ from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
-hr_show, rr_show = 60, 15
+# Define the signal
+hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
 
 try:
     con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)

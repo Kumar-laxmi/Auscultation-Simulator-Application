@@ -1,79 +1,90 @@
+import datetime
+
 import dash
-from dash import dcc, html
-from dash.dependencies import Input, Output
-import numpy as np
-import pyaudio
-import wave
-import threading
-import time
+from dash import Dash, dcc, html, Input, Output, callback
+import plotly
 
-# Set up PyAudio
-p = pyaudio.PyAudio()
+# pip install pyorbital
+from pyorbital.orbital import Orbital
+satellite = Orbital('TERRA')
 
-# Set up Dash app
-app = dash.Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-# Initialize audio stream
-wf = wave.open("app/static/audio/abdomen/borborygmus.wav", 'rb')
-audio_stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
-                      channels=wf.getnchannels(),
-                      rate=wf.getframerate(),
-                      output=True)
+app = Dash(__name__, external_stylesheets=external_stylesheets)
+app.layout = html.Div(
+    html.Div([
+        html.H4('TERRA Satellite Live Feed'),
+        html.Div(id='live-update-text'),
+        dcc.Graph(id='live-update-graph'),
+        dcc.Interval(
+            id='interval-component',
+            interval=1*1000, # in milliseconds
+            n_intervals=0
+        )
+    ])
+)
 
-# Initialize Dash layout
-app.layout = html.Div([
-    dcc.Graph(id='real-time-audio-chart', style={'height': '95vh'}),
-    dcc.Interval(id='interval-component', interval=25, n_intervals=0)
-])
 
-# Initialize audio data and time variables
-audio_data = np.array([])
-start_time = time.time()
-
-# Callback to update the chart
-@app.callback(Output('real-time-audio-chart', 'figure'),
+@callback(Output('live-update-text', 'children'),
               Input('interval-component', 'n_intervals'))
-def update_chart(n):
-    global audio_data, start_time
+def update_metrics(n):
+    lon, lat, alt = satellite.get_lonlatalt(datetime.datetime.now())
+    style = {'padding': '5px', 'fontSize': '16px'}
+    return [
+        html.Span('Longitude: {0:.2f}'.format(lon), style=style),
+        html.Span('Latitude: {0:.2f}'.format(lat), style=style),
+        html.Span('Altitude: {0:0.2f}'.format(alt), style=style)
+    ]
 
-    # Read audio data from the stream
-    chunk = 1024
-    data = wf.readframes(chunk)
-    audio_array = np.frombuffer(data, dtype=np.int16)
 
-    # Play audio
-    audio_stream.write(data)
-
-    # Append new audio data to the existing array
-    audio_data = np.append(audio_data, audio_array)
-
-    # Calculate elapsed time
-    elapsed_time = time.time() - start_time
-
-    # Generate the graph
-    figure = {
-        'data': [
-            {'y': audio_data, 'type': 'line', 'name': 'Real-time Audio', 'line': {'color': 'green'}}
-        ],
-        'layout': {
-            'title': 'Real-time Audio Waveform',
-            'showlegend': False,
-            'paper_bgcolor': 'black',
-            'plot_bgcolor': 'black',
-            'xaxis': {'range': [0, elapsed_time * wf.getframerate()]}  # Adjust x-axis range based on elapsed time
-        }
+# Multiple components can update everytime interval gets fired.
+@callback(Output('live-update-graph', 'figure'),
+              Input('interval-component', 'n_intervals'))
+def update_graph_live(n):
+    satellite = Orbital('TERRA')
+    data = {
+        'time': [],
+        'Latitude': [],
+        'Longitude': [],
+        'Altitude': []
     }
 
-    return figure
+    # Collect some data
+    for i in range(180):
+        time = datetime.datetime.now() - datetime.timedelta(seconds=i*20)
+        lon, lat, alt = satellite.get_lonlatalt(
+            time
+        )
+        data['Longitude'].append(lon)
+        data['Latitude'].append(lat)
+        data['Altitude'].append(alt)
+        data['time'].append(time)
+
+    # Create the graph with subplots
+    fig = plotly.tools.make_subplots(rows=2, cols=1, vertical_spacing=0.2)
+    fig['layout']['margin'] = {
+        'l': 30, 'r': 10, 'b': 30, 't': 10
+    }
+    fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
+
+    fig.append_trace({
+        'x': data['time'],
+        'y': data['Altitude'],
+        'name': 'Altitude',
+        'mode': 'lines+markers',
+        'type': 'scatter'
+    }, 1, 1)
+    fig.append_trace({
+        'x': data['Longitude'],
+        'y': data['Latitude'],
+        'text': data['time'],
+        'name': 'Longitude vs Latitude',
+        'mode': 'lines+markers',
+        'type': 'scatter'
+    }, 2, 1)
+
+    return fig
+
 
 if __name__ == '__main__':
-    threading.Thread(target=lambda: app.run_server(debug=True, use_reloader=False)).start()
-    app_thread = threading.Thread(target=app.run_server, kwargs={'debug': True, 'use_reloader': False})
-    app_thread.start()
-
-    # Wait for the Dash app to start
-    time.sleep(2)
-
-    app_thread.join()
-    p.terminate()
-    wf.close()
+    app.run(debug=True)
