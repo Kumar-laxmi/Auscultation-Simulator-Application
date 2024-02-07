@@ -15,12 +15,6 @@ from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
 
-try:
-    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
-except:
-    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
-cursor = con.cursor()
-
 speakers = sc.all_speakers()
 
 heart_tones = ["normal_heart_sound","split_first_heart_sound","split_second_heart_sound","third_heart_sound","fourth_heart_sound"]
@@ -69,45 +63,33 @@ def play_erb(index, samples, samplerate):
         speaker.play(samples, samplerate)
         
 def heartUpdate(request):
-    global hr_show, con, cursor
+    global hr_show
 
     if request.method == 'POST':
-        cursor = con.cursor()
         if 'hr_plus' in request.POST:
             hr_show += 1
-            cursor.execute("""UPDATE heartrate SET heartrate = heartrate + 1 WHERE default_col=1""")
-            con.commit()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'hr_minus' in request.POST:
             hr_show -= 1
-            cursor.execute("""UPDATE heartrate SET heartrate = heartrate - 1 WHERE default_col=1""")
-            con.commit()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         else:
             hr_show += 0
-        cursor.close()
         return JsonResponse({'message': 'Success!', 'hr_show': hr_show})
     else:
         return HttpResponse("Request method is not a POST")
 
 def breathUpdate(request):
-    global rr_show, con, cursor
+    global rr_show
 
     if request.method == 'POST':
-        cursor = con.cursor()
         if 'rr_plus' in request.POST:
             rr_show += 1
-            cursor.execute("""UPDATE breathrate SET breathrate = breathrate + 1 WHERE default_col=1""")
-            con.commit()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         elif 'rr_minus' in request.POST:
             rr_show -= 1
-            cursor.execute("""UPDATE breathrate SET breathrate = breathrate - 1 WHERE default_col=1""")
-            con.commit()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             rr_show += 0
-        cursor.close()
         return JsonResponse({'message': 'Success!', 'rr_show': rr_show})
     else:
         return HttpResponse("Request method is not a POST")
@@ -845,10 +827,6 @@ def index(request):
         }
     else:
         print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
-        cursor.execute("""UPDATE heartrate SET heartrate = '60'""")
-        con.commit()
-        cursor.execute("""UPDATE breathrate SET breathrate = '15'""")
-        con.commit()
         context = {
             'hr_show': hr_show,
             'rr_show': rr_show
