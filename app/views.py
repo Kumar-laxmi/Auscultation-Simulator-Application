@@ -109,7 +109,6 @@ def start_mitral_thread(sound_name):
         stop_flag_mitral = threading.Event()
 
     # Start a new thread
-    print('\nSound Played: Normal Heart, Location: Mitral Valve')
     data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
     playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
     playing_thread_mitral.start()
@@ -166,137 +165,86 @@ def index(request):
 
         # Buttons for Mitral Valve
         if 'normal_heart_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Normal Heart, Location: Mitral Valve')
             start_mitral_thread('normal_heart')
         elif 'split_first_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Split First Heart, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_first_heart_sound') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('split_first_heart_sound')
         elif 'split_second_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Split Second Heart, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'split_second_heart_sound') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('split_second_heart_sound')
         elif 'third_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'third_heart_sound_gallop') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('third_heart_sound_gallop')
         elif 'fourth_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Fourth Heart (gallop), Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'fourth_heart_sound_gallop') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('fourth_heart_sound_gallop')
         elif 'functional_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'functional_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('functional_murmur')
         elif 'diastolic_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Diastolic Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'diastolic_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('diastolic_murmur')
         elif 'opening_snap_sound_mitral_valve' in request.POST:
             print('\nSound Played: Opening Snap, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'opening_snap') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('opening_snap')
         elif 'holosystolic_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Holosystolic Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'holosystolic_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('holosystolic_murmur')
         elif 'early_systolic_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Early Systolic Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'early_systolic_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('early_systolic_murmur')
         elif 'mid_systolic_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mid Systolic Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'mid_systolic_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('mid_systolic_murmur')
         elif 'continuous_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Continuous Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'continuous_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('continuous_murmur')
         elif 'austin_flint_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Austin Flint Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'austin_flint_murmur') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('austin_flint_murmur')
         elif 'pericardial_rub_sound_mitral_valve' in request.POST:
             print('\nSound Played: Pericardial Rub, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('pericardial_rub')
         elif 'graham_steell_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Graham Steell Murmur, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pericardial_rub') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('pericardial_rub')
         elif 'aortic_valve_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Aortic Valve Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('aortic_valve_regurgitation')
         elif 'aortic_valve_stenosis_sound_mitral_valve' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('aortic_valve_stenosis')
         elif 'aortic_valve_stenosis_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'aortic_valve_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('aortic_valve_stenosis')
         elif 'congenital_aortic_stenosis_sound_mitral_valve' in request.POST:
             print('\nSound Played: Congenital Aortic Stenosis, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'congenital_aortic_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('congenital_aortic_stenosis')
         elif 'mitral_valve_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Valve Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'mitral_valve_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('mitral_valve_regurgitation')
         elif 'mitral_valve_stenosis_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Valve Stenosis, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'mitral_valve_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('mitral_valve_stenosis')
         elif 'mitral_valve_prelapse_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Valve Prelapse, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'mitral_valve_prolapse') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('mitral_valve_prolapse')
         elif 'mitral_stenosis_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'mitral_stenosis_and_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('mitral_stenosis_and_regurgitation')
         elif 'mitral_stenosis_tricuspid_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Tricuspid Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'mitral_stenosis_and_tricuspid_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('mitral_stenosis_and_tricuspid_regurgitation')
         elif 'pulmonary_valve_stenosis_sound_mitral_valve' in request.POST:
             print('\nSound Played: Pulmonary Valve Stenosis, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pulmonary_valve_stenosis') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('pulmonary_valve_stenosis')
         elif 'pulmonary_valve_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Pulmonary Valve Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'pulmonary_valve_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('pulmonary_valve_regurgitation')
         elif 'tricuspid_valve_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Tricuspid Valve Regurgitation, Location: Mitral Valve')
-            data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == 'tricuspid_valve_regurgitation') & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
-            playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
-            playing_thread_mitral.start()
+            start_mitral_thread('tricuspid_valve_regurgitation')
         
         # "coarctation_of_the_aorta_sound_mitral_valve","hypertrophic_cardiomyopathy_sound_mitral_valve","patent_ductus_arteriosus_sound_mitral_valve"
         # "atrial_septal_defect_sound_mitral_valve","ventricular_septal_defect_sound_mitral_valve","acute_myocardial_infarction_sound_mitral_valve"
