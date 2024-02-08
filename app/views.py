@@ -75,32 +75,23 @@ def heartUpdate(request):
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
             hr_show += 1
-            if current_mitral_valve_sound is not None:
-                start_mitral_thread(current_mitral_valve_sound)
-            if current_aortic_valve_sound is not None:
-                start_aortic_thread(current_aortic_valve_sound)
-            if current_pulmonary_valve_sound is not None:
-                start_pulmonary_thread(current_pulmonary_valve_sound)
-            if current_tricuspid_valve_sound is not None:
-                start_tricuspid_thread(current_tricuspid_valve_sound)
-            if current_erb_valve_sound is not None:
-                start_erb_thread(current_erb_valve_sound)
             print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'hr_minus' in request.POST:
             hr_show -= 1
-            if current_mitral_valve_sound is not None:
-                start_mitral_thread(current_mitral_valve_sound)
-            if current_aortic_valve_sound is not None:
-                start_aortic_thread(current_aortic_valve_sound)
-            if current_pulmonary_valve_sound is not None:
-                start_pulmonary_thread(current_pulmonary_valve_sound)
-            if current_tricuspid_valve_sound is not None:
-                start_tricuspid_thread(current_tricuspid_valve_sound)
-            if current_erb_valve_sound is not None:
-                start_erb_thread(current_erb_valve_sound)
             print('\nHeart Rate updated to: {}'.format(hr_show))
         else:
             hr_show += 0
+        
+        if current_mitral_valve_sound is not None:
+            start_mitral_thread(current_mitral_valve_sound)
+        if current_aortic_valve_sound is not None:
+            start_aortic_thread(current_aortic_valve_sound)
+        if current_pulmonary_valve_sound is not None:
+            start_pulmonary_thread(current_pulmonary_valve_sound)
+        if current_tricuspid_valve_sound is not None:
+            start_tricuspid_thread(current_tricuspid_valve_sound)
+        if current_erb_valve_sound is not None:
+            start_erb_thread(current_erb_valve_sound)
         return JsonResponse({'message': 'Success!', 'hr_show': hr_show})
     else:
         return HttpResponse("Request method is not a POST")
