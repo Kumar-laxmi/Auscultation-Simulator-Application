@@ -7,6 +7,7 @@ from pydub import AudioSegment
 import sqlite3
 import pandas as pd
 import numpy as np
+import io
 import threading
 
 from .models import heartAudio, lungAudio
@@ -104,7 +105,9 @@ def start_mitral_thread(sound_name):
     heartbeat = AudioSegment.from_file(audio_path, format="wav")
     speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
     adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
-    data, fs = np.frombuffer(adjusted_heartbeat.raw_data, dtype=np.int16), adjusted_heartbeat.frame_rate
+    exported_data = adjusted_heartbeat.export(format="wav").read()
+    with io.BytesIO(exported_data) as wav_buffer:
+        data, fs = sf.read(wav_buffer)
     playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
     playing_thread_mitral.start()
 
