@@ -6,9 +6,9 @@ import soundfile as sf
 from pydub import AudioSegment
 import sqlite3
 import pandas as pd
-import numpy as np
 import io
 import threading
+import time
 
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
@@ -30,10 +30,12 @@ playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_
 stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb = threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event()
 
 def play_mitral(index, samples, samplerate):
-    global speakers, stop_flag_mitral, current_mitral_valve_sound
+    global speakers, stop_flag_mitral, current_mitral_valve_sound, hr_show
+    delay_seconds = 60 / hr_show
     while not stop_flag_mitral.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
 
 def play_aortic(index, samples, samplerate):
     global speakers, stop_flag_aortic, current_aortic_valve_sound
