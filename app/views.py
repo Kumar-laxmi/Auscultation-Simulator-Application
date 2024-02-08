@@ -239,13 +239,49 @@ def index(request):
             start_mitral_thread('pulmonary_valve_regurgitation')
         elif 'tricuspid_valve_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Tricuspid Valve Regurgitation, Location: Mitral Valve')
-            start_mitral_thread('tricuspid_valve_regurgitation')
-        
-        # "coarctation_of_the_aorta_sound_mitral_valve","hypertrophic_cardiomyopathy_sound_mitral_valve","patent_ductus_arteriosus_sound_mitral_valve"
-        # "atrial_septal_defect_sound_mitral_valve","ventricular_septal_defect_sound_mitral_valve","acute_myocardial_infarction_sound_mitral_valve"
-        # "congestive_heart_failure_sound_mitral_valve","systemic_hypertension_sound_mitral_valve","acute_pericarditis_sound_mitral_valve"
-        # "dilated_cardiomyopathy_sound_mitral_valve","pulmonary_hypertension_sound_mitral_valve","tetralogy_of_fallot_sound_mitral_valve"
-        # "ventricular_aneurysm_sound_mitral_valve","ebstein_anomaly_sound_mitral_valve"
+            start_mitral_thread('tricuspid_valve_regurgitation')    
+        elif 'coarctation_of_the_aorta_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Coarctation of the Aorta, Location: Mitral Valve')
+            start_mitral_thread('coarctation_of_the_aorta')
+        elif 'hypertrophic_cardiomyopathy_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Hypertrophic Cardiomyopathy, Location: Mitral Valve')
+            start_mitral_thread('hypertrophic_cardiomyopathy')
+        elif 'patent_ductus_arteriosus_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Patent Ductus Arteriosus, Location: Mitral Valve')
+            start_mitral_thread('patent_ductus_arteriosus')
+        elif 'atrial_septal_defect_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Atrial Septal Defect, Location: Mitral Valve')
+            start_mitral_thread('atrial_septal_defect')
+        elif 'ventricular_septal_defect_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Ventricular Septal Defect, Location: Mitral Valve')
+            start_mitral_thread('ventricular_septal_defect')
+        elif 'acute_myocardial_infarction_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Acute Myocardial Infaction, Location: Mitral Valve')
+            start_mitral_thread('acute_myocardial_infarction')
+        elif 'congestive_heart_failure_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Congestive Heart Failure, Location: Mitral Valve')
+            start_mitral_thread('congestive_heart_failure')
+        elif 'systemic_hypertension_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Systemic Hypertension, Location: Mitral Valve')
+            start_mitral_thread('systemic_hypertension')
+        elif 'acute_pericarditis_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Acute Pericarditis, Location: Mitral Valve')
+            start_mitral_thread('acute_pericarditis')
+        elif 'dilated_cardiomyopathy_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Dilated Cardiomyopathy, Location: Mitral Valve')
+            start_mitral_thread('dilated_cardiomyopathy')
+        elif 'pulmonary_hypertension_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Pulmonary Hypertension, Location: Mitral Valve')
+            start_mitral_thread('pulmonary_hypertension')
+        elif 'tetralogy_of_fallot_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Tetralogy of Fallot, Location: Mitral Valve')
+            start_mitral_thread('tetralogy_of_fallot')
+        elif 'ventricular_aneurysm_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Ventricular Aneurysm, Location: Mitral Valve')
+            start_mitral_thread('ventricular_aneurysm')
+        elif 'ebstein_anomaly_sound_mitral_valve' in request.POST:
+            print('\nSound Played: Ebstein Anomaly, Location: Mitral Valve')
+            start_mitral_thread('ebsteins_anomaly')
 
         # Buttons for Aortic Valve
         if 'normal_heart_sound_aortic_valve' in request.POST:
@@ -329,12 +365,48 @@ def index(request):
         elif 'tricuspid_valve_regurgitation_sound_aortic_valve' in request.POST:
             print('\nSound Played: Tricuspid Valve Regurgitation, Location: Aortic Valve')
             start_aortic_thread('tricuspid_valve_regurgitation')
-            
-        # "coarctation_of_the_aorta_sound_aortic_valve","hypertrophic_cardiomyopathy_sound_aortic_valve","patent_ductus_arteriosus_sound_aortic_valve"
-        # "atrial_septal_defect_sound_aortic_valve","ventricular_septal_defect_sound_aortic_valve","acute_myocardial_infarction_sound_aortic_valve"
-        # "congestive_heart_failure_sound_aortic_valve","systemic_hypertension_sound_aortic_valve","acute_pericarditis_sound_aortic_valve"
-        # "dilated_cardiomyopathy_sound_aortic_valve","pulmonary_hypertension_sound_aortic_valve","tetralogy_of_fallot_sound_aortic_valve"
-        # "ventricular_aneurysm_sound_aortic_valve","ebstein_anomaly_sound_aortic_valve"
+        elif 'coarctation_of_the_aorta_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Coarctation of the Aorta, Location: Aortic Valve')
+            start_aortic_thread('coarctation_of_the_aorta')
+        elif 'hypertrophic_cardiomyopathy_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Hypertrophic Cardiomyopathy, Location: Aortic Valve')
+            start_aortic_thread('hypertrophic_cardiomyopathy')
+        elif 'patent_ductus_arteriosus_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Patent Ductus Arteriosus, Location: Aortic Valve')
+            start_aortic_thread('patent_ductus_arteriosus')
+        elif 'atrial_septal_defect_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Atrial Septal Defect, Location: Aortic Valve')
+            start_aortic_thread('atrial_septal_defect')
+        elif 'ventricular_septal_defect_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Ventricular Septal Defect, Location: Aortic Valve')
+            start_aortic_thread('ventricular_septal_defect')
+        elif 'acute_myocardial_infarction_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Acute Myocardial Infaction, Location: Aortic Valve')
+            start_aortic_thread('acute_myocardial_infarction')
+        elif 'congestive_heart_failure_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Congestive Heart Failure, Location: Aortic Valve')
+            start_aortic_thread('congestive_heart_failure')
+        elif 'systemic_hypertension_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Systemic Hypertension, Location: Aortic Valve')
+            start_aortic_thread('systemic_hypertension')
+        elif 'acute_pericarditis_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Acute Pericarditis, Location: Aortic Valve')
+            start_aortic_thread('acute_pericarditis')
+        elif 'dilated_cardiomyopathy_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Dilated Cardiomyopathy, Location: Aortic Valve')
+            start_aortic_thread('dilated_cardiomyopathy')
+        elif 'pulmonary_hypertension_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Pulmonary Hypertension, Location: Aortic Valve')
+            start_aortic_thread('pulmonary_hypertension')
+        elif 'tetralogy_of_fallot_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Tetralogy of Fallot, Location: Aortic Valve')
+            start_aortic_thread('tetralogy_of_fallot')
+        elif 'ventricular_aneurysm_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Ventricular Aneurysm, Location: Aortic Valve')
+            start_aortic_thread('ventricular_aneurysm')
+        elif 'ebstein_anomaly_sound_aortic_valve' in request.POST:
+            print('\nSound Played: Ebstein Anomaly, Location: Aortic Valve')
+            start_aortic_thread('ebsteins_anomaly')
         
         # Buttons for Pulmonary Valve
         if 'normal_heart_sound_pulmonary_valve' in request.POST:
@@ -418,12 +490,48 @@ def index(request):
         elif 'tricuspid_valve_regurgitation_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Tricuspid Valve Regurgitation, Location: Pulmonanary Valve')
             start_pulmonary_thread('tricuspid_valve_regurgitation')
-        
-        # "coarctation_of_the_aorta_sound_pulmonary_valve","hypertrophic_cardiomyopathy_sound_pulmonary_valve","patent_ductus_arteriosus_sound_pulmonary_valve"
-        # "atrial_septal_defect_sound_pulmonary_valve","ventricular_septal_defect_sound_pulmonary_valve","acute_myocardial_infarction_sound_pulmonary_valve"
-        # "congestive_heart_failure_sound_pulmonary_valve","systemic_hypertension_sound_pulmonary_valve","acute_pericarditis_sound_pulmonary_valve"
-        # "dilated_cardiomyopathy_sound_pulmonary_valve","pulmonary_hypertension_sound_pulmonary_valve","tetralogy_of_fallot_sound_pulmonary_valve"
-        # "ventricular_aneurysm_sound_pulmonary_valve","ebstein_anomaly_sound_pulmonary_valve"
+        elif 'coarctation_of_the_aorta_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Coarctation of the Aorta, Location: Pulmonanary Valve')
+            start_pulmonary_thread('coarctation_of_the_aorta')
+        elif 'hypertrophic_cardiomyopathy_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Hypertrophic Cardiomyopathy, Location: Pulmonanary Valve')
+            start_pulmonary_thread('hypertrophic_cardiomyopathy')
+        elif 'patent_ductus_arteriosus_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Patent Ductus Arteriosus, Location: Pulmonanary Valve')
+            start_pulmonary_thread('patent_ductus_arteriosus')
+        elif 'atrial_septal_defect_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Atrial Septal Defect, Location: Pulmonanary Valve')
+            start_pulmonary_thread('atrial_septal_defect')
+        elif 'ventricular_septal_defect_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Ventricular Septal Defect, Location: Pulmonanary Valve')
+            start_pulmonary_thread('ventricular_septal_defect')
+        elif 'acute_myocardial_infarction_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Acute Myocardial Infaction, Location: Pulmonanary Valve')
+            start_pulmonary_thread('acute_myocardial_infarction')
+        elif 'congestive_heart_failure_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Congestive Heart Failure, Location: Pulmonanary Valve')
+            start_pulmonary_thread('congestive_heart_failure')
+        elif 'systemic_hypertension_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Systemic Hypertension, Location: Pulmonanary Valve')
+            start_pulmonary_thread('systemic_hypertension')
+        elif 'acute_pericarditis_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Acute Pericarditis, Location: Pulmonanary Valve')
+            start_pulmonary_thread('acute_pericarditis')
+        elif 'dilated_cardiomyopathy_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Dilated Cardiomyopathy, Location: Pulmonanary Valve')
+            start_pulmonary_thread('dilated_cardiomyopathy')
+        elif 'pulmonary_hypertension_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Pulmonary Hypertension, Location: Pulmonanary Valve')
+            start_pulmonary_thread('pulmonary_hypertension')
+        elif 'tetralogy_of_fallot_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Tetralogy of Fallot, Location: Pulmonanary Valve')
+            start_pulmonary_thread('tetralogy_of_fallot')
+        elif 'ventricular_aneurysm_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Ventricular Aneurysm, Location: Pulmonanary Valve')
+            start_pulmonary_thread('ventricular_aneurysm')
+        elif 'ebstein_anomaly_sound_pulmonary_valve' in request.POST:
+            print('\nSound Played: Ebstein Anomaly, Location: Pulmonanary Valve')
+            start_pulmonary_thread('ebsteins_anomaly')
 
         # Buttons for Tricuspid Valve
         if 'normal_heart_sound_tricuspid_valve' in request.POST:
@@ -507,12 +615,48 @@ def index(request):
         elif 'tricuspid_valve_regurgitation_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Tricuspid Valve Regurgitation, Location: Tricuspid Valve')
             start_tricuspid_thread('tricuspid_valve_regurgitation')
-        
-        # "coarctation_of_the_aorta_sound_tricuspid_valve","hypertrophic_cardiomyopathy_sound_tricuspid_valve","patent_ductus_arteriosus_sound_tricuspid_valve"
-        # "atrial_septal_defect_sound_tricuspid_valve","ventricular_septal_defect_sound_tricuspid_valve","acute_myocardial_infarction_sound_tricuspid_valve"
-        # "congestive_heart_failure_sound_tricuspid_valve","systemic_hypertension_sound_tricuspid_valve","acute_pericarditis_sound_tricuspid_valve"
-        # "dilated_cardiomyopathy_sound_tricuspid_valve","pulmonary_hypertension_sound_tricuspid_valve","tetralogy_of_fallot_sound_tricuspid_valve"
-        # "ventricular_aneurysm_sound_tricuspid_valve","ebstein_anomaly_sound_tricuspid_valve"
+        elif 'coarctation_of_the_aorta_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Coarctation of the Aorta, Location: Tricuspid Valve')
+            start_tricuspid_thread('coarctation_of_the_aorta')
+        elif 'hypertrophic_cardiomyopathy_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Hypertrophic Cardiomyopathy, Location: Tricuspid Valve')
+            start_tricuspid_thread('hypertrophic_cardiomyopathy')
+        elif 'patent_ductus_arteriosus_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Patent Ductus Arteriosus, Location: Tricuspid Valve')
+            start_tricuspid_thread('patent_ductus_arteriosus')
+        elif 'atrial_septal_defect_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Atrial Septal Defect, Location: Tricuspid Valve')
+            start_tricuspid_thread('atrial_septal_defect')
+        elif 'ventricular_septal_defect_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Ventricular Septal Defect, Location: Tricuspid Valve')
+            start_tricuspid_thread('ventricular_septal_defect')
+        elif 'acute_myocardial_infarction_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Acute Myocardial Infaction, Location: Tricuspid Valve')
+            start_tricuspid_thread('acute_myocardial_infarction')
+        elif 'congestive_heart_failure_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Congestive Heart Failure, Location: Tricuspid Valve')
+            start_tricuspid_thread('congestive_heart_failure')
+        elif 'systemic_hypertension_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Systemic Hypertension, Location: Tricuspid Valve')
+            start_tricuspid_thread('systemic_hypertension')
+        elif 'acute_pericarditis_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Acute Pericarditis, Location: Tricuspid Valve')
+            start_tricuspid_thread('acute_pericarditis')
+        elif 'dilated_cardiomyopathy_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Dilated Cardiomyopathy, Location: Tricuspid Valve')
+            start_tricuspid_thread('dilated_cardiomyopathy')
+        elif 'pulmonary_hypertension_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Pulmonary Hypertension, Location: Tricuspid Valve')
+            start_tricuspid_thread('pulmonary_hypertension')
+        elif 'tetralogy_of_fallot_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Tetralogy of Fallot, Location: Tricuspid Valve')
+            start_tricuspid_thread('tetralogy_of_fallot')
+        elif 'ventricular_aneurysm_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Ventricular Aneurysm, Location: Tricuspid Valve')
+            start_tricuspid_thread('ventricular_aneurysm')
+        elif 'ebstein_anomaly_sound_tricuspid_valve' in request.POST:
+            print('\nSound Played: Ebstein Anomaly, Location: Tricuspid Valve')
+            start_tricuspid_thread('ebsteins_anomaly')
         
         # Buttons for Erb Point Valve
         if 'normal_heart_sound_erb_point' in request.POST:
@@ -596,12 +740,48 @@ def index(request):
         elif 'tricuspid_valve_regurgitation_sound_erb_point' in request.POST:
             print('\nSound Played: Tricuspid Valve Regurgitation, Location: Erb Valve')
             start_erb_thread('tricuspid_valve_regurgitation')
-        
-        # "coarctation_of_the_aorta_sound_erb_point","hypertrophic_cardiomyopathy_sound_erb_point","patent_ductus_arteriosus_sound_erb_point"
-        # "atrial_septal_defect_sound_erb_point","ventricular_septal_defect_sound_erb_point","acute_myocardial_infarction_sound_erb_point"
-        # "congestive_heart_failure_sound_erb_point","systemic_hypertension_sound_erb_point","acute_pericarditis_sound_erb_point"
-        # "dilated_cardiomyopathy_sound_erb_point","pulmonary_hypertension_sound_erb_point","tetralogy_of_fallot_sound_erb_point"
-        # "ventricular_aneurysm_sound_erb_point","ebstein_anomaly_sound_erb_point"
+        elif 'coarctation_of_the_aorta_sound_erb_valve' in request.POST:
+            print('\nSound Played: Coarctation of the Aorta, Location: Erb Valve')
+            start_erb_thread('coarctation_of_the_aorta')
+        elif 'hypertrophic_cardiomyopathy_sound_erb_valve' in request.POST:
+            print('\nSound Played: Hypertrophic Cardiomyopathy, Location: Erb Valve')
+            start_erb_thread('hypertrophic_cardiomyopathy')
+        elif 'patent_ductus_arteriosus_sound_erb_valve' in request.POST:
+            print('\nSound Played: Patent Ductus Arteriosus, Location: Erb Valve')
+            start_erb_thread('patent_ductus_arteriosus')
+        elif 'atrial_septal_defect_sound_erb_valve' in request.POST:
+            print('\nSound Played: Atrial Septal Defect, Location: Erb Valve')
+            start_erb_thread('atrial_septal_defect')
+        elif 'ventricular_septal_defect_sound_erb_valve' in request.POST:
+            print('\nSound Played: Ventricular Septal Defect, Location: Erb Valve')
+            start_erb_thread('ventricular_septal_defect')
+        elif 'acute_myocardial_infarction_sound_erb_valve' in request.POST:
+            print('\nSound Played: Acute Myocardial Infaction, Location: Erb Valve')
+            start_erb_thread('acute_myocardial_infarction')
+        elif 'congestive_heart_failure_sound_erb_valve' in request.POST:
+            print('\nSound Played: Congestive Heart Failure, Location: Erb Valve')
+            start_erb_thread('congestive_heart_failure')
+        elif 'systemic_hypertension_sound_erb_valve' in request.POST:
+            print('\nSound Played: Systemic Hypertension, Location: Erb Valve')
+            start_erb_thread('systemic_hypertension')
+        elif 'acute_pericarditis_sound_erb_valve' in request.POST:
+            print('\nSound Played: Acute Pericarditis, Location: Erb Valve')
+            start_erb_thread('acute_pericarditis')
+        elif 'dilated_cardiomyopathy_sound_erb_valve' in request.POST:
+            print('\nSound Played: Dilated Cardiomyopathy, Location: Erb Valve')
+            start_erb_thread('dilated_cardiomyopathy')
+        elif 'pulmonary_hypertension_sound_erb_valve' in request.POST:
+            print('\nSound Played: Pulmonary Hypertension, Location: Erb Valve')
+            start_erb_thread('pulmonary_hypertension')
+        elif 'tetralogy_of_fallot_sound_erb_valve' in request.POST:
+            print('\nSound Played: Tetralogy of Fallot, Location: Erb Valve')
+            start_erb_thread('tetralogy_of_fallot')
+        elif 'ventricular_aneurysm_sound_erb_valve' in request.POST:
+            print('\nSound Played: Ventricular Aneurysm, Location: Erb Valve')
+            start_erb_thread('ventricular_aneurysm')
+        elif 'ebstein_anomaly_sound_erb_valve' in request.POST:
+            print('\nSound Played: Ebstein Anomaly, Location: Erb Valve')
+            start_erb_thread('ebsteins_anomaly')
 
         context = {
             'hr_show': hr_show,
