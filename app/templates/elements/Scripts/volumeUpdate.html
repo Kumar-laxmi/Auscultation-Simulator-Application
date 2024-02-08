@@ -1,0 +1,24 @@
+<script>
+    $(document).ready(function () {
+        // Function to handle range input change
+        $('#normal_heart_sound_mitral_valve_range').on('input', function () {
+        // Get the current value of the range input
+        var rangeValue = $(this).val();
+
+        // Make an AJAX POST request
+        $.ajax({
+            url: 'mitralVolumeChange/', // Replace with your backend endpoint
+            method: 'POST',
+            data: {'csrfmiddlewaretoken': '{{ csrf_token }}', value: rangeValue}, // Send the range value as data
+            success: function (response) {
+            // Handle success response
+            console.log('POST request successful:', response);
+            },
+            error: function (error) {
+            // Handle error response
+            console.error('Error in POST request:', error);
+            }
+        });
+        });
+    });
+</script>

@@ -112,6 +112,13 @@ def breathUpdate(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+def mitralVolumeChange(request):
+    if request.method == 'POST':
+        print('Range value transfer successful')
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
 def start_mitral_thread(sound_name):
     global playing_thread_mitral, stop_flag_mitral, hr_show, current_mitral_valve_sound
     if playing_thread_mitral and playing_thread_mitral.is_alive():
