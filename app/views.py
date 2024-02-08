@@ -114,8 +114,9 @@ def breathUpdate(request):
         return HttpResponse("Request method is not a POST")
 
 def mitralVolumeChange(request):
+    global current_mitral_valve_sound
     if request.method == 'POST':
-        if request.POST['identifier'] == 'normal_heart':
+        if request.POST['identifier'] == current_mitral_valve_sound:
             volume = request.POST['rangeValue']
             os.system('amixer -c 3 set Speaker {}%'.format(volume))
             print('Mitral Valve\'s Volume updated to {}%'.format(volume))
@@ -124,33 +125,45 @@ def mitralVolumeChange(request):
         return HttpResponse("Request method is not a POST")
 
 def aorticVolumeChange(request):
+    global current_aortic_valve_sound
     if request.method == 'POST':
-        if request.POST['identifier'] == 'normal_heart':
+        if request.POST['identifier'] == current_aortic_valve_sound:
             volume = request.POST['rangeValue']
+            os.system('amixer -c 4 set Speaker {}%'.format(volume))
+            print('Aortic Valve\'s Volume updated to {}%'.format(volume))
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
 
 def pulmonaryVolumeChange(request):
+    global current_pulmonary_valve_sound
     if request.method == 'POST':
-        if request.POST['identifier'] == 'normal_heart':
+        if request.POST['identifier'] == current_pulmonary_valve_sound:
             volume = request.POST['rangeValue']
+            os.system('amixer -c 5 set Speaker {}%'.format(volume))
+            print('Pulmonary Valve\'s Volume updated to {}%'.format(volume))
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
 
 def tricuspidVolumeChange(request):
+    global current_tricuspid_valve_sound
     if request.method == 'POST':
-        if request.POST['identifier'] == 'normal_heart':
+        if request.POST['identifier'] == current_tricuspid_valve_sound:
             volume = request.POST['rangeValue']
+            os.system('amixer -c 6 set Speaker {}%'.format(volume))
+            print('Tricuspid Valve\'s Volume updated to {}%'.format(volume))
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
 
 def erbVolumeChange(request):
+    global current_erb_valve_sound
     if request.method == 'POST':
-        if request.POST['identifier'] == 'normal_heart':
+        if request.POST['identifier'] == current_erb_valve_sound:
             volume = request.POST['rangeValue']
+            os.system('amixer -c 7 set Speaker {}%'.format(volume))
+            print('Erb Valve\'s Volume updated to {}%'.format(volume))
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
