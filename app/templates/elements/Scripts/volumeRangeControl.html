@@ -16,6 +16,26 @@
         "coarctation_of_the_aorta_sound","hypertrophic_cardiomyopathy_sound","patent_ductus_arteriosus_sound","atrial_septal_defect_sound","ventricular_septal_defect_sound","acute_myocardial_infarction_sound","congestive_heart_failure_sound","systemic_hypertension_sound","acute_pericarditis_sound","dilated_cardiomyopathy_sound","pulmonary_hypertension_sound","tetralogy_of_fallot_sound","ventricular_aneurysm_sound","ebstein_anomaly_sound",
     ];
 
+    const lungFrontSounds = [
+        /* ############### LUNGS FRONT SOUNDS ############### */
+        /* Normal Breadth Sound */
+        "brochial_respiration_front_sound", "bronchovesicular_respiration_front_sound", "vesicular_respiration_front_sound", "diminished_vescicular_respiration_front_sound",
+        /* Adventitious Sound */
+        "coarse_crackles_front_sound", "fine_crackles_front_sound", "wheezes_front_sound", "rhonchi_front_sound", "gurgling_rhonchi_front_sound", "stridor_front_sound", "pleural_friction_rub_front_sound", "amphoric_respiration_front_sound", "harsh_respiration_front_sound",
+        /* Pathologies */
+        "asthma_front_sound", "covid19_front_sound", "right_sided_pneumothorax_front_sound", "left_sided_pneumothorax_front_sound", "pneumonia_front_sound"
+    ]
+
+    const lungBackSounds = [
+        /* ############### LUNGS BACK SOUNDS ############### */
+        /* Normal Breadth Sound */
+        // "brochial_respiration_back_sound", "bronchovesicular_respiration_back_sound", "vesicular_respiration_back_sound", "diminished_vescicular_respiration_back_sound",
+        /* Adventitious Sound */
+        // "coarse_crackles_back_sound", "fine_crackles_back_sound", "wheezes_back_sound", "rhonchi_back_sound", "gurgling_rhonchi_back_sound", "stridor_back_sound", "pleural_friction_rub_back_sound", "amphoric_respiration_back_sound", "harsh_respiration_back_sound",
+        /* Pathologies */
+        // "asthma_back_sound", "covid19_back_sound", "right_sided_pneumothorax_back_sound", "left_sided_pneumothorax_back_sound", "pneumonia_back_sound"
+    ]
+
     const valveNames = {
         // Heart Locations
         mitral_valve: 'Mitral Valve',
@@ -25,8 +45,38 @@
         erbs_point: 'Erbs Point'
     };
 
+    const lobeNamesFront = {
+        LUL: 'Left Upper Lobe',
+        LLL: 'Left Lower Lobe',
+        RUL: 'Right Upper Lobe',
+        RML: 'Right Middle Lobe',
+        RLL: 'Right Lower Lobe'
+    };
+
+    const lobeNamesBack = {
+        LUL: 'Left Upper Lobe',
+        LML: 'Left Middle Lobe',
+        LLL: 'Left Lower Lobe',
+        RUL: 'Right Upper Lobe',
+        RML: 'Right Middle Lobe',
+        RLL: 'Right Lower Lobe'
+    }
+
     heartSounds.forEach(sound => {
         Object.keys(valveNames).forEach(valve => {
+            const rangeInput = document.getElementById(sound + '_' + valve + '_range');
+            const outputText = document.getElementById(sound + '_' + valve + '_range_value');
+
+            outputText.textContent = '0%';
+
+            rangeInput.addEventListener('input', function() {
+                outputText.textContent = rangeInput.value + '%';
+            });
+        });
+    });
+
+    lungFrontSounds.forEach(sound => {
+        Object.keys(lobeNamesFront).forEach(valve => {
             const rangeInput = document.getElementById(sound + '_' + valve + '_range');
             const outputText = document.getElementById(sound + '_' + valve + '_range_value');
 
