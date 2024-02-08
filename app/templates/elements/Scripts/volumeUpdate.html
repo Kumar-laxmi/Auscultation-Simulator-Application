@@ -1,24 +1,28 @@
 <script>
     $(document).ready(function () {
-        // Function to handle range input change
-        $('#normal_heart_sound_mitral_valve_range').on('input', function () {
-        // Get the current value of the range input
-        var rangeValue = $(this).val();
+        // Function to handle range input change for different heart sounds
+        var heartSoundIdentifiers = ["normal_heart", "split_first_heart", "split_second_heart", "third_heart", "fourth_heart"];
 
-        // Make an AJAX POST request
-        $.ajax({
-            url: 'mitralVolumeChange/', // Replace with your backend endpoint
-            method: 'POST',
-            data: {'csrfmiddlewaretoken': '{{ csrf_token }}', identifier:'normal_heart', rangeValue: rangeValue}, // Send the range value as data
-            success: function (response) {
-            // Handle success response
-            console.log('POST request successful:', response);
-            },
-            error: function (error) {
-            // Handle error response
-            console.error('Error in POST request:', error);
-            }
-        });
+        heartSoundIdentifiers.forEach(function (identifier) {
+            $('#' + identifier + '_sound_mitral_valve_range').on('input', function () {
+                // Get the current value of the range input
+                var rangeValue = $(this).val();
+
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'mitralVolumeChange/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}', identifier: identifier, rangeValue: rangeValue }, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
         });
     });
 </script>
