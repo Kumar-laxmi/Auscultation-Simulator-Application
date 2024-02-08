@@ -106,8 +106,7 @@ def start_mitral_thread(sound_name):
     speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
     adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
     exported_data = adjusted_heartbeat.export(format="wav").read()
-    with io.BytesIO(exported_data) as wav_buffer:
-        data, fs = sf.read(wav_buffer)
+    data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
     playing_thread_mitral.start()
 
