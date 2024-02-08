@@ -117,6 +117,8 @@ def mitralVolumeChange(request):
     if request.method == 'POST':
         if request.POST['identifier'] == 'normal_heart':
             volume = request.POST['rangeValue']
+            os.system('amixer -c 3 set Speaker {}%'.format(volume))
+            print('Mitral Valve\'s Volume updated to {}%'.format(volume))
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
