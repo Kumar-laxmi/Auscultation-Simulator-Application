@@ -1,41 +1,21 @@
 <script>
+    function setupRangeInput(heartSound, valveName) {
+        const rangeInput = document.getElementById(heartSound + valveName + '_range');
+        const outputText = document.getElementById(heartSound + valveName + '_range_value');
+
+        outputText.textContent = '0%';
+
+        rangeInput.addEventListener('input', function() {
+            outputText.textContent = rangeInput.value + '%';
+        });
+    }
+
     let heartSound = 'normal_heart_sound_';
 
-    // Get the range input and the output text element
-    const rangeInput1 = document.getElementById(heartSound + 'mitral_valve_range');
-    const outputText1 = document.getElementById(heartSound + 'mitral_valve_range_value');
-
-    const rangeInput2 = document.getElementById(heartSound + 'aortic_valve_range');
-    const outputText2 = document.getElementById(heartSound + 'aortic_valve_range_value');
-
-    const rangeInput3 = document.getElementById(heartSound + 'pulmonary_valve_range');
-    const outputText3 = document.getElementById(heartSound + 'pulmonary_valve_range_value');
-
-    const rangeInput4 = document.getElementById(heartSound + 'tricuspid_valve_range');
-    const outputText4 = document.getElementById(heartSound + 'tricuspid_valve_range_value');
-    
-    const rangeInput5 = document.getElementById(heartSound + 'erbs_point_range');
-    const outputText5 = document.getElementById(heartSound + 'erbs_point_range_value');
-
-    outputText1.textContent = '0%';
-    outputText2.textContent = '0%';
-    outputText3.textContent = '0%';
-    outputText4.textContent = '0%';
-    outputText5.textContent = '0%';
-
-    rangeInput1.addEventListener('input', function() {
-        outputText1.textContent = rangeInput1.value + '%';
-    });
-    rangeInput2.addEventListener('input', function() {
-        outputText2.textContent = rangeInput2.value + '%';
-    });
-    rangeInput3.addEventListener('input', function() {
-        outputText3.textContent = rangeInput3.value + '%';
-    });
-    rangeInput4.addEventListener('input', function() {
-        outputText4.textContent = rangeInput4.value + '%';
-    });
-    rangeInput5.addEventListener('input', function() {
-        outputText5.textContent = rangeInput5.value + '%';
-    });
+    // Setup range inputs and output texts
+    setupRangeInput(heartSound, 'mitral_valve');
+    setupRangeInput(heartSound, 'aortic_valve');
+    setupRangeInput(heartSound, 'pulmonary_valve');
+    setupRangeInput(heartSound, 'tricuspid_valve');
+    setupRangeInput(heartSound, 'erbs_point');
 </script>
