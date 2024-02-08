@@ -38,28 +38,36 @@ def play_mitral(index, samples, samplerate):
         time.sleep(delay_seconds)
 
 def play_aortic(index, samples, samplerate):
-    global speakers, stop_flag_aortic, current_aortic_valve_sound
+    global speakers, stop_flag_aortic, current_aortic_valve_sound, hr_show
+    delay_seconds = 60 / hr_show
     while not stop_flag_aortic.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
 
 def play_pulmonary(index, samples, samplerate):
-    global speakers, stop_flag_pulmonary, current_pulmonary_valve_sound
+    global speakers, stop_flag_pulmonary, current_pulmonary_valve_sound, hr_show
+    delay_seconds = 60 / hr_show
     while not stop_flag_pulmonary.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
 
 def play_tricuspid(index, samples, samplerate):
-    global speakers, stop_flag_tricuspid, current_tricuspid_valve_sound
+    global speakers, stop_flag_tricuspid, current_tricuspid_valve_sound, hr_show
+    delay_seconds = 60 / hr_show
     while not stop_flag_tricuspid.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
 
 def play_erb(index, samples, samplerate):
-    global speakers, stop_flag_erb, current_erb_valve_sound
+    global speakers, stop_flag_erb, current_erb_valve_sound, hr_show
+    delay_seconds = 60 / hr_show
     while not stop_flag_erb.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
         
 def heartUpdate(request):
     global hr_show, current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound
@@ -122,7 +130,12 @@ def start_aortic_thread(sound_name):
 
     # Start a new thread
     current_aortic_valve_sound = sound_name
-    data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
+    audio_path = df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0]
+    heartbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
+    exported_data = adjusted_heartbeat.export(format="wav").read()
+    data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
     playing_thread_aortic.start()
 
@@ -136,7 +149,12 @@ def start_pulmonary_thread(sound_name):
 
     # Start a new thread
     current_pulmonary_valve_sound = sound_name
-    data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
+    audio_path = df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0]
+    heartbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
+    exported_data = adjusted_heartbeat.export(format="wav").read()
+    data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
     playing_thread_pulmonary.start()
 
@@ -150,7 +168,12 @@ def start_tricuspid_thread(sound_name):
 
     # Start a new thread
     current_tricuspid_valve_sound = sound_name
-    data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
+    audio_path = df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0]
+    heartbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
+    exported_data = adjusted_heartbeat.export(format="wav").read()
+    data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
     playing_thread_tricuspid.start()
 
@@ -164,7 +187,12 @@ def start_erb_thread(sound_name):
 
     # Start a new thread
     current_erb_valve_sound = sound_name
-    data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
+    audio_path = df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0]
+    heartbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
+    exported_data = adjusted_heartbeat.export(format="wav").read()
+    data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
     playing_thread_erb.start()
 
