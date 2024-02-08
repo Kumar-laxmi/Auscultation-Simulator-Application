@@ -6,6 +6,9 @@
 - Log of all Git Commits:                       https://api.github.com/repos/Kumar-laxmi/Auscultation-Simulator-Application/commits
 - Activate Virtual Environment:                 source virtualenv/bin/activate
 - Locate prj on Raspberry Pi:                   cd Downloads/Auscultation-Simulator-Application
+- Set Volume:                                   amixer -c 3 set Speaker 90%
+- Get Volume:                                   amixer -c 3 get Speaker | awk -F"[][]" '/Left:/ { print $2 }'
+- Set Volume (Subprocess - Python):             os.system('amixer -c 3 set Speaker 45%')
 
 ROUGH Work
 
