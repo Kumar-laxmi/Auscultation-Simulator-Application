@@ -6,6 +6,7 @@ import soundfile as sf
 from pydub import AudioSegment
 import sqlite3
 import pandas as pd
+import numpy as np
 import threading
 
 from .models import heartAudio, lungAudio
@@ -14,6 +15,7 @@ from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
+current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound = None, None, None, None, None
 
 speakers = sc.all_speakers()
 
@@ -27,37 +29,37 @@ playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_
 stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb = threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event()
 
 def play_mitral(index, samples, samplerate):
-    global speakers, stop_flag_mitral
+    global speakers, stop_flag_mitral, current_mitral_valve_sound
     while not stop_flag_mitral.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_aortic(index, samples, samplerate):
-    global speakers, stop_flag_aortic
+    global speakers, stop_flag_aortic, current_aortic_valve_sound
     while not stop_flag_aortic.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_pulmonary(index, samples, samplerate):
-    global speakers, stop_flag_pulmonary
+    global speakers, stop_flag_pulmonary, current_pulmonary_valve_sound
     while not stop_flag_pulmonary.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_tricuspid(index, samples, samplerate):
-    global speakers, stop_flag_tricuspid
+    global speakers, stop_flag_tricuspid, current_tricuspid_valve_sound
     while not stop_flag_tricuspid.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
 
 def play_erb(index, samples, samplerate):
-    global speakers, stop_flag_erb
+    global speakers, stop_flag_erb, current_erb_valve_sound
     while not stop_flag_erb.is_set():
         speaker = speakers[index]
         speaker.play(samples, samplerate)
         
 def heartUpdate(request):
-    global hr_show
+    global hr_show, current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound
 
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
@@ -89,7 +91,7 @@ def breathUpdate(request):
         return HttpResponse("Request method is not a POST")
 
 def start_mitral_thread(sound_name):
-    global playing_thread_mitral, stop_flag_mitral, hr_show
+    global playing_thread_mitral, stop_flag_mitral, hr_show, current_mitral_valve_sound
     if playing_thread_mitral and playing_thread_mitral.is_alive():
         stop_flag_mitral.set()  # Set the reload flag to signal the thread to stop
         playing_thread_mitral.join()
@@ -97,12 +99,17 @@ def start_mitral_thread(sound_name):
         stop_flag_mitral = threading.Event()
 
     # Start a new thread
-    data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0])
+    current_mitral_valve_sound = sound_name
+    audio_path = df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'M'), 'audio_file_path'].values[0]
+    heartbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = hr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_heartbeat = heartbeat.speedup(playback_speed=speed_multiplier)
+    data, fs = np.frombuffer(adjusted_heartbeat.raw_data, dtype=np.int16), adjusted_heartbeat.frame_rate
     playing_thread_mitral = threading.Thread(target=play_mitral, args=(1, data, fs))
     playing_thread_mitral.start()
 
 def start_aortic_thread(sound_name):
-    global playing_thread_aortic, stop_flag_aortic, hr_show
+    global playing_thread_aortic, stop_flag_aortic, hr_show, current_aortic_valve_sound
     if playing_thread_aortic and playing_thread_aortic.is_alive():
         stop_flag_aortic.set()  # Set the reload flag to signal the thread to stop
         playing_thread_aortic.join()
@@ -110,12 +117,13 @@ def start_aortic_thread(sound_name):
         stop_flag_aortic = threading.Event()
 
     # Start a new thread
+    current_aortic_valve_sound = sound_name
     data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'A'), 'audio_file_path'].values[0])
     playing_thread_aortic = threading.Thread(target=play_aortic, args=(2, data, fs))
     playing_thread_aortic.start()
 
 def start_pulmonary_thread(sound_name):
-    global playing_thread_pulmonary, stop_flag_pulmonary, hr_show
+    global playing_thread_pulmonary, stop_flag_pulmonary, hr_show, current_pulmonary_valve_sound
     if playing_thread_pulmonary and playing_thread_pulmonary.is_alive():
         stop_flag_pulmonary.set()  # Set the reload flag to signal the thread to stop
         playing_thread_pulmonary.join()
@@ -123,12 +131,13 @@ def start_pulmonary_thread(sound_name):
         stop_flag_pulmonary = threading.Event()
 
     # Start a new thread
+    current_pulmonary_valve_sound = sound_name
     data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'P'), 'audio_file_path'].values[0])
     playing_thread_pulmonary = threading.Thread(target=play_pulmonary, args=(3, data, fs))
     playing_thread_pulmonary.start()
 
 def start_tricuspid_thread(sound_name):
-    global playing_thread_tricuspid, stop_flag_tricuspid, hr_show
+    global playing_thread_tricuspid, stop_flag_tricuspid, hr_show, current_tricuspid_valve_sound
     if playing_thread_tricuspid and playing_thread_tricuspid.is_alive():
         stop_flag_tricuspid.set()  # Set the reload flag to signal the thread to stop
         playing_thread_tricuspid.join()
@@ -136,12 +145,13 @@ def start_tricuspid_thread(sound_name):
         stop_flag_tricuspid = threading.Event()
 
     # Start a new thread
+    current_tricuspid_valve_sound = sound_name
     data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'T'), 'audio_file_path'].values[0])
     playing_thread_tricuspid = threading.Thread(target=play_tricuspid, args=(4, data, fs))
     playing_thread_tricuspid.start()
 
 def start_erb_thread(sound_name):
-    global playing_thread_erb, stop_flag_erb, hr_show
+    global playing_thread_erb, stop_flag_erb, hr_show, current_erb_valve_sound
     if playing_thread_erb and playing_thread_erb.is_alive():
         stop_flag_erb.set()  # Set the reload flag to signal the thread to stop
         playing_thread_erb.join()
@@ -149,6 +159,7 @@ def start_erb_thread(sound_name):
         stop_flag_erb = threading.Event()
 
     # Start a new thread
+    current_erb_valve_sound = sound_name
     data, fs = sf.read(df_heart.loc[(df_heart['sound_name'] == sound_name) & (df_heart['sound_type'] == 'E'), 'audio_file_path'].values[0])
     playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
     playing_thread_erb.start()
