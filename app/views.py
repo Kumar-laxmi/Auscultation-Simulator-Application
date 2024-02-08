@@ -9,6 +9,7 @@ import pandas as pd
 import io
 import threading
 import time
+import os
 
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
@@ -114,7 +115,40 @@ def breathUpdate(request):
 
 def mitralVolumeChange(request):
     if request.method == 'POST':
-        print('Range value transfer successful')
+        if request.POST['identifier'] == 'normal_heart':
+            volume = request.POST['rangeValue']
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def aorticVolumeChange(request):
+    if request.method == 'POST':
+        if request.POST['identifier'] == 'normal_heart':
+            volume = request.POST['rangeValue']
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def pulmonaryVolumeChange(request):
+    if request.method == 'POST':
+        if request.POST['identifier'] == 'normal_heart':
+            volume = request.POST['rangeValue']
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def tricuspidVolumeChange(request):
+    if request.method == 'POST':
+        if request.POST['identifier'] == 'normal_heart':
+            volume = request.POST['rangeValue']
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def erbVolumeChange(request):
+    if request.method == 'POST':
+        if request.POST['identifier'] == 'normal_heart':
+            volume = request.POST['rangeValue']
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")

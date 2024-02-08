@@ -26,6 +26,10 @@ urlpatterns = [
     path('heartUpdate/', heartUpdate),
     path('breathUpdate/', breathUpdate),
     path('mitralVolumeChange/', mitralVolumeChange),
+    path('aorticVolumeChange/', aorticVolumeChange),
+    path('pulmonaryVolumeChange/', pulmonaryVolumeChange),
+    path('tricuspidVolumeChange/', tricuspidVolumeChange),
+    path('erbVolumeChange/', erbVolumeChange),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 

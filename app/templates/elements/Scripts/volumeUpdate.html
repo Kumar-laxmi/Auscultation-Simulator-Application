@@ -9,7 +9,7 @@
         $.ajax({
             url: 'mitralVolumeChange/', // Replace with your backend endpoint
             method: 'POST',
-            data: {'csrfmiddlewaretoken': '{{ csrf_token }}', value: rangeValue}, // Send the range value as data
+            data: {'csrfmiddlewaretoken': '{{ csrf_token }}', identifier:'normal_heart', rangeValue: rangeValue}, // Send the range value as data
             success: function (response) {
             // Handle success response
             console.log('POST request successful:', response);
