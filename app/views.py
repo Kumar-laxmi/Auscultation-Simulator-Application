@@ -263,10 +263,7 @@ def start_erb_thread(sound_name):
     playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
     playing_thread_erb.start()
 
-# Create your views here.
-def index(request):
-    global hr_show, rr_show, df_heart
-
+def soundPlay(request):
     if request.method == 'POST':
         # Buttons for Mitral Valve
         if 'normal_heart_sound_mitral_valve' in request.POST:
@@ -892,15 +889,18 @@ def index(request):
         elif 'ebstein_anomaly_sound_erb_valve' in request.POST:
             print('\nSound Played: Ebstein Anomaly, Location: Erb Valve')
             start_erb_thread('ebsteins_anomaly')
-
-        context = {
-            'hr_show': hr_show,
-            'rr_show': rr_show
-        }
+        return JsonResponse({'message': 'Success!'})
     else:
-        print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
-        context = {
-            'hr_show': hr_show,
-            'rr_show': rr_show
-        }
+        return HttpResponse("Request method is not a POST")
+
+# Create your views here.
+def index(request):
+    global hr_show, rr_show
+
+    print('Heart Rate is: {}, Breadth Rate is: {}'.format(hr_show, rr_show))
+    context = {
+        'hr_show': hr_show,
+        'rr_show': rr_show
+    }
+    
     return render(request, 'index.html', context)

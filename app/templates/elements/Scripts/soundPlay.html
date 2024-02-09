@@ -1,0 +1,196 @@
+<script>
+    // Trigger Mitral Valve Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_mitral_valve').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_mitral_valve']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_mitral_valve' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_mitral_valve' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Aortic Valve Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_aortic_valve').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_aortic_valve']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_aortic_valve' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_aortic_valve' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Pulmonary Valve Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_pulmonary_valve').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_pulmonary_valve']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_pulmonary_valve' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_pulmonary_valve' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Tricuspid Valve Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_tricuspid_valve').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_tricuspid_valve']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_tricuspid_valve' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_tricuspid_valve' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Erb point Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_erb_point').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_erb_point']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_erb_point' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_erb_point' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+</script>

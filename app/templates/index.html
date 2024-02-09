@@ -148,11 +148,9 @@
                                     <img class="img-fluid" src="{% static 'icon/intestine.png' %}" />
                                 </button>
 
-                                <!-- Volume Control -->
-                                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-                                    {% include 'elements/RightVerticalNavBar/Heart/heart_volume_control.html' %}
-                                    {% include 'elements/RightVerticalNavBar/LungFront/lung_front_volume_control.html' %}
-                                </form>
+                                <!-- Volume Control Panel -->
+                                {% include 'elements/RightVerticalNavBar/Heart/heart_volume_control.html' %}
+                                {% include 'elements/RightVerticalNavBar/LungFront/lung_front_volume_control.html' %}
 
                             </div>
                             {% include 'elements/RightVerticalNavBar/volume.html' %}
@@ -191,6 +189,9 @@
     {% include 'elements/Scripts/showVolumeControl.html' %}
     {% include 'elements/Scripts/showLeftNavBar.html' %}
     {% include 'elements/Scripts/footerButtons.html' %}
+
+    <!-- Sound Play at Backend -->
+    {% include 'elements/Scripts/soundPlay.html' %}
 
     <!-- Heart & Breadth updation at Backend -->
     {% include 'elements/Scripts/heart_breath_update.html' %}

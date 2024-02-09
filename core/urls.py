@@ -25,6 +25,7 @@ urlpatterns = [
     path('', index),
     path('heartUpdate/', heartUpdate),
     path('breathUpdate/', breathUpdate),
+    path('soundPlay/', soundPlay),
     path('mitralVolumeChange/', mitralVolumeChange),
     path('aorticVolumeChange/', aorticVolumeChange),
     path('pulmonaryVolumeChange/', pulmonaryVolumeChange),
