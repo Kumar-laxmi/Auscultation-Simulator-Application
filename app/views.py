@@ -274,10 +274,10 @@ def index(request):
             start_mitral_thread('normal_heart')
         elif 'split_first_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Split First Heart, Location: Mitral Valve')
-            start_mitral_thread('split_first_heart_sound')
+            start_mitral_thread('split_first_heart')
         elif 'split_second_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Split Second Heart, Location: Mitral Valve')
-            start_mitral_thread('split_second_heart_sound')
+            start_mitral_thread('split_second_heart')
         elif 'third_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Mitral Valve')
             start_mitral_thread('third_heart_sound_gallop')
@@ -399,10 +399,10 @@ def index(request):
             start_aortic_thread('normal_heart')
         elif 'split_first_heart_sound_aortic_valve' in request.POST:
             print('\nSound Played: Split First Heart, Location: Aortic Valve')
-            start_aortic_thread('split_first_heart_sound')
+            start_aortic_thread('split_first_heart')
         elif 'split_second_heart_sound_aortic_valve' in request.POST:
             print('\nSound Played: Split Second Heart, Location: Aortic Valve')
-            start_aortic_thread('split_second_heart_sound')
+            start_aortic_thread('split_second_heart')
         elif 'third_heart_sound_aortic_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Aortic Valve')
             start_aortic_thread('third_heart_sound_gallop')
@@ -524,10 +524,10 @@ def index(request):
             start_pulmonary_thread('normal_heart')
         elif 'split_first_heart_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Split First Heart, Location: Pulmonary Valve')
-            start_pulmonary_thread('split_first_heart_sound')
+            start_pulmonary_thread('split_first_heart')
         elif 'split_second_heart_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Split Second Heart, Location: Pulmonanary Valve')
-            start_pulmonary_thread('split_second_heart_sound')
+            start_pulmonary_thread('split_second_heart')
         elif 'third_heart_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Pulmonanary Valve')
             start_pulmonary_thread('third_heart_sound_gallop')
@@ -649,10 +649,10 @@ def index(request):
             start_tricuspid_thread('normal_heart')
         elif 'split_first_heart_sound_tricuspid_valvee' in request.POST:
             print('\nSound Played: Split First Heart, Location: Tricuspid Valve')
-            start_tricuspid_thread('split_first_heart_sound')
+            start_tricuspid_thread('split_first_heart')
         elif 'split_second_heart_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Split Second Heart, Location: Tricuspid Valve')
-            start_tricuspid_thread('split_second_heart_sound')
+            start_tricuspid_thread('split_second_heart')
         elif 'third_heart_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Tricuspid Valve')
             start_tricuspid_thread('third_heart_sound_gallop')
@@ -774,10 +774,10 @@ def index(request):
             start_erb_thread('normal_heart')
         elif 'split_first_heart_sound_erb_point' in request.POST:
             print('\nSound Played: Split First Heart, Location: Erb Valve')
-            start_erb_thread('split_first_heart_sound')
+            start_erb_thread('split_first_heart')
         elif 'split_second_heart_sound_erb_point' in request.POST:
             print('\nSound Played: Split Second Heart, Location: Erb Valve')
-            start_erb_thread('split_second_heart_sound')
+            start_erb_thread('split_second_heart')
         elif 'third_heart_sound_erb_point' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Erb Valve')
             start_erb_thread('third_heart_sound_gallop')
