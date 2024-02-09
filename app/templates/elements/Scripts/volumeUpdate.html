@@ -1,4 +1,5 @@
 <script>
+    // Update Mitral Valve's Volume at the Backend
     $(document).ready(function () {
         // Function to handle range input change for different heart sounds
         const heartSounds = [
@@ -26,6 +27,178 @@
                 // Make an AJAX POST request
                 $.ajax({
                     url: 'mitralVolumeChange/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}', identifier: identifier, rangeValue: rangeValue }, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Update Aortic Valve's Volume at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_aortic_valve_range').on('input', function () {
+                // Get the current value of the range input
+                var rangeValue = $(this).val();
+
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'aorticVolumeChange/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}', identifier: identifier, rangeValue: rangeValue }, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Update Pulmonary Valve's Volume at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_pulmonary_valve_range').on('input', function () {
+                // Get the current value of the range input
+                var rangeValue = $(this).val();
+
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'pulmonaryVolumeChange/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}', identifier: identifier, rangeValue: rangeValue }, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Update Tricuspid Valve's Volume at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_tricuspid_valve_range').on('input', function () {
+                // Get the current value of the range input
+                var rangeValue = $(this).val();
+
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'tricuspidVolumeChange/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}', identifier: identifier, rangeValue: rangeValue }, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Update Erb Valve's Volume at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different heart sounds
+        const heartSounds = [
+            /* Heart Tones */
+            "normal_heart","split_first_heart","split_second_heart","third_heart","fourth_heart",
+            /* Murmurs */
+            "functional_murmur","diastolic_murmur","opening_snap","holosystolic_murmur","early_systolic_murmur","mid_systolic_murmur","continuous_murmur","austin_flint_murmur","pericardial_rub","graham_steell_murmur",
+            /* Aortic Value */
+            "aortic_valve_regurgitation","aortic_valve_stenosis","aortic_valve_stenosis_regurgitation","congenital_aortic_stenosis",
+            /* Mitral Value */
+            "mitral_valve_regurgitation","mitral_valve_stenosis","mitral_valve_prelapse","mitral_stenosis_regurgitation","mitral_stenosis_tricuspid_regurgitation",
+            /* Pulmonary Value */
+            "pulmonary_valve_stenosis","pulmonary_valve_regurgitation",
+            /* Tricuspid Value */
+            "tricuspid_valve_regurgitation",
+            /* Pathologies */
+            "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
+        ];
+
+        heartSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_erbs_point_range').on('input', function () {
+                // Get the current value of the range input
+                var rangeValue = $(this).val();
+
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'erbVolumeChange/', // Replace with your backend endpoint
                     method: 'POST',
                     data: { 'csrfmiddlewaretoken': '{{ csrf_token }}', identifier: identifier, rangeValue: rangeValue }, // Send the range value as data
                     success: function (response) {
