@@ -18,7 +18,7 @@
             "coarctation_of_the_aorta","hypertrophic_cardiomyopathy","patent_ductus_arteriosus","atrial_septal_defect","ventricular_septal_defect","acute_myocardial_infarction","congestive_heart_failure","systemic_hypertension","acute_pericarditis","dilated_cardiomyopathy","pulmonary_hypertension","tetralogy_of_fallot","ventricular_aneurysm","ebstein_anomaly",
         ];
 
-        heartSoundIdentifiers.forEach(function (identifier) {
+        heartSounds.forEach(function (identifier) {
             $('#' + identifier + '_sound_mitral_valve_range').on('input', function () {
                 // Get the current value of the range input
                 var rangeValue = $(this).val();
