@@ -17,8 +17,8 @@ app = DjangoDash('ecgDash')
 
 # Generate and store ECG signal
 duration = 10
-sampling_rate = 100000
-ecg_signal = nk.ecg_simulate(duration=duration, heart_rate=hr_show, sampling_rate=sampling_rate)[:105000]
+sampling_rate = 10000
+ecg_signal = nk.ecg_simulate(duration=duration, heart_rate=hr_show, sampling_rate=sampling_rate)[7000:23000]
 x_values = np.linspace(0, duration, len(ecg_signal))
 ecg_data = {'x_values': x_values.tolist(), 'ecg_signal': ecg_signal.tolist()}
 
