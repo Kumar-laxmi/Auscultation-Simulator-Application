@@ -8,6 +8,23 @@ import numpy as np
 import pandas as pd
 import time
 import sqlite3
+from django.http import JsonResponse, HttpResponse
+
+sound_name = 'normal_heart'
+sound_type = 'M'
+
+def graphChange(request):
+    global sound_name, sound_type
+    if request.method == 'POST':
+        if 'normal_heart_sound_mitral_valve' in request.POST:
+            sound_name, sound_type = 'normal_heart', 'M'
+            print('Request to print the Normal Heart Sound')
+        elif 'split_first_heart_sound_mitral_valve' in request.POST:
+            sound_name, sound_type = 'split_first_heart', 'M'
+            print('Request to print Split fIRST Heart Sound')
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
 
 # Create Dash app
 app = DjangoDash('hbrDash')
@@ -15,7 +32,7 @@ con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
 df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'T'), 'audio_file_path'].values[0]
+audio_path = df.loc[(df['sound_name'] == sound_name) & (df['sound_type'] == sound_type), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
