@@ -18,10 +18,10 @@ def graphChange(request):
     if request.method == 'POST':
         if 'normal_heart_sound_mitral_valve' in request.POST:
             sound_name, sound_type = 'normal_heart', 'M'
-            print('Request to print the Normal Heart Sound')
+            print('Updated Heart Sound Graph to: Normal Heart Sound (Mitral Valve)')
         elif 'split_first_heart_sound_mitral_valve' in request.POST:
             sound_name, sound_type = 'split_first_heart', 'M'
-            print('Request to print Split fIRST Heart Sound')
+            print('Updated Heart Sound Graph to: Split First Heart Sound (Mitral Valve)')
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
