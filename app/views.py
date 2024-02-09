@@ -280,10 +280,10 @@ def index(request):
             start_mitral_thread('split_second_heart')
         elif 'third_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Mitral Valve')
-            start_mitral_thread('third_heart_sound_gallop')
+            start_mitral_thread('third_heart')
         elif 'fourth_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Fourth Heart (gallop), Location: Mitral Valve')
-            start_mitral_thread('fourth_heart_sound_gallop')
+            start_mitral_thread('fourth_heart')
         elif 'functional_murmur_sound_mitral_valve' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Mitral Valve')
             start_mitral_thread('functional_murmur')
@@ -405,10 +405,10 @@ def index(request):
             start_aortic_thread('split_second_heart')
         elif 'third_heart_sound_aortic_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Aortic Valve')
-            start_aortic_thread('third_heart_sound_gallop')
+            start_aortic_thread('third_heart')
         elif 'fourth_heart_sound_aortic_valve' in request.POST:
             print('\nSound Played: Fourth Heart (gallop), Location: Aortic Valve')
-            start_aortic_thread('fourth_heart_sound_gallop')
+            start_aortic_thread('fourth_heart')
         elif 'functional_murmur_sound_aortic_valve' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Aortic Valve')
             start_aortic_thread('functional_murmur')
@@ -530,10 +530,10 @@ def index(request):
             start_pulmonary_thread('split_second_heart')
         elif 'third_heart_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Pulmonanary Valve')
-            start_pulmonary_thread('third_heart_sound_gallop')
+            start_pulmonary_thread('third_heart')
         elif 'fourth_heart_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Fourth Heart (gallop), Location: Pulmonanary Valve')
-            start_pulmonary_thread('fourth_heart_sound_gallop')
+            start_pulmonary_thread('fourth_heart')
         elif 'functional_murmur_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Pulmonanary Valve')
             start_pulmonary_thread('functional_murmur')
@@ -655,10 +655,10 @@ def index(request):
             start_tricuspid_thread('split_second_heart')
         elif 'third_heart_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Tricuspid Valve')
-            start_tricuspid_thread('third_heart_sound_gallop')
+            start_tricuspid_thread('third_heart')
         elif 'fourth_heart_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Fourth Heart (gallop), Location: Tricuspid Valve')
-            start_tricuspid_thread('fourth_heart_sound_gallop')
+            start_tricuspid_thread('fourth_heart')
         elif 'functional_murmur_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Tricuspid Valve')
             start_tricuspid_thread('functional_murmur')
@@ -780,10 +780,10 @@ def index(request):
             start_erb_thread('split_second_heart')
         elif 'third_heart_sound_erb_point' in request.POST:
             print('\nSound Played: Third Heart (gallop), Location: Erb Valve')
-            start_erb_thread('third_heart_sound_gallop')
+            start_erb_thread('third_heart')
         elif 'fourth_heart_sound_erb_point' in request.POST:
             print('\nSound Played: Fourth Heart (gallop), Location: Erb Valve')
-            start_erb_thread('fourth_heart_sound_gallop')
+            start_erb_thread('fourth_heart')
         elif 'functional_murmur_sound_erb_point' in request.POST:
             print('\nSound Played: Functional Murmur, Location: Erb Valve')
             start_erb_thread('functional_murmur')
