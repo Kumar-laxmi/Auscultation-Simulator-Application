@@ -322,7 +322,7 @@ def index(request):
             start_mitral_thread('aortic_valve_stenosis')
         elif 'aortic_valve_stenosis_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Mitral Valve')
-            start_mitral_thread('aortic_valve_stenosis')
+            start_mitral_thread('aortic_stenosis_regurgitation')
         elif 'congenital_aortic_stenosis_sound_mitral_valve' in request.POST:
             print('\nSound Played: Congenital Aortic Stenosis, Location: Mitral Valve')
             start_mitral_thread('congenital_aortic_stenosis')
@@ -334,13 +334,13 @@ def index(request):
             start_mitral_thread('mitral_valve_stenosis')
         elif 'mitral_valve_prelapse_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Valve Prelapse, Location: Mitral Valve')
-            start_mitral_thread('mitral_valve_prolapse')
+            start_mitral_thread('mitral_valve_prelapse')
         elif 'mitral_stenosis_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Regurgitation, Location: Mitral Valve')
-            start_mitral_thread('mitral_stenosis_and_regurgitation')
+            start_mitral_thread('mitral_stenosis_regurgitation')
         elif 'mitral_stenosis_tricuspid_regurgitation_sound_mitral_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Tricuspid Regurgitation, Location: Mitral Valve')
-            start_mitral_thread('mitral_stenosis_and_tricuspid_regurgitation')
+            start_mitral_thread('mitral_stenosis_tricuspid_regurgitation')
         elif 'pulmonary_valve_stenosis_sound_mitral_valve' in request.POST:
             print('\nSound Played: Pulmonary Valve Stenosis, Location: Mitral Valve')
             start_mitral_thread('pulmonary_valve_stenosis')
@@ -447,7 +447,7 @@ def index(request):
             start_aortic_thread('aortic_valve_stenosis')
         elif 'aortic_valve_stenosis_regurgitation_sound_aortic_valve' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Aortic Valve')
-            start_aortic_thread('aortic_stenosis_and_regurgitation')
+            start_aortic_thread('aortic_stenosis_regurgitation')
         elif 'congenital_aortic_stenosis_sound_aortic_valve' in request.POST:
             print('\nSound Played: Congenital Aortic Stenosis, Location: Aortic Valve')
             start_aortic_thread('congenital_aortic_stenosis')
@@ -459,13 +459,13 @@ def index(request):
             start_aortic_thread('mitral_valve_stenosis')
         elif 'mitral_valve_prelapse_sound_aortic_valve' in request.POST:
             print('\nSound Played: Mitral Valve Prelapse, Location: Aortic Valve')
-            start_aortic_thread('mitral_valve_prolapse')
+            start_aortic_thread('mitral_valve_prelapse')
         elif 'mitral_stenosis_regurgitation_sound_aortic_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Regurgitation, Location: Aortic Valve')
-            start_aortic_thread('mitral_stenosis_and_regurgitation')
+            start_aortic_thread('mitral_stenosis_regurgitation')
         elif 'mitral_stenosis_tricuspid_regurgitation_sound_aortic_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Tricuspid Regurgitation, Location: Aortic Valve')
-            start_aortic_thread('mitral_stenosis_and_tricuspid_regurgitation')
+            start_aortic_thread('mitral_stenosis_tricuspid_regurgitation')
         elif 'pulmonary_valve_stenosis_sound_aortic_valve' in request.POST:
             print('\nSound Played: Pulmonary Valve Stenosis, Location: Aortic Valve')
             start_aortic_thread('pulmonary_valve_stenosis')
@@ -572,7 +572,7 @@ def index(request):
             start_pulmonary_thread('aortic_valve_stenosis')
         elif 'aortic_valve_stenosis_regurgitation_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Pulmonanary Valve')
-            start_pulmonary_thread('aortic_valve_stenosis')
+            start_pulmonary_thread('aortic_stenosis_regurgitation')
         elif 'congenital_aortic_stenosis_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Congenital Aortic Stenosis, Location: Pulmonanary Valve')
             start_pulmonary_thread('congenital_aortic_stenosis')
@@ -584,13 +584,13 @@ def index(request):
             start_pulmonary_thread('mitral_valve_stenosis')
         elif 'mitral_valve_prelapse_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Mitral Valve Prelapse, Location: Pulmonanary Valve')
-            start_pulmonary_thread('mitral_valve_prolapse')
+            start_pulmonary_thread('mitral_valve_prelapse')
         elif 'mitral_stenosis_regurgitation_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Regurgitation, Location: Pulmonanary Valve')
-            start_pulmonary_thread('mitral_stenosis_and_regurgitation')
+            start_pulmonary_thread('mitral_stenosis_regurgitation')
         elif 'mitral_stenosis_tricuspid_regurgitation_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Tricuspid Regurgitation, Location: Pulmonanary Valve')
-            start_pulmonary_thread('mitral_stenosis_and_tricuspid_regurgitation')
+            start_pulmonary_thread('mitral_stenosis_tricuspid_regurgitation')
         elif 'pulmonary_valve_stenosis_sound_pulmonary_valve' in request.POST:
             print('\nSound Played: Pulmonary Valve Stenosis, Location: Pulmonanary Valve')
             start_pulmonary_thread('pulmonary_valve_stenosis')
@@ -697,7 +697,7 @@ def index(request):
             start_tricuspid_thread('aortic_valve_stenosis')
         elif 'aortic_valve_stenosis_regurgitation_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Tricuspid Valve')
-            start_tricuspid_thread('aortic_stenosis_and_regurgitation')
+            start_tricuspid_thread('aortic_stenosis_regurgitation')
         elif 'congenital_aortic_stenosis_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Congenital Aortic Stenosis, Location: Tricuspid Valve')
             start_tricuspid_thread('congenital_aortic_stenosis')
@@ -709,13 +709,13 @@ def index(request):
             start_tricuspid_thread('mitral_valve_stenosis')
         elif 'mitral_valve_prelapse_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Mitral Valve Prelapse, Location: Tricuspid Valve')
-            start_tricuspid_thread('mitral_valve_prolapse')
+            start_tricuspid_thread('mitral_valve_prelapse')
         elif 'mitral_stenosis_regurgitation_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Regurgitation, Location: Tricuspid Valve')
-            start_tricuspid_thread('mitral_stenosis_and_regurgitation')
+            start_tricuspid_thread('mitral_stenosis_regurgitation')
         elif 'mitral_stenosis_tricuspid_regurgitation_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Mitral Stenosis Tricuspid Regurgitation, Location: Tricuspid Valve')
-            start_tricuspid_thread('mitral_stenosis_and_tricuspid_regurgitation')
+            start_tricuspid_thread('mitral_stenosis_tricuspid_regurgitation')
         elif 'pulmonary_valve_stenosis_sound_tricuspid_valve' in request.POST:
             print('\nSound Played: Pulmonary Valve Stenosis, Location: Tricuspid Valve')
             start_tricuspid_thread('pulmonary_valve_stenosis')
@@ -822,7 +822,7 @@ def index(request):
             start_erb_thread('aortic_valve_stenosis')
         elif 'aortic_valve_stenosis_regurgitation_sound_erb_point' in request.POST:
             print('\nSound Played: Aortic Valve Stenosis Regurgitation, Location: Erb Valve')
-            start_erb_thread('aortic_valve_stenosis')
+            start_erb_thread('aortic_stenosis_regurgitation')
         elif 'congenital_aortic_stenosis_sound_erb_point' in request.POST:
             print('\nSound Played: Congenital Aortic Stenosis, Location: Erb Valve')
             start_erb_thread('congenital_aortic_stenosis')
@@ -834,13 +834,13 @@ def index(request):
             start_erb_thread('mitral_valve_stenosis')
         elif 'mitral_valve_prelapse_sound_erb_point' in request.POST:
             print('\nSound Played: Mitral Valve Prelapse, Location: Erb Valve')
-            start_erb_thread('mitral_valve_prolapse')
+            start_erb_thread('mitral_valve_prelapse')
         elif 'mitral_stenosis_regurgitation_sound_erb_point' in request.POST:
             print('\nSound Played: Mitral Stenosis Regurgitation, Location: Erb Valve')
-            start_erb_thread('mitral_stenosis_and_regurgitation')
+            start_erb_thread('mitral_stenosis_regurgitation')
         elif 'mitral_stenosis_tricuspid_regurgitation_sound_erb_point' in request.POST:
             print('\nSound Played: Mitral Stenosis Tricuspid Regurgitation, Location: Erb Valve')
-            start_erb_thread('mitral_stenosis_and_tricuspid_regurgitation')
+            start_erb_thread('mitral_stenosis_tricuspid_regurgitation')
         elif 'pulmonary_valve_stenosis_sound_erb_point' in request.POST:
             print('\nSound Played: Pulmonary Valve Stenosis, Location: Erb Valve')
             start_erb_thread('pulmonary_valve_stenosis')
