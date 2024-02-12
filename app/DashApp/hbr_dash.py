@@ -10,11 +10,16 @@ import time
 import sqlite3
 from django.http import JsonResponse, HttpResponse
 
-sound_name = 'normal_heart'
-sound_type = 'M'
+sound_name, sound_type = 'normal_heart', 'M'
+
+# Create Dash app
+app = DjangoDash('hbrDash')
+con = sqlite3.connect("db.sqlite3")
+cur = con.cursor()
+df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
 def graphChange(request):
-    global sound_name, sound_type
+    global sound_name, sound_type, df
     if request.method == 'POST':
         if 'normal_heart_sound_mitral_valve' in request.POST:
             sound_name, sound_type = 'normal_heart', 'M'
@@ -25,12 +30,6 @@ def graphChange(request):
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
-
-# Create Dash app
-app = DjangoDash('hbrDash')
-con = sqlite3.connect("db.sqlite3")
-cur = con.cursor()
-df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
 audio_path = df.loc[(df['sound_name'] == sound_name) & (df['sound_type'] == sound_type), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
@@ -94,5 +93,6 @@ app.clientside_callback(
     Output('interval-store', 'data'),
     Input('interval-component', 'n_intervals'),
     State('audio-data-store', 'data'),
-    State('interval-store', 'data')
+    State('interval-store', 'data'),
+    prevent_initial_call=True
 )

@@ -1,49 +1,88 @@
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
-import plotly.express as px
-import pandas as pd
+import plotly.graph_objs as go
+from pydub import AudioSegment
 import numpy as np
+import time as tm
 
-# Dummy data generation function
-def generate_dummy_data(num_points=100):
-    np.random.seed(42)
-    x = np.linspace(0, 1, num_points)
-    y = np.random.rand(num_points)
-    df = pd.DataFrame({'X': x, 'Y': y})
-    return df
+# Load audio file and extract waveform data
+audio_path = 'app/static/audio/heart/acute_myocardial_infarction/A/combined_audio.wav'
+audio = AudioSegment.from_wav(audio_path)
+samples = np.array(audio.get_array_of_samples())
+time = np.linspace(0, len(samples) / audio.frame_rate, num=len(samples))
 
-# Initial dummy data
-initial_data = generate_dummy_data()
-
-# Initialize the Dash app
+# Create Dash app
 app = dash.Dash(__name__)
 
-# App layout
+# Define layout
 app.layout = html.Div([
-    html.H1("Dummy Data Plot"),
-    
-    # Graph component for plotting
-    dcc.Graph(id='scatter-plot'),
-    
-    # Button to refresh the plot
-    html.Button('Refresh Plot', id='refresh-button', n_clicks=0)
+    dcc.Graph(
+        id='audio-waveform',
+        animate=True,
+        figure={
+            'data': [
+                go.Scatter(
+                    x=time,
+                    y=samples,
+                    mode='lines',
+                ),
+                go.Scatter(
+                    x=[time.min(), time.min()],
+                    y=[min(samples), max(samples)],
+                    mode='lines',
+                    line=dict(color='red', width=2),
+                    name='Vertical Line',
+                ),
+            ],
+            'layout': go.Layout(
+                title='Audio Waveform with Moving Vertical Line',
+                xaxis={'title': 'Time (s)'},
+                yaxis={'title': 'Amplitude'},
+            ),
+        },
+    ),
+    dcc.Interval(
+        id='interval-component',
+        interval=50,  # in milliseconds
+        n_intervals=0,
+    ),
 ])
 
-# Callback to update the plot on button click
+# Update the position of the vertical line with smooth movement
 @app.callback(
-    Output('scatter-plot', 'figure'),
-    [Input('refresh-button', 'n_clicks')]
+    Output('audio-waveform', 'figure'),
+    Input('interval-component', 'n_intervals')
 )
-def update_plot(n_clicks):
-    # Generate new dummy data on button click
-    dummy_data = generate_dummy_data()
-    
-    # Create a scatter plot using Plotly Express
-    fig = px.scatter(dummy_data, x='X', y='Y', title='Dummy Data Plot')
-    
-    return fig
+def update_graph(n_intervals):
+    # Calculate the elapsed time and update the position of the vertical line
+    elapsed_time = n_intervals * 0.05  # Assuming 50 ms interval
+    line_position = time.min() + elapsed_time % (time.max() - time.min())
 
-# Run the app
+    # Update the position of the vertical line in the figure
+    figure = {
+        'data': [
+            go.Scatter(
+                x=time,
+                y=samples,
+                mode='lines',
+            ),
+            go.Scatter(
+                x=[line_position, line_position],
+                y=[min(samples), max(samples)],
+                mode='lines',
+                line=dict(color='red', width=2),
+                name='Vertical Line',
+            ),
+        ],
+        'layout': go.Layout(
+            title='Audio Waveform with Moving Vertical Line',
+            xaxis={'title': 'Time (s)'},
+            yaxis={'title': 'Amplitude'},
+        ),
+    }
+
+    return figure
+
 if __name__ == '__main__':
     app.run_server(debug=True)
