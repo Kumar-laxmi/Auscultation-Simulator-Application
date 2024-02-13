@@ -34,19 +34,6 @@
                         console.error('Error in POST request for ' + identifier + '_sound_mitral_valve' + ':', error);
                     }
                 });
-                $.ajax({
-                    type: 'POST',
-                    url: 'graphChange/',
-                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_mitral_valve']: true},
-                    success: function (response) {
-                        // Handle success response
-                        console.log('POST request successful for ' + identifier + '_sound_mitral_valve' + ':', response);
-                    },
-                    error: function (error) {
-                        // Handle error response
-                        console.error('Error in POST request for ' + identifier + '_sound_mitral_valve' + ':', error);
-                    }
-                });
             });
         });
     });

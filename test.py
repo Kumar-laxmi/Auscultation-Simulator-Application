@@ -1,88 +1,79 @@
 import dash
 from dash import dcc, html
-from dash.dependencies import Input, Output
-import plotly.graph_objs as go
+from dash.dependencies import Input, Output, State
 from pydub import AudioSegment
 import numpy as np
-import time as tm
-
-# Load audio file and extract waveform data
-audio_path = 'app/static/audio/heart/acute_myocardial_infarction/A/combined_audio.wav'
-audio = AudioSegment.from_wav(audio_path)
-samples = np.array(audio.get_array_of_samples())
-time = np.linspace(0, len(samples) / audio.frame_rate, num=len(samples))
+import time
 
 # Create Dash app
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
-# Define layout
+# Layout of the app
+audio_path = 'app/static/audio/heart/acute_myocardial_infarction/A/combined_audio.wav'
+audio = AudioSegment.from_file(audio_path)
+audio_data = np.array(audio.get_array_of_samples())
+audio_duration = len(audio_data) / audio.frame_rate
+subsampling_factor = 1
+audio_data = audio_data[::subsampling_factor]
+
+target_duration = 0.877
+num_repeats = 1
+audio_data = np.tile(audio_data, num_repeats)
+sample_rate = 44100
+duration = len(audio_data) / sample_rate
+
+heartRate = 60
+
+# Layout of the app
 app.layout = html.Div([
-    dcc.Graph(
-        id='audio-waveform',
-        animate=True,
-        figure={
-            'data': [
-                go.Scatter(
-                    x=time,
-                    y=samples,
-                    mode='lines',
-                ),
-                go.Scatter(
-                    x=[time.min(), time.min()],
-                    y=[min(samples), max(samples)],
-                    mode='lines',
-                    line=dict(color='red', width=2),
-                    name='Vertical Line',
-                ),
-            ],
-            'layout': go.Layout(
-                title='Audio Waveform with Moving Vertical Line',
-                xaxis={'title': 'Time (s)'},
-                yaxis={'title': 'Amplitude'},
-            ),
-        },
-    ),
-    dcc.Interval(
-        id='interval-component',
-        interval=50,  # in milliseconds
-        n_intervals=0,
-    ),
+    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
+    dcc.Store(id='audio-data-store', data={'audio_data': audio_data.tolist(), 'audio_duration': audio_duration}),
+    dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
+    dcc.Interval(id='interval-component', interval=25, n_intervals=0) # Interval in milliseconds
 ])
 
-# Update the position of the vertical line with smooth movement
-@app.callback(
-    Output('audio-waveform', 'figure'),
-    Input('interval-component', 'n_intervals')
-)
-def update_graph(n_intervals):
-    # Calculate the elapsed time and update the position of the vertical line
-    elapsed_time = n_intervals * 0.05  # Assuming 50 ms interval
-    line_position = time.min() + elapsed_time % (time.max() - time.min())
+# Clientside callback to update the graph
+app.clientside_callback(
+    """
+    function(n, audioData, startTime) {
+        // Get the audio data and duration from the stored data
+        var audioArray = audioData['audio_data'];
+        var audioDuration = audioData['audio_duration'];
+        var heartRate = 60
 
-    # Update the position of the vertical line in the figure
-    figure = {
-        'data': [
-            go.Scatter(
-                x=time,
-                y=samples,
-                mode='lines',
-            ),
-            go.Scatter(
-                x=[line_position, line_position],
-                y=[min(samples), max(samples)],
-                mode='lines',
-                line=dict(color='red', width=2),
-                name='Vertical Line',
-            ),
-        ],
-        'layout': go.Layout(
-            title='Audio Waveform with Moving Vertical Line',
-            xaxis={'title': 'Time (s)'},
-            yaxis={'title': 'Amplitude'},
-        ),
+        // Calculate the time passed since the start
+        var currentTime = new Date().getTime() / 1000;  // Convert milliseconds to seconds
+        var elapsedTime = currentTime - startTime;
+
+        // Calculate the position of the vertical line
+        var timePerBeat = 60 / heartRate;
+        var linePosition = Math.floor((elapsedTime % timePerBeat) * audioArray.length / timePerBeat);
+
+        // Create the figure
+        var figure = {
+            data: [
+                {y: audioArray, type: 'line', name: 'HBR Signal', line: {color: 'green'}},
+                {x: [linePosition, linePosition], y: [Math.min.apply(null, audioArray), Math.max.apply(null, audioArray)], mode: 'lines', line: {color: 'black', width: 10}}
+            ],
+            layout: {
+                title: 'Normal Heart sound (Mitral valve)',
+                showlegend: false,
+                paper_bgcolor: 'black',  // Set background color to black
+                plot_bgcolor: 'black'    // Set plot background color to black
+            }
+        };
+        
+        // Return the updated figure, startTime, and heartRate
+        return [figure, startTime];
     }
-
-    return figure
+    """,
+    Output('animated-audio-chart', 'figure'),
+    Output('interval-store', 'data'),
+    Input('interval-component', 'n_intervals'),
+    State('audio-data-store', 'data'),
+    State('interval-store', 'data'),
+    prevent_initial_call=True
+)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

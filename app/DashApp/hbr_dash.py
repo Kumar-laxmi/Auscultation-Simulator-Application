@@ -8,9 +8,6 @@ import numpy as np
 import pandas as pd
 import time
 import sqlite3
-from django.http import JsonResponse, HttpResponse
-
-sound_name, sound_type = 'normal_heart', 'M'
 
 # Create Dash app
 app = DjangoDash('hbrDash')
@@ -18,20 +15,7 @@ con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
 df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-def graphChange(request):
-    global sound_name, sound_type, df
-    if request.method == 'POST':
-        if 'normal_heart_sound_mitral_valve' in request.POST:
-            sound_name, sound_type = 'normal_heart', 'M'
-            print('Updated Heart Sound Graph to: Normal Heart Sound (Mitral Valve)')
-        elif 'split_first_heart_sound_mitral_valve' in request.POST:
-            sound_name, sound_type = 'split_first_heart', 'M'
-            print('Updated Heart Sound Graph to: Split First Heart Sound (Mitral Valve)')
-        return JsonResponse({'message': 'Success!'})
-    else:
-        return HttpResponse("Request method is not a POST")
-
-audio_path = df.loc[(df['sound_name'] == sound_name) & (df['sound_type'] == sound_type), 'audio_file_path'].values[0]
+audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'M'), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
@@ -43,8 +27,6 @@ num_repeats = 1
 audio_data = np.tile(audio_data, num_repeats)
 sample_rate = 44100
 duration = len(audio_data) / sample_rate
-
-heartRate = 60
 
 # Layout of the app
 app.layout = html.Div([
@@ -78,7 +60,6 @@ app.clientside_callback(
                 {x: [linePosition, linePosition], y: [Math.min.apply(null, audioArray), Math.max.apply(null, audioArray)], mode: 'lines', line: {color: 'black', width: 10}}
             ],
             layout: {
-                title: 'Normal Heart sound (Mitral valve)',
                 showlegend: false,
                 paper_bgcolor: 'black',  // Set background color to black
                 plot_bgcolor: 'black'    // Set plot background color to black
