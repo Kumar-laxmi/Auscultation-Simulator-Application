@@ -31,7 +31,7 @@ duration = len(audio_data) / sample_rate
 # Layout of the app
 app.layout = html.Div([
     dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
-    dcc.Store(id='audio-data-store', data={'audio_data': audio_data.tolist(), 'audio_duration': audio_duration}),
+    dcc.Store(id='audio-data-store', data={'audio_data': audio_data.tolist(), 'audio_duration': duration}),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
     dcc.Interval(id='interval-component', interval=25, n_intervals=0) # Interval in milliseconds
 ])
