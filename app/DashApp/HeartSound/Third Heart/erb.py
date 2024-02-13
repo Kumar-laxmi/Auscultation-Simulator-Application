@@ -11,7 +11,7 @@ import time
 import sqlite3
 
 # Create Dash app
-app = DjangoDash('hbrDash')
+app = DjangoDash('Third_Heart_Erb')
 con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
 df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
