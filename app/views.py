@@ -14,7 +14,6 @@ import os
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
 from .DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
-from .DashApp.HeartSound import *
 
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
