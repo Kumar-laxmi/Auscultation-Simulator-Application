@@ -16,7 +16,7 @@ con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
 df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'M'), 'audio_file_path'].values[0]
+audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'E'), 'audio_file_path'].values[0]
 audio = AudioSegment.from_file(audio_path)
 audio_data = np.array(audio.get_array_of_samples())
 audio_duration = len(audio_data) / audio.frame_rate
