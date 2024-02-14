@@ -1,5 +1,9 @@
 from ..DashApp import ecg_dash, rsp_dash, hbr_dash, comp_dash
 
+# This is the import of Black Audio's Dash app
+from ..DashApp.HeartSound import noAudio
+
+# These are the imports of the actual audio files's Dash app
 from ..DashApp.HeartSound.Pulmonary_Hypertension import aortic, erb, mitral, pulmonary, tricuspid
 from ..DashApp.HeartSound.Patent_Ductus_Arteriosus import aortic, erb, mitral, pulmonary, tricuspid
 from ..DashApp.HeartSound.Tetralogy_of_Fallot import aortic, erb, mitral, pulmonary, tricuspid

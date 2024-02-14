@@ -1,11 +1,11 @@
 <script>
     document.getElementById("hbr_btn").onclick = function() {
-        var ecgDiv = document.getElementById("hbr_div");
-        if (ecgDiv.style.display === "none") {
-            ecgDiv.style.display = "block";
+        var hbrDiv = document.getElementById("hbr_div");
+        if (hbrDiv.style.display === "none") {
+            hbrDiv.style.display = "block";
             document.getElementById("hbr_btn").classList.add('active');
         } else {
-            ecgDiv.style.display = "none";
+            hbrDiv.style.display = "none";
             document.getElementById("hbr_btn").classList.remove('active');
         }
     };

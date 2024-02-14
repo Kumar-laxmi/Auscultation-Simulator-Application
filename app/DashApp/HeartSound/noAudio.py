@@ -3,31 +3,15 @@ import dash
 from urllib import request
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
-from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
 import numpy as np
-import pandas as pd
 import time
-import sqlite3
 
 # Create Dash app
-app = DjangoDash('Graham_Steell_Murmur_Pulmonary')
-con = sqlite3.connect("db.sqlite3")
-cur = con.cursor()
-df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
+app = DjangoDash('No_Audio')
 
-audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'P'), 'audio_file_path'].values[0]
-audio = AudioSegment.from_file(audio_path)
-audio_data = np.array(audio.get_array_of_samples())
-audio_duration = len(audio_data) / audio.frame_rate
-subsampling_factor = 1
-audio_data = audio_data[::subsampling_factor]
-
-target_duration = 0.877
-num_repeats = 1
-audio_data = np.tile(audio_data, num_repeats)
-sample_rate = 44100
-duration = len(audio_data) / sample_rate
+duration = 0.877
+audio_data = np.zeros(38676)
 
 # Layout of the app
 app.layout = html.Div([
