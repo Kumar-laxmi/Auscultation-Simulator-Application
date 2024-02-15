@@ -4,6 +4,7 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
+from django.http import JsonResponse, HttpResponse
 import numpy as np
 import time
 
@@ -86,7 +87,7 @@ app.clientside_callback(
     Output('audio-data-store', 'data'),
     Input('audio-path-input', 'value')
 )
-def update_audio_data(audioPath):
+def update_audio_path(audioPath):
     duration = 0.887
     sample_rate = 44100
     if not audioPath:  # If the input is empty, return zero values
@@ -94,10 +95,11 @@ def update_audio_data(audioPath):
     else:
         return loadAudioData(audioPath)
     
-# Callback to update the text box content
-@app.callback(
-    Output('audio-path-input', 'value'),
-    Input('text-store', 'data')
-)
-def update_output_box(text_data):
-    return text_data
+def updateAudio(request):
+    if request.method == 'POST':
+        if 'normal_heart_sound_mitral_valve' in request.POST:
+            print("normal_heart_sound_mitral_valve")
+        
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
