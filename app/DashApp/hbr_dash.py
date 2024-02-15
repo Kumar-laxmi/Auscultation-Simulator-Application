@@ -1,37 +1,40 @@
 import dash
-from urllib import request
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
+import plotly.graph_objs as go
 from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
 import numpy as np
-import pandas as pd
 import time
-import sqlite3
 
-# Create Dash app
 app = DjangoDash('hbrDash')
-con = sqlite3.connect("db.sqlite3")
-cur = con.cursor()
-df = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 
-audio_path = df.loc[(df['sound_name'] == 'normal_heart') & (df['sound_type'] == 'M'), 'audio_file_path'].values[0]
-audio = AudioSegment.from_file(audio_path)
-audio_data = np.array(audio.get_array_of_samples())
-audio_duration = len(audio_data) / audio.frame_rate
-subsampling_factor = 1
-audio_data = audio_data[::subsampling_factor]
+# Define a function to load audio data and duration
+def loadAudioData(audioPath):
+    audio = AudioSegment.from_file(audioPath)
+    audio_data = np.array(audio.get_array_of_samples())
+    audio_duration = len(audio_data) / audio.frame_rate
+    subsampling_factor = 1
+    audio_data = audio_data[::subsampling_factor]
 
-target_duration = 0.877
-num_repeats = 1
-audio_data = np.tile(audio_data, num_repeats)
-sample_rate = 44100
-duration = len(audio_data) / sample_rate
+    target_duration = 0.877
+    num_repeats = 1
+    audio_data = np.tile(audio_data, num_repeats)
+    sample_rate = 44100
+    duration = len(audio_data) / sample_rate
+
+    return {'audio_data': audio_data.tolist(), 'audio_duration': duration}
 
 # Layout of the app
 app.layout = html.Div([
+    dcc.Input(
+        id='audio-path-input',
+        type='text',
+        placeholder='Enter audio path...',
+        style={'width': '50%'}
+    ),
     dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
-    dcc.Store(id='audio-data-store', data={'audio_data': audio_data.tolist(), 'audio_duration': duration}),
+    dcc.Store(id='audio-data-store', data={'audio_data': [], 'audio_duration': 0}),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
     dcc.Interval(id='interval-component', interval=25, n_intervals=0) # Interval in milliseconds
 ])
@@ -77,3 +80,24 @@ app.clientside_callback(
     State('interval-store', 'data'),
     prevent_initial_call=True
 )
+
+# Callback to load audio data when the input changes
+@app.callback(
+    Output('audio-data-store', 'data'),
+    Input('audio-path-input', 'value')
+)
+def update_audio_data(audioPath):
+    duration = 0.887
+    sample_rate = 44100
+    if not audioPath:  # If the input is empty, return zero values
+        return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
+    else:
+        return loadAudioData(audioPath)
+    
+# Callback to update the text box content
+@app.callback(
+    Output('audio-path-input', 'value'),
+    Input('text-store', 'data')
+)
+def update_output_box(text_data):
+    return text_data
