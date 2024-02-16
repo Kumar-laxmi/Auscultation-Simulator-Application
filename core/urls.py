@@ -19,7 +19,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from app.views import *
-from app.DashApp.hbr_dash import updateAudio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +31,6 @@ urlpatterns = [
     path('pulmonaryVolumeChange/', pulmonaryVolumeChange),
     path('tricuspidVolumeChange/', tricuspidVolumeChange),
     path('erbVolumeChange/', erbVolumeChange),
-    path('updateGraph/', updateAudio),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 

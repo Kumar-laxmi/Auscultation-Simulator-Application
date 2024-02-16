@@ -1,14 +1,11 @@
-import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
-import plotly.graph_objs as go
 from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
-from django.http import JsonResponse, HttpResponse
 import numpy as np
 import time
 
-app = DjangoDash('hbrDash')
+app = DjangoDash('tricuspidDash')
 
 # Define a function to load audio data and duration
 def loadAudioData(audioPath):
@@ -28,12 +25,7 @@ def loadAudioData(audioPath):
 
 # Layout of the app
 app.layout = html.Div([
-    dcc.Input(
-        id='audio-path-input',
-        type='text',
-        placeholder='Enter audio path...',
-        style={'width': '50%'}
-    ),
+    dcc.Input(id='audio-path-input',type='text',placeholder='Enter audio path...',style={'display':'none'}),
     dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
     dcc.Store(id='audio-data-store', data={'audio_data': [], 'audio_duration': 0}),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
@@ -88,18 +80,5 @@ app.clientside_callback(
     Input('audio-path-input', 'value')
 )
 def update_audio_path(audioPath):
-    duration = 0.887
-    sample_rate = 44100
-    if not audioPath:  # If the input is empty, return zero values
-        return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
-    else:
-        return loadAudioData(audioPath)
-    
-def updateAudio(request):
-    if request.method == 'POST':
-        if 'normal_heart_sound_mitral_valve' in request.POST:
-            print("normal_heart_sound_mitral_valve")
-        
-        return JsonResponse({'message': 'Success!'})
-    else:
-        return HttpResponse("Request method is not a POST")
+    input_string = 'app/static/audio/heart/normal_heart/T/combined_audio.wav'
+    return loadAudioData(input_string)

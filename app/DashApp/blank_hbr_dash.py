@@ -1,46 +1,35 @@
 import dash
-from urllib import request
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
+import plotly.graph_objs as go
 from pydub import AudioSegment
+from django_plotly_dash import DjangoDash
+from django.http import JsonResponse, HttpResponse
 import numpy as np
-import pandas as pd
 import time
-import sqlite3
 
-# Create Dash app
-app = dash.Dash(__name__)
+app = DjangoDash('blankhbrDash')
 
 # Define a function to load audio data and duration
 def loadAudioData(audioPath):
-    try:
-        audio = AudioSegment.from_file(audioPath)
-        audio_data = np.array(audio.get_array_of_samples())
-        audio_duration = len(audio_data) / audio.frame_rate
-        subsampling_factor = 1
-        audio_data = audio_data[::subsampling_factor]
+    audio = AudioSegment.from_file(audioPath)
+    audio_data = np.array(audio.get_array_of_samples())
+    audio_duration = len(audio_data) / audio.frame_rate
+    subsampling_factor = 1
+    audio_data = audio_data[::subsampling_factor]
 
-        target_duration = 0.877
-        num_repeats = 1
-        audio_data = np.tile(audio_data, num_repeats)
-        sample_rate = 44100
-        duration = len(audio_data) / sample_rate
+    target_duration = 0.877
+    num_repeats = 1
+    audio_data = np.tile(audio_data, num_repeats)
+    sample_rate = 44100
+    duration = len(audio_data) / sample_rate
 
-        return {'audio_data': audio_data.tolist(), 'audio_duration': duration}
-    except:
-        return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
+    return {'audio_data': audio_data.tolist(), 'audio_duration': duration}
 
 # Layout of the app
 app.layout = html.Div([
-    dcc.Input(id='dummy-input',type='text',placeholder='Enter audio path...'),
-    dcc.Input(
-        id='audio-path-input',
-        type='text',
-        placeholder='Enter audio path...',
-        style={'width': '50%'}
-    ),
+    dcc.Input(id='audio-path-input',type='text',placeholder='Enter audio path...',style={'display':'none'}),
     dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
-    dcc.Store(id='audio-path-store', data={'value': None}),
     dcc.Store(id='audio-data-store', data={'audio_data': [], 'audio_duration': 0}),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
     dcc.Interval(id='interval-component', interval=25, n_intervals=0) # Interval in milliseconds
@@ -93,28 +82,7 @@ app.clientside_callback(
     Output('audio-data-store', 'data'),
     Input('audio-path-input', 'value')
 )
-def update_audio_data(audioPath):
+def update_audio_path(audioPath):
     duration = 0.887
     sample_rate = 44100
-    if not audioPath:  # If the input is empty, return zero values
-        return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
-    else:
-        return loadAudioData(audioPath)
-    
-input_string = 'app/static/audio/heart/acute_pericarditis/M/combined_audio.wav'
-import sys
-import subprocess
-
-# Callback to load audio data when the input changes
-@app.callback(
-    Output('audio-path-input', 'value'),
-    Input('dummy-input', 'value')
-)
-def updateTextBox(audioPath):
-    if audioPath == 'reload':
-        script_path = sys.argv[0]  # Get the script path
-        subprocess.Popen(['python', script_path])  # Start a new Python process
-    return audioPath
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
+    return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values

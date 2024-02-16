@@ -21,22 +21,20 @@
 
         heartSounds.forEach(function (identifier) {
             $('#' + identifier + '_sound_mitral_valve').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'block');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'soundPlay/',
-                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_mitral_valve']: true},
-                    success: function (response) {
-                        // Handle success response
-                        console.log('POST request successful for ' + identifier + '_sound_mitral_valve' + ':', response);
-                    },
-                    error: function (error) {
-                        // Handle error response
-                        console.error('Error in POST request for ' + identifier + '_sound_mitral_valve' + ':', error);
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: 'updateGraph/',
                     data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_mitral_valve']: true},
                     success: function (response) {
                         // Handle success response
@@ -73,6 +71,17 @@
 
         heartSounds.forEach(function (identifier) {
             $('#' + identifier + '_sound_aortic_valve').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'none');
+                    $('#aortic_div').css('display', 'block');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'soundPlay/',
@@ -112,6 +121,17 @@
 
         heartSounds.forEach(function (identifier) {
             $('#' + identifier + '_sound_pulmonary_valve').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'none');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'block');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'soundPlay/',
@@ -151,6 +171,17 @@
 
         heartSounds.forEach(function (identifier) {
             $('#' + identifier + '_sound_tricuspid_valve').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'none');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'block');
+                    $('#erb_div').css('display', 'none');
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'soundPlay/',
@@ -190,6 +221,17 @@
 
         heartSounds.forEach(function (identifier) {
             $('#' + identifier + '_sound_erb_point').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'none');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'block');
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'soundPlay/',
