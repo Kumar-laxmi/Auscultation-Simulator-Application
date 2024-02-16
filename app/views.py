@@ -23,7 +23,7 @@ current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_
 speakers = sc.all_speakers()
 
 try:
-    con = sqlite3.connect("/home/pi/Downloads/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
+    con = sqlite3.connect("/home/pi/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
 except:
     con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
 df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
