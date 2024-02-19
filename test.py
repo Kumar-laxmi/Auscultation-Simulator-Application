@@ -1,92 +1,88 @@
 import dash
-from dash import dcc, html, Input, Output, State
-import plotly.graph_objs as go
+from dash import dcc, html
+from dash.dependencies import Input, Output, State
 from pydub import AudioSegment
+from django_plotly_dash import DjangoDash
 import numpy as np
+import time
 
 app = dash.Dash(__name__)
 
+# Define a function to load audio data and duration
+def loadAudioData(audioPath):
+    audio = AudioSegment.from_file(audioPath)
+    audio_data = np.array(audio.get_array_of_samples())
+    audio_duration = len(audio_data) / audio.frame_rate
+    subsampling_factor = 1
+    audio_data = audio_data[::subsampling_factor]
+
+    target_duration = 0.877
+    num_repeats = 1
+    audio_data = np.tile(audio_data, num_repeats)
+    sample_rate = 44100
+    duration = len(audio_data) / sample_rate
+
+    return {'audio_data': audio_data.tolist(), 'audio_duration': duration}
+
+# Layout of the app
 app.layout = html.Div([
-    html.H1("Audio Waveform Generator"),
-    dcc.Input(id='audio-path-input', type='text', value='', placeholder='Enter audio path...'),
-    dcc.Graph(id='audio-waveform-plot'),
-    dcc.Interval(id='interval-component', interval=100, n_intervals=0)  # Update interval in milliseconds
+    dcc.Input(id='audio-path-input',type='text',placeholder='Enter audio path...',style={'display':'none'}),
+    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
+    dcc.Store(id='audio-data-store', data={'audio_data': [], 'audio_duration': 0}),
+    dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60
+    dcc.Interval(id='interval-component', interval=25, n_intervals=0) # Interval in milliseconds
 ])
 
-@app.callback(
-    Output('audio-waveform-plot', 'figure'),
-    [Input('interval-component', 'n_intervals')],
-    [State('audio-path-input', 'value')]
+# Clientside callback to update the graph
+app.clientside_callback(
+    """
+    function(n, audioData, startTime) {
+        // Get the audio data and duration from the stored data
+        var audioArray = audioData['audio_data'];
+        var audioDuration = audioData['audio_duration'];
+        var heartRate = 60
+
+        // Calculate the time passed since the start
+        var currentTime = new Date().getTime() / 1000;  // Convert milliseconds to seconds
+        var elapsedTime = currentTime - startTime;
+
+        // Calculate the position of the vertical line
+        var timePerBeat = 60 / heartRate;
+        var linePosition = Math.floor((elapsedTime % timePerBeat) * audioArray.length / timePerBeat);
+
+        // Create the figure
+        var figure = {
+            data: [
+                {y: audioArray, type: 'line', name: 'HBR Signal', line: {color: 'green'}},
+                {x: [linePosition, linePosition], y: [Math.min.apply(null, audioArray), Math.max.apply(null, audioArray)], mode: 'lines', line: {color: 'black', width: 10}}
+            ],
+            layout: {
+                showlegend: false,
+                paper_bgcolor: 'black',  // Set background color to black
+                plot_bgcolor: 'black'    // Set plot background color to black
+            }
+        };
+        
+        // Return the updated figure, startTime, and heartRate
+        return [figure, startTime];
+    }
+    """,
+    Output('animated-audio-chart', 'figure'),
+    Output('interval-store', 'data'),
+    Input('interval-component', 'n_intervals'),
+    State('audio-data-store', 'data'),
+    State('interval-store', 'data'),
+    prevent_initial_call=True
 )
-def update_waveform(n_intervals, audio_path):
-    ctx = dash.callback_context
 
-    if not ctx.triggered_id:
-        # Initial load, no triggering input
-        return dash.no_update
-
-    triggering_input = ctx.triggered_id.split('.')[0]
-
-    if triggering_input == 'audio-path-input':
-        # Input triggered by client-side callback, do nothing for now
-        return dash.no_update
-
-    # Server-side callback, update waveform plot
-    if not audio_path:
-        # If no audio path is provided, show a horizontal line at 0
-        layout = go.Layout(
-            title='Audio Waveform',
-            xaxis=dict(title='Time (s)'),
-            yaxis=dict(title='Amplitude'),
-        )
-        waveform_trace = go.Scatter(x=[0, 1], y=[0, 0], mode='lines', name='Waveform')
-        vertical_line = go.Scatter(x=[0, 0], y=[-1, 1], mode='lines', line=dict(color='red'), name='Vertical Line')
-    else:
-        # Load audio file
-        audio = AudioSegment.from_file(audio_path)
-
-        # Convert audio data to numpy array
-        audio_array = np.array(audio.get_array_of_samples())
-
-        # Create time axis
-        time_axis = np.linspace(0, len(audio_array) / audio.frame_rate, len(audio_array))
-
-        # Calculate the current position of the vertical line based on the actual audio timestamp
-        audio_duration = len(audio_array) / audio.frame_rate
-        audio_timestamp = n_intervals * 0.1  # Update interval is 100 milliseconds
-
-        # Use modulo operator to achieve infinite looping
-        vertical_line_position = audio_timestamp % audio_duration
-
-        # Create waveform plot
-        waveform_trace = go.Scatter(x=time_axis, y=audio_array, mode='lines', name='Waveform')
-
-        # Create moving vertical line
-        vertical_line = go.Scatter(x=[vertical_line_position, vertical_line_position],
-                                   y=[min(audio_array), max(audio_array)],
-                                   mode='lines',
-                                   line=dict(color='red'),
-                                   name='Vertical Line')
-
-        layout = go.Layout(
-            title='Audio Waveform',
-            xaxis=dict(title='Time (s)'),
-            yaxis=dict(title='Amplitude'),
-        )
-
-    return {'data': [waveform_trace, vertical_line], 'layout': layout}
-
-# Dummy backend string that updates over time
-backend_string = "app/static/audio/heart/acute_myocardial_infarction/A/combined_audio.wav"
-
+# Callback to load audio data when the input changes
 @app.callback(
-    Output('audio-path-input', 'value'),
-    [Input('interval-component', 'n_intervals')]
+    Output('audio-data-store', 'data'),
+    Input('audio-path-input', 'value')
 )
-def update_text_box(_):
-    global backend_string
-    # Simulate updating backend string
-    return backend_string
+def update_audio_path(audioPath):
+    input_string = 'app/static/audio/heart/normal_heart/E/combined_audio.wav'
+    return loadAudioData(input_string)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

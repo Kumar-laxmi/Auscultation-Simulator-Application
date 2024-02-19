@@ -17,7 +17,7 @@ def loadAudioData(audioPath):
         audio = AudioSegment.from_file(audioPath)
         audio_data = np.array(audio.get_array_of_samples())
         audio_duration = len(audio_data) / audio.frame_rate
-        subsampling_factor = 1
+        subsampling_factor = 50
         audio_data = audio_data[::subsampling_factor]
 
         target_duration = 0.877
@@ -94,27 +94,13 @@ app.clientside_callback(
     Input('audio-path-input', 'value')
 )
 def update_audio_data(audioPath):
+    audioPath = 'app/static/audio/lungs/Asthma/LLB/combined_audio.wav'
     duration = 0.887
     sample_rate = 44100
     if not audioPath:  # If the input is empty, return zero values
         return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
     else:
         return loadAudioData(audioPath)
-    
-input_string = 'app/static/audio/heart/acute_pericarditis/M/combined_audio.wav'
-import sys
-import subprocess
-
-# Callback to load audio data when the input changes
-@app.callback(
-    Output('audio-path-input', 'value'),
-    Input('dummy-input', 'value')
-)
-def updateTextBox(audioPath):
-    if audioPath == 'reload':
-        script_path = sys.argv[0]  # Get the script path
-        subprocess.Popen(['python', script_path])  # Start a new Python process
-    return audioPath
 
 if __name__ == '__main__':
     app.run_server(debug=True)
