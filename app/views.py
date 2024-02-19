@@ -328,7 +328,7 @@ def start_lungs_thread(sound):
     sound_name, sound_type = sound[:-4], sound[-3:]
     audio_path = df_lungs.loc[(df_lungs['sound_name'] == sound_name) & (df_lungs['sound_type'] == sound_type), 'audio_file_path'].values[0]
     lungsbeat = AudioSegment.from_file(audio_path, format="wav")
-    speed_multiplier = rr_show / 60.0  # Assuming 60 BPM as the baseline
+    speed_multiplier = 60 / 60.0  # Assuming 60 BPM as the baseline
     adjusted_lungsbeat = lungsbeat.speedup(playback_speed=speed_multiplier)
     exported_data = adjusted_lungsbeat.export(format="wav").read()
     data, fs = sf.read(io.BytesIO(exported_data))
