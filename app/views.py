@@ -1265,338 +1265,338 @@ def soundPlay(request):
         # Buttons for Left Upper Lobe
         if 'brochial_respiration_back_sound_LUL' in request.POST:
             print('\nSound Played: Brochial Respiration (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('bronchial_respiration_LUF')
+            start_lungs_thread('bronchial_respiration_LUB')
         elif 'bronchovesicular_respiration_back_sound_LUL' in request.POST:
             print('\nSound Played: Bronchovesicular Respiration (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('bronchovesicular_respiration_LUF')
+            start_lungs_thread('bronchovesicular_respiration_LUB')
         elif 'vesicular_respiration_back_sound_LUL' in request.POST:
             print('\nSound Played: Vesicular Respiration (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('vesicular_respiration_LUF')
+            start_lungs_thread('vesicular_respiration_LUB')
         elif 'diminished_vescicular_respiration_back_sound_LUL' in request.POST:
             print('\nSound Played: Diminished Vescicular Respiration (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('diminished_vesicular_respiration_LUF')
+            start_lungs_thread('diminished_vesicular_respiration_LUB')
         elif 'coarse_crackles_back_sound_LUL' in request.POST:
             print('\nSound Played: Coarse Crackles (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('coarse_crackles_LUF')
+            start_lungs_thread('coarse_crackles_LUB')
         elif 'fine_crackles_back_sound_LUL' in request.POST:
             print('\nSound Played: Fine Crackles (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('fine_crackles_LUF')
+            start_lungs_thread('fine_crackles_LUB')
         elif 'wheezes_back_sound_LUL' in request.POST:
             print('\nSound Played: Wheezes (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('wheezes_LUF')
+            start_lungs_thread('wheezes_LUB')
         elif 'rhonchi_back_sound_LUL' in request.POST:
             print('\nSound Played: Rhonchi (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('rhonchi_LUF')
+            start_lungs_thread('rhonchi_LUB')
         elif 'gurgling_rhonchi_back_sound_LUL' in request.POST:
             print('\nSound Played: Gurgling Rhonchi (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('gurgling_rhonchi_LUF')
+            start_lungs_thread('gurgling_rhonchi_LUB')
         elif 'stridor_back_sound_LUL' in request.POST:
             print('\nSound Played: Stridor (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('stridor_LUF')
+            start_lungs_thread('stridor_LUB')
         elif 'pleural_friction_rub_back_sound_LUL' in request.POST:
             print('\nSound Played: Pleural Friction Rub (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('pleural_friction_rub_LUF')
+            start_lungs_thread('pleural_friction_rub_LUB')
         elif 'amphoric_respiration_back_sound_LUL' in request.POST:
             print('\nSound Played: Amphoric Respiration (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('amphoric_respiration_LUF')
+            start_lungs_thread('amphoric_respiration_LUB')
         elif 'harsh_respiration_back_sound_LUL' in request.POST:
             print('\nSound Played: Harsh Respiration (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('harsh_respiration_LUF')
+            start_lungs_thread('harsh_respiration_LUB')
         elif 'asthma_back_sound_LUL' in request.POST:
             print('\nSound Played: Asthma (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('Asthma_LUF')
+            start_lungs_thread('Asthma_LUB')
         elif 'covid19_back_sound_LUL' in request.POST:
             print('\nSound Played: Covid19 (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('COVID-19_LUF')
+            start_lungs_thread('COVID-19_LUB')
         elif 'right_sided_pneumothorax_back_sound_LUL' in request.POST:
             print('\nSound Played: Right Sided Pneumothorax (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('right-sided_pneumothorax_LUF')
+            start_lungs_thread('right-sided_pneumothorax_LUB')
         elif 'left_sided_pneumothorax_back_sound_LUL' in request.POST:
             print('\nSound Played: Left Sided Pneumothorax (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('left-sided_pneumothorax_LUF')
+            start_lungs_thread('left-sided_pneumothorax_LUB')
         elif 'pneumonia_back_sound_LUL' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Left Upper Lobe')
-            start_lungs_thread('pneumonia_LUF')
+            start_lungs_thread('pneumonia_LUB')
         
         # Buttons for Left Middle Lobe
         if 'brochial_respiration_back_sound_LML' in request.POST:
             print('\nSound Played: Brochial Respiration (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('bronchial_respiration_LMF')
+            start_lungs_thread('bronchial_respiration_LMB')
         elif 'bronchovesicular_respiration_back_sound_LML' in request.POST:
             print('\nSound Played: Bronchovesicular Respiration (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('bronchovesicular_respiration_LMF')
+            start_lungs_thread('bronchovesicular_respiration_LMB')
         elif 'vesicular_respiration_back_sound_LML' in request.POST:
             print('\nSound Played: Vesicular Respiration (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('vesicular_respiration_LMF')
+            start_lungs_thread('vesicular_respiration_LMB')
         elif 'diminished_vescicular_respiration_back_sound_LML' in request.POST:
             print('\nSound Played: Diminished Vescicular Respiration (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('diminished_vesicular_respiration_LMF')
+            start_lungs_thread('diminished_vesicular_respiration_LMB')
         elif 'coarse_crackles_back_sound_LML' in request.POST:
             print('\nSound Played: Coarse Crackles (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('coarse_crackles_LMF')
+            start_lungs_thread('coarse_crackles_LMB')
         elif 'fine_crackles_back_sound_LML' in request.POST:
             print('\nSound Played: Fine Crackles (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('fine_crackles_LMF')
+            start_lungs_thread('fine_crackles_LMB')
         elif 'wheezes_back_sound_LML' in request.POST:
             print('\nSound Played: Wheezes (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('wheezes_LMF')
+            start_lungs_thread('wheezes_LMB')
         elif 'rhonchi_back_sound_LML' in request.POST:
             print('\nSound Played: Rhonchi (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('rhonchi_LMF')
+            start_lungs_thread('rhonchi_LMB')
         elif 'gurgling_rhonchi_back_sound_LML' in request.POST:
             print('\nSound Played: Gurgling Rhonchi (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('gurgling_rhonchi_LMF')
+            start_lungs_thread('gurgling_rhonchi_LMB')
         elif 'stridor_back_sound_LML' in request.POST:
             print('\nSound Played: Stridor (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('stridor_LMF')
+            start_lungs_thread('stridor_LMB')
         elif 'pleural_friction_rub_back_sound_LML' in request.POST:
             print('\nSound Played: Pleural Friction Rub (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('pleural_friction_rub_LMF')
+            start_lungs_thread('pleural_friction_rub_LMB')
         elif 'amphoric_respiration_back_sound_LML' in request.POST:
             print('\nSound Played: Amphoric Respiration (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('amphoric_respiration_LMF')
+            start_lungs_thread('amphoric_respiration_LMB')
         elif 'harsh_respiration_back_sound_LML' in request.POST:
             print('\nSound Played: Harsh Respiration (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('harsh_respiration_LMF')
+            start_lungs_thread('harsh_respiration_LMB')
         elif 'asthma_back_sound_LML' in request.POST:
             print('\nSound Played: Asthma (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('Asthma_LMF')
+            start_lungs_thread('Asthma_LMB')
         elif 'covid19_back_sound_LML' in request.POST:
             print('\nSound Played: Covid19 (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('COVID-19_LMF')
+            start_lungs_thread('COVID-19_LMB')
         elif 'right_sided_pneumothorax_back_sound_LML' in request.POST:
             print('\nSound Played: Right Sided Pneumothorax (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('right-sided_pneumothorax_LMF')
+            start_lungs_thread('right-sided_pneumothorax_LMB')
         elif 'left_sided_pneumothorax_back_sound_LML' in request.POST:
             print('\nSound Played: Left Sided Pneumothorax (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('left-sided_pneumothorax_LMF')
+            start_lungs_thread('left-sided_pneumothorax_LMB')
         elif 'pneumonia_back_sound_LML' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Left Middle Lobe')
-            start_lungs_thread('pneumonia_LMF')
+            start_lungs_thread('pneumonia_LMB')
 
         # Buttons for Left Lower Lobe
         if 'brochial_respiration_back_sound_LLL' in request.POST:
             print('\nSound Played: Brochial Respiration (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('bronchial_respiration_LLF')
+            start_lungs_thread('bronchial_respiration_LLB')
         elif 'bronchovesicular_respiration_back_sound_LLL' in request.POST:
             print('\nSound Played: Bronchovesicular Respiration (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('bronchovesicular_respiration_LLF')
+            start_lungs_thread('bronchovesicular_respiration_LLB')
         elif 'vesicular_respiration_back_sound_LLL' in request.POST:
             print('\nSound Played: Vesicular Respiration (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('vesicular_respiration_LLF')
+            start_lungs_thread('vesicular_respiration_LLB')
         elif 'diminished_vescicular_respiration_back_sound_LLL' in request.POST:
             print('\nSound Played: Diminished Vescicular Respiration (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('diminished_vesicular_respiration_LLF')
+            start_lungs_thread('diminished_vesicular_respiration_LLB')
         elif 'coarse_crackles_back_sound_LLL' in request.POST:
             print('\nSound Played: Coarse Crackles (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('coarse_crackles_LLF')
+            start_lungs_thread('coarse_crackles_LLB')
         elif 'fine_crackles_back_sound_LLL' in request.POST:
             print('\nSound Played: Fine Crackles (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('fine_crackles_LLF')
+            start_lungs_thread('fine_crackles_LLB')
         elif 'wheezes_back_sound_LLL' in request.POST:
             print('\nSound Played: Wheezes (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('wheezes_LLF')
+            start_lungs_thread('wheezes_LLB')
         elif 'rhonchi_back_sound_LLL' in request.POST:
             print('\nSound Played: Rhonchi (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('rhonchi_LLF')
+            start_lungs_thread('rhonchi_LLB')
         elif 'gurgling_rhonchi_back_sound_LLL' in request.POST:
             print('\nSound Played: Gurgling Rhonchi (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('gurgling_rhonchi_LLF')
+            start_lungs_thread('gurgling_rhonchi_LLB')
         elif 'stridor_back_sound_LLL' in request.POST:
             print('\nSound Played: Stridor (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('stridor_LLF')
+            start_lungs_thread('stridor_LLB')
         elif 'pleural_friction_rub_back_sound_LLL' in request.POST:
             print('\nSound Played: Pleural Friction Rub (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('pleural_friction_rub_LLF')
+            start_lungs_thread('pleural_friction_rub_LLB')
         elif 'amphoric_respiration_back_sound_LLL' in request.POST:
             print('\nSound Played: Amphoric Respiration (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('amphoric_respiration_LLF')
+            start_lungs_thread('amphoric_respiration_LLB')
         elif 'harsh_respiration_back_sound_LLL' in request.POST:
             print('\nSound Played: Harsh Respiration (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('harsh_respiration_LLF')
+            start_lungs_thread('harsh_respiration_LLB')
         elif 'asthma_back_sound_LLL' in request.POST:
             print('\nSound Played: Asthma (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('Asthma_LLF')
+            start_lungs_thread('Asthma_LLB')
         elif 'covid19_back_sound_LLL' in request.POST:
             print('\nSound Played: Covid19 (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('COVID-19_LLF')
+            start_lungs_thread('COVID-19_LLB')
         elif 'right_sided_pneumothorax_back_sound_LLL' in request.POST:
             print('\nSound Played: Right Sided Pneumothorax (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('right-sided_pneumothorax_LLF')
+            start_lungs_thread('right-sided_pneumothorax_LLB')
         elif 'left_sided_pneumothorax_back_sound_LLL' in request.POST:
             print('\nSound Played: Left Sided Pneumothorax (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('left-sided_pneumothorax_LLF')
+            start_lungs_thread('left-sided_pneumothorax_LLB')
         elif 'pneumonia_back_sound_LLL' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Left Lower Lobe')
-            start_lungs_thread('pneumonia_LLF')
+            start_lungs_thread('pneumonia_LLB')
         
         # Buttons for Right Upper Lobe
         if 'brochial_respiration_back_sound_RUL' in request.POST:
             print('\nSound Played: Brochial Respiration (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('bronchial_respiration_RUF')
+            start_lungs_thread('bronchial_respiration_RUB')
         elif 'bronchovesicular_respiration_back_sound_RUL' in request.POST:
             print('\nSound Played: Bronchovesicular Respiration (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('bronchovesicular_respiration_RUF')
+            start_lungs_thread('bronchovesicular_respiration_RUB')
         elif 'vesicular_respiration_back_sound_RUL' in request.POST:
             print('\nSound Played: Vesicular Respiration (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('vesicular_respiration_RUF')
+            start_lungs_thread('vesicular_respiration_RUB')
         elif 'diminished_vescicular_respiration_back_sound_RUL' in request.POST:
             print('\nSound Played: Diminished Vescicular Respiration (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('diminished_vesicular_respiration_RUF')
+            start_lungs_thread('diminished_vesicular_respiration_RUB')
         elif 'coarse_crackles_back_sound_RUL' in request.POST:
             print('\nSound Played: Coarse Crackles (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('coarse_crackles_RUF')
+            start_lungs_thread('coarse_crackles_RUB')
         elif 'fine_crackles_back_sound_RUL' in request.POST:
             print('\nSound Played: Fine Crackles (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('fine_crackles_RUF')
+            start_lungs_thread('fine_crackles_RUB')
         elif 'wheezes_back_sound_RUL' in request.POST:
             print('\nSound Played: Wheezes (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('wheezes_RUF')
+            start_lungs_thread('wheezes_RUB')
         elif 'rhonchi_back_sound_RUL' in request.POST:
             print('\nSound Played: Rhonchi (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('rhonchi_RUF')
+            start_lungs_thread('rhonchi_RUB')
         elif 'gurgling_rhonchi_back_sound_RUL' in request.POST:
             print('\nSound Played: Gurgling Rhonchi (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('gurgling_rhonchi_RUF')
+            start_lungs_thread('gurgling_rhonchi_RUB')
         elif 'stridor_back_sound_RUL' in request.POST:
             print('\nSound Played: Stridor (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('stridor_RUF')
+            start_lungs_thread('stridor_RUB')
         elif 'pleural_friction_rub_back_sound_RUL' in request.POST:
             print('\nSound Played: Pleural Friction Rub (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('pleural_friction_rub_RUF')
+            start_lungs_thread('pleural_friction_rub_RUB')
         elif 'amphoric_respiration_back_sound_RUL' in request.POST:
             print('\nSound Played: Amphoric Respiration (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('amphoric_respiration_RUF')
+            start_lungs_thread('amphoric_respiration_RUB')
         elif 'harsh_respiration_back_sound_RUL' in request.POST:
             print('\nSound Played: Harsh Respiration (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('harsh_respiration_RUF')
+            start_lungs_thread('harsh_respiration_RUB')
         elif 'asthma_back_sound_LUL' in request.POST:
             print('\nSound Played: Asthma (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('Asthma_RUF')
+            start_lungs_thread('Asthma_RUB')
         elif 'covid19_back_sound_RUL' in request.POST:
             print('\nSound Played: Covid19 (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('COVID-19_RUF')
+            start_lungs_thread('COVID-19_RUB')
         elif 'right_sided_pneumothorax_back_sound_RUL' in request.POST:
             print('\nSound Played: Right Sided Pneumothorax (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('right-sided_pneumothorax_RUF')
+            start_lungs_thread('right-sided_pneumothorax_RUB')
         elif 'left_sided_pneumothorax_back_sound_RUL' in request.POST:
             print('\nSound Played: Left Sided Pneumothorax (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('left-sided_pneumothorax_RUF')
+            start_lungs_thread('left-sided_pneumothorax_RUB')
         elif 'pneumonia_back_sound_RUL' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Right Upper Lobe')
-            start_lungs_thread('pneumonia_RUF')
+            start_lungs_thread('pneumonia_RUB')
             
         # Buttons for Right Middle Lobe
         if 'brochial_respiration_back_sound_RML' in request.POST:
             print('\nSound Played: Brochial Respiration (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('bronchial_respiration_RMF')
+            start_lungs_thread('bronchial_respiration_RMB')
         elif 'bronchovesicular_respiration_back_sound_RML' in request.POST:
             print('\nSound Played: Bronchovesicular Respiration (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('bronchovesicular_respiration_RMF')
+            start_lungs_thread('bronchovesicular_respiration_RMB')
         elif 'vesicular_respiration_back_sound_RML' in request.POST:
             print('\nSound Played: Vesicular Respiration (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('vesicular_respiration_RMF')
+            start_lungs_thread('vesicular_respiration_RMB')
         elif 'diminished_vescicular_respiration_back_sound_RML' in request.POST:
             print('\nSound Played: Diminished Vescicular Respiration (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('diminished_vesicular_respiration_RMF')
+            start_lungs_thread('diminished_vesicular_respiration_RMB')
         elif 'coarse_crackles_back_sound_RML' in request.POST:
             print('\nSound Played: Coarse Crackles (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('coarse_crackles_RMF')
+            start_lungs_thread('coarse_crackles_RMB')
         elif 'fine_crackles_back_sound_RML' in request.POST:
             print('\nSound Played: Fine Crackles (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('fine_crackles_RMF')
+            start_lungs_thread('fine_crackles_RMB')
         elif 'wheezes_back_sound_RML' in request.POST:
             print('\nSound Played: Wheezes (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('wheezes_RMF')
+            start_lungs_thread('wheezes_RMB')
         elif 'rhonchi_back_sound_RML' in request.POST:
             print('\nSound Played: Rhonchi (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('rhonchi_RMF')
+            start_lungs_thread('rhonchi_RMB')
         elif 'gurgling_rhonchi_back_sound_RML' in request.POST:
             print('\nSound Played: Gurgling Rhonchi (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('gurgling_rhonchi_RMF')
+            start_lungs_thread('gurgling_rhonchi_RMB')
         elif 'stridor_back_sound_RML' in request.POST:
             print('\nSound Played: Stridor (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('stridor_RMF')
+            start_lungs_thread('stridor_RMB')
         elif 'pleural_friction_rub_back_sound_RML' in request.POST:
             print('\nSound Played: Pleural Friction Rub (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('pleural_friction_rub_RMF')
+            start_lungs_thread('pleural_friction_rub_RMB')
         elif 'amphoric_respiration_back_sound_RML' in request.POST:
             print('\nSound Played: Amphoric Respiration (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('amphoric_respiration_RMF')
+            start_lungs_thread('amphoric_respiration_RMB')
         elif 'harsh_respiration_back_sound_RML' in request.POST:
             print('\nSound Played: Harsh Respiration (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('harsh_respiration_RMF')
+            start_lungs_thread('harsh_respiration_RMB')
         elif 'asthma_back_sound_RML' in request.POST:
             print('\nSound Played: Asthma (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('Asthma_RMF')
+            start_lungs_thread('Asthma_RMB')
         elif 'covid19_back_sound_RML' in request.POST:
             print('\nSound Played: Covid19 (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('COVID-19_RMF')
+            start_lungs_thread('COVID-19_RMB')
         elif 'right_sided_pneumothorax_back_sound_RML' in request.POST:
             print('\nSound Played: Right Sided Pneumothorax (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('right-sided_pneumothorax_RMF')
+            start_lungs_thread('right-sided_pneumothorax_RMB')
         elif 'left_sided_pneumothorax_back_sound_RML' in request.POST:
             print('\nSound Played: Left Sided Pneumothorax (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('left-sided_pneumothorax_RMF')
+            start_lungs_thread('left-sided_pneumothorax_RMB')
         elif 'pneumonia_back_sound_RML' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Right Middle Lobe')
-            start_lungs_thread('pneumonia_RMF')
+            start_lungs_thread('pneumonia_RMB')
         
         # Buttons for Right Lower Lobe
         if 'brochial_respiration_back_sound_RLL' in request.POST:
             print('\nSound Played: Brochial Respiration (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('bronchial_respiration_RLF')
+            start_lungs_thread('bronchial_respiration_RLB')
         elif 'bronchovesicular_respiration_back_sound_RLL' in request.POST:
             print('\nSound Played: Bronchovesicular Respiration (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('bronchovesicular_respiration_RLF')
+            start_lungs_thread('bronchovesicular_respiration_RLB')
         elif 'vesicular_respiration_back_sound_RLL' in request.POST:
             print('\nSound Played: Vesicular Respiration (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('vesicular_respiration_RLF')
+            start_lungs_thread('vesicular_respiration_RLB')
         elif 'diminished_vescicular_respiration_back_sound_RLL' in request.POST:
             print('\nSound Played: Diminished Vescicular Respiration (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('diminished_vesicular_respiration_RLF')
+            start_lungs_thread('diminished_vesicular_respiration_RLB')
         elif 'coarse_crackles_back_sound_RLL' in request.POST:
             print('\nSound Played: Coarse Crackles (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('coarse_crackles_RLF')
+            start_lungs_thread('coarse_crackles_RLB')
         elif 'fine_crackles_back_sound_RLL' in request.POST:
             print('\nSound Played: Fine Crackles (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('fine_crackles_RLF')
+            start_lungs_thread('fine_crackles_RLB')
         elif 'wheezes_back_sound_RLL' in request.POST:
             print('\nSound Played: Wheezes (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('wheezes_RLF')
+            start_lungs_thread('wheezes_RLB')
         elif 'rhonchi_back_sound_RLL' in request.POST:
             print('\nSound Played: Rhonchi (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('rhonchi_RLF')
+            start_lungs_thread('rhonchi_RLB')
         elif 'gurgling_rhonchi_back_sound_RLL' in request.POST:
             print('\nSound Played: Gurgling Rhonchi (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('gurgling_rhonchi_RLF')
+            start_lungs_thread('gurgling_rhonchi_RLB')
         elif 'stridor_back_sound_RLL' in request.POST:
             print('\nSound Played: Stridor (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('stridor_RLF')
+            start_lungs_thread('stridor_RLB')
         elif 'pleural_friction_rub_back_sound_RLL' in request.POST:
             print('\nSound Played: Pleural Friction Rub (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('pleural_friction_rub_RLF')
+            start_lungs_thread('pleural_friction_rub_RLB')
         elif 'amphoric_respiration_back_sound_RLL' in request.POST:
             print('\nSound Played: Amphoric Respiration (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('amphoric_respiration_RLF')
+            start_lungs_thread('amphoric_respiration_RLB')
         elif 'harsh_respiration_back_sound_RLL' in request.POST:
             print('\nSound Played: Harsh Respiration (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('harsh_respiration_RLF')
+            start_lungs_thread('harsh_respiration_RLB')
         elif 'asthma_back_sound_RLL' in request.POST:
             print('\nSound Played: Asthma (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('Asthma_RLF')
+            start_lungs_thread('Asthma_RLB')
         elif 'covid19_back_sound_RLL' in request.POST:
             print('\nSound Played: Covid19 (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('COVID-19_RLF')
+            start_lungs_thread('COVID-19_RLB')
         elif 'right_sided_pneumothorax_back_sound_RLL' in request.POST:
             print('\nSound Played: Right Sided Pneumothorax (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('right-sided_pneumothorax_RLF')
+            start_lungs_thread('right-sided_pneumothorax_RLB')
         elif 'left_sided_pneumothorax_back_sound_RLL' in request.POST:
             print('\nSound Played: Left Sided Pneumothorax (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('left-sided_pneumothorax_RLF')
+            start_lungs_thread('left-sided_pneumothorax_RLB')
         elif 'pneumonia_back_sound_RLL' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Right Lower Lobe')
-            start_lungs_thread('pneumonia_RLF')
+            start_lungs_thread('pneumonia_RLB')
         
 
         return JsonResponse({'message': 'Success!'})
