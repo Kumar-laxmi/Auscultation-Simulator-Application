@@ -19,17 +19,24 @@ from .DashApp.Heart import mitral_dash, aortic_dash, pulmonary_dash, tricuspid_d
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
 current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound = None, None, None, None, None
+current_lungs_sound = None
+current_bowel_sound = None
 
 speakers = sc.all_speakers()
 
 try:
-    con = sqlite3.connect("/home/pi/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
+    con = sqlite3.connect("/home/pi/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 except:
-    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/app/sounds.sqlite3", check_same_thread=False)
+    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
+df_lungs = pd.read_sql_query("SELECT * FROM app_lungaudio", con)
+df_bowel = pd.read_sql_query("SELECT * FROM app_bowelaudio", con)
 
 playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb = None, None, None, None, None
+playing_thread_lungs, playing_thread_bowel = None, None
+
 stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb = threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event()
+stop_flag_lungs, stop_flag_bowel = threading.Event(), threading.Event()
 
 def play_mitral(index, samples, samplerate):
     global speakers, stop_flag_mitral, current_mitral_valve_sound, hr_show
@@ -70,6 +77,22 @@ def play_erb(index, samples, samplerate):
         speaker = speakers[index]
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
+
+def play_lungs(index, samples, samplerate):
+    global speakers, stop_flag_lungs, current_lungs_sound, rr_show
+    delay_seconds = 60 / rr_show
+    while not stop_flag_lungs.is_set():
+        speaker = speakers[index]
+        speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
+
+def play_bowel(index, samples, samplerate):
+    global speakers, stop_flag_bowel, current_bowel_sound, rr_show
+    delay_seconds = 60 / rr_show
+    while not stop_flag_bowel.is_set():
+        speaker = speakers[index]
+        speaker.play(samples, samplerate)
+        time.sleep(delay_seconds)
         
 def heartUpdate(request):
     global hr_show, current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound
@@ -100,6 +123,7 @@ def heartUpdate(request):
 
 def breathUpdate(request):
     global rr_show
+    global current_lungs_sound, current_bowel_sound
 
     if request.method == 'POST':
         if 'rr_plus' in request.POST:
@@ -110,6 +134,11 @@ def breathUpdate(request):
             print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             rr_show += 0
+
+        if current_lungs_sound is not None:
+            start_lungs_thread(current_lungs_sound)
+        if current_bowel_sound is not None:
+            start_bowel_thread(current_bowel_sound)
         return JsonResponse({'message': 'Success!', 'rr_show': rr_show})
     else:
         return HttpResponse("Request method is not a POST")
@@ -165,6 +194,28 @@ def erbVolumeChange(request):
             volume = request.POST['rangeValue']
             os.system('amixer -c 7 set Speaker {}%'.format(volume))
             print('Erb Valve\'s Volume updated to {}%'.format(volume))
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def lungsVolumeChange(request):
+    global current_lungs_sound
+    if request.method == 'POST':
+        if request.POST['identifier'] == current_lungs_sound:
+            volume = request.POST['rangeValue']
+            os.system('amixer -c 8 set Speaker {}%'.format(volume))
+            print('Lungs\'s Volume updates to {}%'.format(volume))
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def bowelVolumeChange(request):
+    global current_bowel_sound
+    if request.method == 'POST':
+        if request.POST['identifier'] == current_bowel_sound:
+            volume = request.POST['rangeValue']
+            os.system('amixer -c 9 set Speaker {}%'.format(volume))
+            print('Bowel\'s Volume updates to {}%'.format(volume))
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")
@@ -263,6 +314,44 @@ def start_erb_thread(sound_name):
     data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
     playing_thread_erb.start()
+
+def start_lungs_thread(sound_name):
+    global playing_thread_lungs, stop_flag_lungs, rr_show, current_lungs_valve_sound
+    if playing_thread_lungs and playing_thread_lungs.is_alive():
+        stop_flag_lungs.set()  # Set the reload flag to signal the thread to stop
+        playing_thread_lungs.join()
+        print('Destroyed Lungs thread')
+        stop_flag_lungs = threading.Event()
+
+    # Start a new thread
+    current_lungs_valve_sound = sound_name
+    audio_path = df_lungs.loc[(df_lungs['sound_name'] == sound_name) & (df_lungs['sound_type'] == 'E'), 'audio_file_path'].values[0]
+    lungsbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = rr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_lungsbeat = lungsbeat.speedup(playback_speed=speed_multiplier)
+    exported_data = adjusted_lungsbeat.export(format="wav").read()
+    data, fs = sf.read(io.BytesIO(exported_data))
+    playing_thread_lungs = threading.Thread(target=play_lungs, args=(6, data, fs))
+    playing_thread_lungs.start()
+
+def start_bowel_thread(sound_name):
+    global playing_thread_bowel, stop_flag_bowel, rr_show, current_bowel_valve_sound
+    if playing_thread_bowel and playing_thread_bowel.is_alive():
+        stop_flag_bowel.set()  # Set the reload flag to signal the thread to stop
+        playing_thread_bowel.join()
+        print('Destroyed Bowel thread')
+        stop_flag_bowel = threading.Event()
+
+    # Start a new thread
+    current_bowel_valve_sound = sound_name
+    audio_path = df_bowel.loc[(df_bowel['sound_name'] == sound_name) & (df_bowel['sound_type'] == 'E'), 'audio_file_path'].values[0]
+    bowelbeat = AudioSegment.from_file(audio_path, format="wav")
+    speed_multiplier = rr_show / 60.0  # Assuming 60 BPM as the baseline
+    adjusted_bowelbeat = bowelbeat.speedup(playback_speed=speed_multiplier)
+    exported_data = adjusted_bowelbeat.export(format="wav").read()
+    data, fs = sf.read(io.BytesIO(exported_data))
+    playing_thread_bowel = threading.Thread(target=play_bowel, args=(7, data, fs))
+    playing_thread_bowel.start()
 
 def soundPlay(request):
     if request.method == 'POST':

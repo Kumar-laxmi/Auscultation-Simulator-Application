@@ -23,14 +23,20 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+
     path('heartUpdate/', heartUpdate),
     path('breathUpdate/', breathUpdate),
+
     path('soundPlay/', soundPlay),
+
     path('mitralVolumeChange/', mitralVolumeChange),
     path('aorticVolumeChange/', aorticVolumeChange),
     path('pulmonaryVolumeChange/', pulmonaryVolumeChange),
     path('tricuspidVolumeChange/', tricuspidVolumeChange),
     path('erbVolumeChange/', erbVolumeChange),
+    path('lungsVolumeChange/', lungsVolumeChange),
+    path('bowelVolumeChange/', bowelVolumeChange),
+
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 
