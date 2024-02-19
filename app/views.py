@@ -347,7 +347,7 @@ def start_bowel_thread(sound_name):
     current_bowel_valve_sound = sound_name
     audio_path = df_bowel.loc[(df_bowel['sound_name'] == sound_name), 'audio_file_path'].values[0]
     bowelbeat = AudioSegment.from_file(audio_path, format="wav")
-    speed_multiplier = rr_show / 60.0  # Assuming 60 BPM as the baseline
+    speed_multiplier = 60 / 60.0  # Assuming 60 BPM as the baseline
     adjusted_bowelbeat = bowelbeat.speedup(playback_speed=speed_multiplier)
     exported_data = adjusted_bowelbeat.export(format="wav").read()
     data, fs = sf.read(io.BytesIO(exported_data))
