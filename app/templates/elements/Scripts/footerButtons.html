@@ -1,10 +1,16 @@
 <script>
     document.getElementById("hbr_btn").onclick = function() {
-        var hbrDiv = document.getElementById("hbr_div");
-        if (hbrDiv.style.display === "none") {
-            hbrDiv.style.display = "block";
+        var blank_hbr_div = document.getElementById("hbr_div");
+        var mitral_hbr_div = document.getElementById("mitral_div");
+        var aortic_hbr_div = document.getElementById("aortic_div");
+        var pulmonary_hbr_div = document.getElementById("pulmonary_div");
+        var tricuspid_hbr_div = document.getElementById("tricuspid_div");
+        var erb_hbr_div = document.getElementById("erb_div");
+        if (blank_hbr_div.style.display === "none" && mitral_div.style.display === "none" && aortic_div.style.display === "none" && pulmonary_div.style.display === "none" && tricuspid_div.style.display === "none" && erb_div.style.display === "none") {
+            blank_hbr_div.style.display = "block";
             document.getElementById("hbr_btn").classList.add('active');
-        } else {
+        }
+        else {
             hbrDiv.style.display = "none";
             document.getElementById("hbr_btn").classList.remove('active');
         }

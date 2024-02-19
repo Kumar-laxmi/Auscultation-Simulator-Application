@@ -315,7 +315,7 @@ def start_erb_thread(sound_name):
     playing_thread_erb = threading.Thread(target=play_erb, args=(5, data, fs))
     playing_thread_erb.start()
 
-def start_lungs_thread(sound_name):
+def start_lungs_thread(sound):
     global playing_thread_lungs, stop_flag_lungs, rr_show, current_lungs_valve_sound
     if playing_thread_lungs and playing_thread_lungs.is_alive():
         stop_flag_lungs.set()  # Set the reload flag to signal the thread to stop
@@ -324,8 +324,9 @@ def start_lungs_thread(sound_name):
         stop_flag_lungs = threading.Event()
 
     # Start a new thread
-    current_lungs_valve_sound = sound_name
-    audio_path = df_lungs.loc[(df_lungs['sound_name'] == sound_name) & (df_lungs['sound_type'] == 'E'), 'audio_file_path'].values[0]
+    current_lungs_valve_sound = sound
+    sound_name, sound_type = sound[:-4], sound[-3:]
+    audio_path = df_lungs.loc[(df_lungs['sound_name'] == sound_name) & (df_lungs['sound_type'] == sound_type), 'audio_file_path'].values[0]
     lungsbeat = AudioSegment.from_file(audio_path, format="wav")
     speed_multiplier = rr_show / 60.0  # Assuming 60 BPM as the baseline
     adjusted_lungsbeat = lungsbeat.speedup(playback_speed=speed_multiplier)
@@ -344,7 +345,7 @@ def start_bowel_thread(sound_name):
 
     # Start a new thread
     current_bowel_valve_sound = sound_name
-    audio_path = df_bowel.loc[(df_bowel['sound_name'] == sound_name) & (df_bowel['sound_type'] == 'E'), 'audio_file_path'].values[0]
+    audio_path = df_bowel.loc[(df_bowel['sound_name'] == sound_name), 'audio_file_path'].values[0]
     bowelbeat = AudioSegment.from_file(audio_path, format="wav")
     speed_multiplier = rr_show / 60.0  # Assuming 60 BPM as the baseline
     adjusted_bowelbeat = bowelbeat.speedup(playback_speed=speed_multiplier)
@@ -355,6 +356,7 @@ def start_bowel_thread(sound_name):
 
 def soundPlay(request):
     if request.method == 'POST':
+        # ======================================= HEART SOUNDS ==========================================
         # Buttons for Mitral Valve
         if 'normal_heart_sound_mitral_valve' in request.POST:
             print('\nSound Played: Normal Heart, Location: Mitral Valve')
@@ -979,6 +981,64 @@ def soundPlay(request):
         elif 'ebstein_anomaly_sound_erb_valve' in request.POST:
             print('\nSound Played: Ebstein Anomaly, Location: Erb Valve')
             start_erb_thread('ebsteins_anomaly')
+
+        # ======================================= LUNGS SOUNDS ==========================================
+        # Buttons for Left Upper Lobe
+        if 'brochial_respiration_front_sound_LUL' in request.POST:
+            print('\nSound Played: Brochial Respiration (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('bronchial_respiration_LUF')
+        elif 'bronchovesicular_respiration_front_sound_LUL' in request.POST:
+            print('\nSound Played: Bronchovesicular Respiration (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('bronchovesicular_respiration_LUF')
+        elif 'vesicular_respiration_front_sound_LUL' in request.POST:
+            print('\nSound Played: Vesicular Respiration (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('vesicular_respiration_LUF')
+        elif 'diminished_vescicular_respiration_front_sound_LUL' in request.POST:
+            print('\nSound Played: Diminished Vescicular Respiration (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('diminished_vesicular_respiration_LUF')
+        elif 'coarse_crackles_front_sound_LUL' in request.POST:
+            print('\nSound Played: Coarse Crackles (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('coarse_crackles_LUF')
+        elif 'fine_crackles_front_sound_LUL' in request.POST:
+            print('\nSound Played: Fine Crackles (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('fine_crackles_LUF')
+        elif 'wheezes_front_sound_LUL' in request.POST:
+            print('\nSound Played: Wheezes (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('wheezes_LUF')
+        elif 'rhonchi_front_sound_LUL' in request.POST:
+            print('\nSound Played: Rhonchi (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('rhonchi_LUF')
+        elif 'gurgling_rhonchi_front_sound_LUL' in request.POST:
+            print('\nSound Played: Gurgling Rhonchi (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('gurgling_rhonchi_LUF')
+        elif 'stridor_front_sound_LUL' in request.POST:
+            print('\nSound Played: Stridor (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('stridor_LUF')
+        elif 'pleural_friction_rub_front_sound_LUL' in request.POST:
+            print('\nSound Played: Pleural Friction Rub (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('pleural_friction_rub_LUF')
+        elif 'amphoric_respiration_front_sound_LUL' in request.POST:
+            print('\nSound Played: Amphoric Respiration (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('amphoric_respiration_LUF')
+        elif 'harsh_respiration_front_sound_LUL' in request.POST:
+            print('\nSound Played: Harsh Respiration (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('harsh_respiration_LUF')
+        elif 'asthma_front_sound_LUL' in request.POST:
+            print('\nSound Played: Asthma (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('Asthma_LUF')
+        elif 'covid19_front_sound_LUL' in request.POST:
+            print('\nSound Played: Covid19 (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('COVID-19_LUF')
+        elif 'right_sided_pneumothorax_front_sound_LUL' in request.POST:
+            print('\nSound Played: Right Sided Pneumothorax (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('right-sided_pneumothorax_LUF')
+        elif 'left_sided_pneumothorax_front_sound_LUL' in request.POST:
+            print('\nSound Played: Left Sided Pneumothorax (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('left-sided_pneumothorax_LUF')
+        elif 'pneumonia_front_sound_LUL' in request.POST:
+            print('\nSound Played: Pneumonia (Lungs Front) , Location: Lower Left Lobe')
+            start_lungs_thread('pneumonia_LUF')
+
         return JsonResponse({'message': 'Success!'})
     else:
         return HttpResponse("Request method is not a POST")

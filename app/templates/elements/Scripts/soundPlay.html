@@ -248,4 +248,46 @@
             });
         });
     });
+
+    // Trigger Left Upper Lobe Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different lungs sounds
+        const lungsSounds = [
+            /* Normal Breath Sound */
+            "brochial_respiration_front", "bronchovesicular_respiration_front", "vesicular_respiration_front", "diminished_vescicular_respiration_front",
+            /* Adventitious Sound */
+            "coarse_crackles_front", "fine_crackles_front", "wheezes_front", "rhonchi_front", "gurgling_rhonchi_front", "stridor_front", "pleural_friction_rub_front", "amphoric_respiration_front", "harsh_respiration_front",
+            /* Pathologies */
+            "asthma_front", "covid19_front", "right_sided_pneumothorax_front", "left_sided_pneumothorax_front", "pneumonia_front",
+        ];
+
+        lungsSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_LUL').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'block');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_LUL']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_LUL' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_LUL' + ':', error);
+                    }
+                });
+            });
+        });
+    });
 </script>
