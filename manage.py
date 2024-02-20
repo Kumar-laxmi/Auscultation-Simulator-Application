@@ -20,14 +20,4 @@ def main():
 
 
 if __name__ == '__main__':
-    try:
-        from rpi_lcd import LCD
-        import subprocess
-        lcd = LCD()
-        ip_addr = str(subprocess.check_output(['hostname', '-I'])).split(' ')[0].replace("b'", "")
-        lcd.clear()
-        lcd.text("Server Running:", 1)
-        lcd.text(ip_addr, 2)
-        main()
-    except:
-        main()
+    main()
