@@ -35,12 +35,13 @@
                         /* Adventitious Sound */
                         "coarse_crackles_back_sound", "fine_crackles_back_sound", "wheezes_back_sound", "rhonchi_back_sound", "gurgling_rhonchi_back_sound", "stridor_back_sound", "pleural_friction_rub_back_sound", "amphoric_respiration_back_sound", "harsh_respiration_back_sound",
                         /* Pathologies */
-                        "asthma_back_sound", "covid19_back_sound", "right_sided_pneumothorax_back_sound", "left_sided_pneumothorax_back_sound", "pneumonia_back_sound"
+                        "asthma_back_sound", "covid19_back_sound", "right_sided_pneumothorax_back_sound", "left_sided_pneumothorax_back_sound", "pneumonia_back_sound",
 
                         /* ############### BOWEL SOUNDS ############### */
                         /* Bowel Sounds */
-
+                        "normal_bowel_sound", "hyperactive_sound", "hypoactive_sound", "borborygmus_sound", "captement_sound", "peritoneal_friction_rub_sound", "normal_bowel_sound_with_bruits_sound", 
                         /* Pathologies */
+                        "irritable_bowel_syndrome_sound", "diarrhea_sound", "bruits_due_to_renal_arteries_stenosis_sound", "constipation_sound", "ulcerative_colitis_sound", "crohns_disease_sound", "paralytic_ileus_sound"
                     ]
 
         elements.forEach(function (element) {
@@ -290,5 +291,49 @@
     };
     document.getElementById("pneumonia_back_sound").onclick = function() {
         showElement("pneumonia_back_sound");
+    };
+
+    // Onlick Functions for Bowel Sounds
+    document.getElementById("normal_bowel_sound").onclick = function() {
+        showElement("normal_bowel_sound");
+    };
+    document.getElementById("hyperactive_sound").onclick = function() {
+        showElement("hyperactive_sound");
+    };
+    document.getElementById("hypoactive_sound").onclick = function() {
+        showElement("hypoactive_sound");
+    };
+    document.getElementById("borborygmus_sound").onclick = function() {
+        showElement("borborygmus_sound");
+    };
+    document.getElementById("captement_sound").onclick = function() {
+        showElement("captement_sound");
+    };
+    document.getElementById("peritoneal_friction_rub_sound").onclick = function() {
+        showElement("peritoneal_friction_rub_sound");
+    }; 
+    document.getElementById("normal_bowel_sound_with_bruits_sound").onclick = function() {
+        showElement("normal_bowel_sound_with_bruits_sound");
+    };
+    document.getElementById("irritable_bowel_syndrome_sound").onclick = function() {
+        showElement("irritable_bowel_syndrome_sound");
+    };
+    document.getElementById("diarrhea_sound").onclick = function() {
+        showElement("diarrhea_sound");
+    };
+    document.getElementById("bruits_due_to_renal_arteries_stenosis_sound").onclick = function() {
+        showElement("bruits_due_to_renal_arteries_stenosis_sound");
+    };
+    document.getElementById("constipation_sound").onclick = function() {
+        showElement("constipation_sound");
+    };
+    document.getElementById("ulcerative_colitis_sound").onclick = function() {
+        showElement("ulcerative_colitis_sound");
+    };
+    document.getElementById("crohns_disease_sound").onclick = function() {
+        showElement("crohns_disease_sound");
+    };
+    document.getElementById("paralytic_ileus_sound").onclick = function() {
+        showElement("paralytic_ileus_sound");
     };
 </script>
