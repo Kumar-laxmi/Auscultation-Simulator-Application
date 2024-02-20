@@ -18,9 +18,7 @@ from .DashApp.Heart import mitral_dash, aortic_dash, pulmonary_dash, tricuspid_d
 
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
-current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound = None, None, None, None, None
-current_lungs_sound = None
-current_bowel_sound = None
+current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound, current_lungs_sound, current_bowel_sound = None, None, None, None, None, None, None
 
 speakers = sc.all_speakers()
 
@@ -32,11 +30,9 @@ df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
 df_lungs = pd.read_sql_query("SELECT * FROM app_lungaudio", con)
 df_bowel = pd.read_sql_query("SELECT * FROM app_bowelaudio", con)
 
-playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb = None, None, None, None, None
-playing_thread_lungs, playing_thread_bowel = None, None
+playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb, playing_thread_lungs, playing_thread_bowel = None, None, None, None, None, None, None
 
-stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb = threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event()
-stop_flag_lungs, stop_flag_bowel = threading.Event(), threading.Event()
+stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, stop_flag_erb, stop_flag_lungs, stop_flag_bowel = threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event(), threading.Event()
 
 def play_mitral(index, samples, samplerate):
     global speakers, stop_flag_mitral, current_mitral_valve_sound, hr_show
@@ -333,7 +329,7 @@ def start_lungs_thread(sound):
     playing_thread_lungs = threading.Thread(target=play_lungs, args=(6, data, fs))
     playing_thread_lungs.start()
 
-def start_bowel_thread(sound_name):
+def start_bowel_thread(sound):
     global playing_thread_bowel, stop_flag_bowel, rr_show, current_bowel_valve_sound
     if playing_thread_bowel and playing_thread_bowel.is_alive():
         stop_flag_bowel.set()  # Set the reload flag to signal the thread to stop
@@ -342,12 +338,11 @@ def start_bowel_thread(sound_name):
         stop_flag_bowel = threading.Event()
 
     # Start a new thread
-    current_bowel_valve_sound = sound_name
+    current_bowel_valve_sound = sound
+    sound_name = sound[:-4]
     audio_path = df_bowel.loc[(df_bowel['sound_name'] == sound_name), 'audio_file_path'].values[0]
     bowelbeat = AudioSegment.from_file(audio_path, format="wav")
-    speed_multiplier = 60 / 60.0  # Assuming 60 BPM as the baseline
-    adjusted_bowelbeat = bowelbeat.speedup(playback_speed=speed_multiplier)
-    exported_data = adjusted_bowelbeat.export(format="wav").read()
+    exported_data = bowelbeat.export(format="wav").read()
     data, fs = sf.read(io.BytesIO(exported_data))
     playing_thread_bowel = threading.Thread(target=play_bowel, args=(7, data, fs))
     playing_thread_bowel.start()
@@ -1597,6 +1592,183 @@ def soundPlay(request):
         elif 'pneumonia_back_sound_RLL' in request.POST:
             print('\nSound Played: Pneumonia (Lungs back) , Location: Right Lower Lobe')
             start_lungs_thread('pneumonia_RLB')
+
+        # ========================================= BOWEL SOUNDS ============================================
+        # Buttons for Left Upper Quadrant
+        if 'normal_bowel_sound_LUQ' in request.POST:
+            print('\nSound Played: Normal Bowel , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_LUQ')
+        elif 'hyperactive_sound_LUQ' in request.POST:
+            print('\nSound Played: Hyperactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hyperactive_sounds_LUQ')
+        elif 'hypoactive_sound_LUQ' in request.POST:
+            print('\nSound Played: Hypoactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hypoactive_sounds_LUQ')
+        elif 'borborygmus_sound_LUQ' in request.POST:
+            print('\nSound Played: Borborygmus , Location: Left Upper Quadrant')
+            start_bowel_thread('Borborygmus_LUQ')
+        elif 'captement_sound_LUQ' in request.POST:
+            print('\nSound Played: Captement , Location: Left Upper Quadrant')
+            start_bowel_thread('capotement_LUQ')
+        elif 'peritoneal_friction_rub_sound_LUQ' in request.POST:
+            print('\nSound Played: Peritoneal Friction Rub , Location: Left Upper Quadrant')
+            start_bowel_thread('peritoneal_friction_rub_LUQ')
+        elif 'normal_bowel_sound_with_bruits_sound_LUQ' in request.POST:
+            print('\nSound Played: Normal Bowel Sound with Bruits , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_sounds_with_bruits_LUQ')
+        elif 'irritable_bowel_syndrome_sound_LUQ' in request.POST:
+            print('\nSound Played: Irritable Bowel Syndrome , Location: Left Upper Quadrant')
+            start_bowel_thread('irritable_bowel_syndrome_LUQ')
+        elif 'diarrhea_sound_LUQ' in request.POST:
+            print('\nSound Played: Diarrhea , Location: Left Upper Quadrant')
+            start_bowel_thread('diarrhea_LUQ')
+        elif 'bruits_due_to_renal_arteries_stenosis_sound_LUQ' in request.POST:
+            print('\nSound Played: Bruits due to Renal Arteries Stenosis , Location: Left Upper Quadrant')
+            start_bowel_thread('bruits_due_to_renal_arteries_stenosis_LUQ')
+        elif 'constipation_sound_LUQ' in request.POST:
+            print('\nSound Played: Constipation , Location: Left Upper Quadrant')
+            start_bowel_thread('constipation_LUQ')
+        elif 'ulcerative_colitis_sound_LUQ' in request.POST:
+            print('\nSound Played: Ulcerative Colitis , Location: Left Upper Quadrant')
+            start_bowel_thread('ulcerative_colitis_LUQ')
+        elif 'crohns_disease_sound_LUQ' in request.POST:
+            print('\nSound Played: Crohn\'s Disease , Location: Left Upper Quadrant')
+            start_bowel_thread('crohns_disease_LUQ')
+        elif 'paralytic_ileus_sound_LUQ' in request.POST:
+            print('\nSound Played: Paralytic Ileus , Location: Left Upper Quadrant')
+            start_bowel_thread('paralytic_ileus_LUQ')
+            
+        # Buttons for Left Lower Quadrant
+        if 'normal_bowel_sound_LLQ' in request.POST:
+            print('\nSound Played: Normal Bowel , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_LLQ')
+        elif 'hyperactive_sound_LLQ' in request.POST:
+            print('\nSound Played: Hyperactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hyperactive_sounds_LLQ')
+        elif 'hypoactive_sound_LLQ' in request.POST:
+            print('\nSound Played: Hypoactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hypoactive_sounds_LLQ')
+        elif 'borborygmus_sound_LLQ' in request.POST:
+            print('\nSound Played: Borborygmus , Location: Left Upper Quadrant')
+            start_bowel_thread('Borborygmus_LLQ')
+        elif 'captement_sound_LLQ' in request.POST:
+            print('\nSound Played: Captement , Location: Left Upper Quadrant')
+            start_bowel_thread('capotement_LLQ')
+        elif 'peritoneal_friction_rub_sound_LLQ' in request.POST:
+            print('\nSound Played: Peritoneal Friction Rub , Location: Left Upper Quadrant')
+            start_bowel_thread('peritoneal_friction_rub_LLQ')
+        elif 'normal_bowel_sound_with_bruits_sound_LLQ' in request.POST:
+            print('\nSound Played: Normal Bowel Sound with Bruits , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_sounds_with_bruits_LLQ')
+        elif 'irritable_bowel_syndrome_sound_LLQ' in request.POST:
+            print('\nSound Played: Irritable Bowel Syndrome , Location: Left Upper Quadrant')
+            start_bowel_thread('irritable_bowel_syndrome_LLQ')
+        elif 'diarrhea_sound_LLQ' in request.POST:
+            print('\nSound Played: Diarrhea , Location: Left Upper Quadrant')
+            start_bowel_thread('diarrhea_LLQ')
+        elif 'bruits_due_to_renal_arteries_stenosis_sound_LLQ' in request.POST:
+            print('\nSound Played: Bruits due to Renal Arteries Stenosis , Location: Left Upper Quadrant')
+            start_bowel_thread('bruits_due_to_renal_arteries_stenosis_LLQ')
+        elif 'constipation_sound_LLQ' in request.POST:
+            print('\nSound Played: Constipation , Location: Left Upper Quadrant')
+            start_bowel_thread('constipation_LLQ')
+        elif 'ulcerative_colitis_sound_LLQ' in request.POST:
+            print('\nSound Played: Ulcerative Colitis , Location: Left Upper Quadrant')
+            start_bowel_thread('ulcerative_colitis_LLQ')
+        elif 'crohns_disease_sound_LLQ' in request.POST:
+            print('\nSound Played: Crohn\'s Disease , Location: Left Upper Quadrant')
+            start_bowel_thread('crohns_disease_LLQ')
+        elif 'paralytic_ileus_sound_LLQ' in request.POST:
+            print('\nSound Played: Paralytic Ileus , Location: Left Upper Quadrant')
+            start_bowel_thread('paralytic_ileus_LLQ')
+            
+        # Buttons for Right Upper Quadrant
+        if 'normal_bowel_sound_RUQ' in request.POST:
+            print('\nSound Played: Normal Bowel , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_RUQ')
+        elif 'hyperactive_sound_RUQ' in request.POST:
+            print('\nSound Played: Hyperactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hyperactive_sounds_RUQ')
+        elif 'hypoactive_sound_RUQ' in request.POST:
+            print('\nSound Played: Hypoactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hypoactive_sounds_RUQ')
+        elif 'borborygmus_sound_RUQ' in request.POST:
+            print('\nSound Played: Borborygmus , Location: Left Upper Quadrant')
+            start_bowel_thread('Borborygmus_RUQ')
+        elif 'captement_sound_RUQ' in request.POST:
+            print('\nSound Played: Captement , Location: Left Upper Quadrant')
+            start_bowel_thread('capotement_RUQ')
+        elif 'peritoneal_friction_rub_sound_RUQ' in request.POST:
+            print('\nSound Played: Peritoneal Friction Rub , Location: Left Upper Quadrant')
+            start_bowel_thread('peritoneal_friction_rub_RUQ')
+        elif 'normal_bowel_sound_with_bruits_sound_RUQ' in request.POST:
+            print('\nSound Played: Normal Bowel Sound with Bruits , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_sounds_with_bruits_RUQ')
+        elif 'irritable_bowel_syndrome_sound_RUQ' in request.POST:
+            print('\nSound Played: Irritable Bowel Syndrome , Location: Left Upper Quadrant')
+            start_bowel_thread('irritable_bowel_syndrome_RUQ')
+        elif 'diarrhea_sound_RUQ' in request.POST:
+            print('\nSound Played: Diarrhea , Location: Left Upper Quadrant')
+            start_bowel_thread('diarrhea_RUQ')
+        elif 'bruits_due_to_renal_arteries_stenosis_sound_RUQ' in request.POST:
+            print('\nSound Played: Bruits due to Renal Arteries Stenosis , Location: Left Upper Quadrant')
+            start_bowel_thread('bruits_due_to_renal_arteries_stenosis_RUQ')
+        elif 'constipation_sound_RUQ' in request.POST:
+            print('\nSound Played: Constipation , Location: Left Upper Quadrant')
+            start_bowel_thread('constipation_RUQ')
+        elif 'ulcerative_colitis_sound_RUQ' in request.POST:
+            print('\nSound Played: Ulcerative Colitis , Location: Left Upper Quadrant')
+            start_bowel_thread('ulcerative_colitis_RUQ')
+        elif 'crohns_disease_sound_RUQ' in request.POST:
+            print('\nSound Played: Crohn\'s Disease , Location: Left Upper Quadrant')
+            start_bowel_thread('crohns_disease_RUQ')
+        elif 'paralytic_ileus_sound_RUQ' in request.POST:
+            print('\nSound Played: Paralytic Ileus , Location: Left Upper Quadrant')
+            start_bowel_thread('paralytic_ileus_RUQ')
+        
+        # Buttons for Right Lower Quadrant
+        if 'normal_bowel_sound_RLQ' in request.POST:
+            print('\nSound Played: Normal Bowel , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_RLQ')
+        elif 'hyperactive_sound_RLQ' in request.POST:
+            print('\nSound Played: Hyperactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hyperactive_sounds_RLQ')
+        elif 'hypoactive_sound_RLQ' in request.POST:
+            print('\nSound Played: Hypoactive , Location: Left Upper Quadrant')
+            start_bowel_thread('hypoactive_sounds_RLQ')
+        elif 'borborygmus_sound_RLQ' in request.POST:
+            print('\nSound Played: Borborygmus , Location: Left Upper Quadrant')
+            start_bowel_thread('Borborygmus_RLQ')
+        elif 'captement_sound_RLQ' in request.POST:
+            print('\nSound Played: Captement , Location: Left Upper Quadrant')
+            start_bowel_thread('capotement_RLQ')
+        elif 'peritoneal_friction_rub_sound_RLQ' in request.POST:
+            print('\nSound Played: Peritoneal Friction Rub , Location: Left Upper Quadrant')
+            start_bowel_thread('peritoneal_friction_rub_RLQ')
+        elif 'normal_bowel_sound_with_bruits_sound_RLQ' in request.POST:
+            print('\nSound Played: Normal Bowel Sound with Bruits , Location: Left Upper Quadrant')
+            start_bowel_thread('normal_bowel_sounds_with_bruits_RLQ')
+        elif 'irritable_bowel_syndrome_sound_RLQ' in request.POST:
+            print('\nSound Played: Irritable Bowel Syndrome , Location: Left Upper Quadrant')
+            start_bowel_thread('irritable_bowel_syndrome_RLQ')
+        elif 'diarrhea_sound_RLQ' in request.POST:
+            print('\nSound Played: Diarrhea , Location: Left Upper Quadrant')
+            start_bowel_thread('diarrhea_RLQ')
+        elif 'bruits_due_to_renal_arteries_stenosis_sound_RLQ' in request.POST:
+            print('\nSound Played: Bruits due to Renal Arteries Stenosis , Location: Left Upper Quadrant')
+            start_bowel_thread('bruits_due_to_renal_arteries_stenosis_RLQ')
+        elif 'constipation_sound_RLQ' in request.POST:
+            print('\nSound Played: Constipation , Location: Left Upper Quadrant')
+            start_bowel_thread('constipation_RLQ')
+        elif 'ulcerative_colitis_sound_RLQ' in request.POST:
+            print('\nSound Played: Ulcerative Colitis , Location: Left Upper Quadrant')
+            start_bowel_thread('ulcerative_colitis_RLQ')
+        elif 'crohns_disease_sound_RLQ' in request.POST:
+            print('\nSound Played: Crohn\'s Disease , Location: Left Upper Quadrant')
+            start_bowel_thread('crohns_disease_RLQ')
+        elif 'paralytic_ileus_sound_RLQ' in request.POST:
+            print('\nSound Played: Paralytic Ileus , Location: Left Upper Quadrant')
+            start_bowel_thread('paralytic_ileus_RLQ')
         
 
         return JsonResponse({'message': 'Success!'})
