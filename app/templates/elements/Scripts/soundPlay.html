@@ -1,4 +1,5 @@
 <script>
+    /* ============================================== HEART SOUNDS ======================================================= */
     // Trigger Mitral Valve Sound Play at the Backend
     $(document).ready(function () {
         // Function to handle range input change for different heart sounds
@@ -249,6 +250,7 @@
         });
     });
 
+    /* ============================================== LUNGS SOUNDS ======================================================= */
     // Trigger Left Upper Lobe - Front Sound Play at the Backend
     $(document).ready(function () {
         // Function to handle range input change for different lungs sounds
@@ -705,6 +707,167 @@
                     error: function (error) {
                         // Handle error response
                         console.error('Error in POST request for ' + identifier + '_sound_RLL' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    /* ============================================== BOWEL SOUNDS ======================================================= */
+    // Trigger Left Upper Quadrant Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different lungs sounds
+        const bowelSounds = [
+            /* Bowel Sounds */
+            "normal_bowel", "hyperactive", "hypoactive", "borborygmus", "captement", "peritoneal_friction_rub", "normal_bowel_sound_with_bruits",
+            /* Pathologies */
+            "irritable_bowel_syndrome", "diarrhea", "bruits_due_to_renal_arteries_stenosis", "constipation", "ulcerative_colitis", "crohns_disease", "paralytic_ileus",
+        ];
+
+        bowelSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_LUQ').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'block');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_LUQ']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_LUQ' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_LUQ' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Left Lower Quadrant Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different lungs sounds
+        const bowelSounds = [
+            /* Bowel Sounds */
+            "normal_bowel", "hyperactive", "hypoactive", "borborygmus", "captement", "peritoneal_friction_rub", "normal_bowel_sound_with_bruits",
+            /* Pathologies */
+            "irritable_bowel_syndrome", "diarrhea", "bruits_due_to_renal_arteries_stenosis", "constipation", "ulcerative_colitis", "crohns_disease", "paralytic_ileus",
+        ];
+
+        bowelSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_LLQ').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'block');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_LLQ']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_LLQ' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_LLQ' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Right Upper Quadrant Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different lungs sounds
+        const bowelSounds = [
+            /* Bowel Sounds */
+            "normal_bowel", "hyperactive", "hypoactive", "borborygmus", "captement", "peritoneal_friction_rub", "normal_bowel_sound_with_bruits",
+            /* Pathologies */
+            "irritable_bowel_syndrome", "diarrhea", "bruits_due_to_renal_arteries_stenosis", "constipation", "ulcerative_colitis", "crohns_disease", "paralytic_ileus",
+        ];
+
+        bowelSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_RUQ').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'block');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_RUQ']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_RUQ' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_RUQ' + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Trigger Right Lower Quadrant Sound Play at the Backend
+    $(document).ready(function () {
+        // Function to handle range input change for different lungs sounds
+        const bowelSounds = [
+            /* Bowel Sounds */
+            "normal_bowel", "hyperactive", "hypoactive", "borborygmus", "captement", "peritoneal_friction_rub", "normal_bowel_sound_with_bruits",
+            /* Pathologies */
+            "irritable_bowel_syndrome", "diarrhea", "bruits_due_to_renal_arteries_stenosis", "constipation", "ulcerative_colitis", "crohns_disease", "paralytic_ileus",
+        ];
+
+        bowelSounds.forEach(function (identifier) {
+            $('#' + identifier + '_sound_RLQ').click(function () {
+                // Check if hbr_btn is active
+                if ($('#hbr_btn').hasClass('active')) {
+                    // Set the style of div1 to block
+                    $('#hbr_div').css('display', 'none');
+                    $('#mitral_div').css('display', 'block');
+                    $('#aortic_div').css('display', 'none');
+                    $('#pulmonary_div').css('display', 'none');
+                    $('#tricuspid_div').css('display', 'none');
+                    $('#erb_div').css('display', 'none');
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'soundPlay/',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}', [identifier + '_sound_RLQ']: true},
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + '_sound_RLQ' + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + '_sound_RLQ' + ':', error);
                     }
                 });
             });
