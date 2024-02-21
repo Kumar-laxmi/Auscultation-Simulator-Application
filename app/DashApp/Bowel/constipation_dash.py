@@ -88,9 +88,4 @@ app.clientside_callback(
 )
 def update_audio_data(audioPath):
     audioPath = 'app/static/audio/abdomen/constipation.wav'
-    duration = 0.887
-    sample_rate = 44100
-    if not audioPath:  # If the input is empty, return zero values
-        return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
-    else:
-        return loadAudioData(audioPath)
+    return loadAudioData(audioPath)

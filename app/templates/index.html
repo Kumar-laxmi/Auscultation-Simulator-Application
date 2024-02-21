@@ -164,60 +164,7 @@
             <div class="container-fluid px-3">
                 <div class="row gy-0">
                     <div class="col-12">
-                        <!-- Graph for No Audio Input -->
-                        <div class="row" id="hbr_div" style="display: none;">
-                            {% plotly_app name="blankhbrDash" ratio=0.3 %}
-                        </div>
-
-                        <!-- Graph for Heart Audio input -->
-                        <div class="row" id="mitral_div" style="display: none;">
-                            {% plotly_app name="mitralDash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="aortic_div" style="display: none;">
-                            {% plotly_app name="aorticDash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="pulmonary_div" style="display: none;">
-                            {% plotly_app name="pulmonaryDash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="tricuspid_div" style="display: none;">
-                            {% plotly_app name="tricuspidDash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="erb_div" style="display: none;">
-                            {% plotly_app name="erbDash" ratio=0.3 %}
-                        </div>
-
-                        <!-- Graph for Lungs Audio input -->
-                        <div class="row" id="LUL_div" style="display: none;">
-                            {% plotly_app name="LUL_dash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="LML_div" style="display: none;">
-                            {% plotly_app name="LML_dash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="LLL_div" style="display: none;">
-                            {% plotly_app name="LLL_dash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="RUL_div" style="display: none;">
-                            {% plotly_app name="RUL_dash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="RML_div" style="display: none;">
-                            {% plotly_app name="RML_dash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="RLL_div" style="display: none;">
-                            {% plotly_app name="RLL_dash" ratio=0.3 %}
-                        </div>
-
-                        <!-- Graph for Bowel Audio input -->
-
-                        <!-- Other Graphs -->
-                        <div class="row" id="comp_div" style="display: none;">
-                            {% plotly_app name="compDash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="ecg_div" style="display:none;">
-                            {% plotly_app name="ecgDash" ratio=0.3 %}
-                        </div>
-                        <div class="row" id="rsp_div" style="display:none;">
-                            {% plotly_app name="rspDash" ratio=0.3 %}
-                        </div>
+                        {% include 'elements/Scripts/graphs.html' %}
                     </div>
                 </div>
             </div>

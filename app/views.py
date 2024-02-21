@@ -16,6 +16,7 @@ from .forms import heartAudioForms, lungAudioForm
 from .DashApp import blank_hbr_dash, ecg_dash, rsp_dash, comp_dash
 from .DashApp.Heart import mitral_dash, aortic_dash, pulmonary_dash, tricuspid_dash, erb_dash
 from .DashApp.Lung import LUL_dash, LML_dash, LLL_dash, RUL_dash, RML_dash, RLL_dash
+from .DashApp.Bowel import borborygmus_dash, bruits_due_to_renal_arteries_stenosis_dash, captement_dash, constipation_dash, crohns_disease_dash, diarrhea_dash, hyperactive_dash, hypoactive_dash, irritable_bowel_syndrome_dash, normal_bowel_dash, normal_bowel_sound_with_bruits_dash, paralytic_ileus_dash, peritoneal_friction_rub_dash, ulcerative_colitis_dash
 
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
