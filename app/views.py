@@ -10,6 +10,7 @@ import io
 import threading
 import time
 import os
+from gpiozero import Buzzer
 
 from .models import heartAudio, lungAudio
 from .forms import heartAudioForms, lungAudioForm
@@ -21,6 +22,8 @@ from .DashApp.Bowel import borborygmus_dash, bruits_due_to_renal_arteries_stenos
 # Define the signal
 hr_show, rr_show = 60, 15   # Initialize the Heart Rate and Breadth Rate
 current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound, current_lungs_sound, current_bowel_sound = None, None, None, None, None, None, None
+
+buzzer = Buzzer(17)
 
 speakers = sc.all_speakers()
 
@@ -98,9 +101,15 @@ def heartUpdate(request):
     if request.method == 'POST':
         if 'hr_plus' in request.POST:
             hr_show += 1
+            buzzer.on()
+            time.sleep(0.5)
+            buzzer.off()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         elif 'hr_minus' in request.POST:
             hr_show -= 1
+            buzzer.on()
+            time.sleep(0.5)
+            buzzer.off()
             print('\nHeart Rate updated to: {}'.format(hr_show))
         else:
             hr_show += 0
@@ -126,9 +135,15 @@ def breathUpdate(request):
     if request.method == 'POST':
         if 'rr_plus' in request.POST:
             rr_show += 1
+            buzzer.on()
+            time.sleep(0.5)
+            buzzer.off()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         elif 'rr_minus' in request.POST:
             rr_show -= 1
+            buzzer.on()
+            time.sleep(0.5)
+            buzzer.off()
             print('\nBreath Rate updated to: {}'.format(rr_show))
         else:
             rr_show += 0
