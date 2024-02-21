@@ -28,6 +28,8 @@ def loadAudioData(audioPath):
 
         return {'audio_data': audio_data.tolist(), 'audio_duration': duration}
     except:
+        duration = 0.877
+        sample_rate = 44100
         return {'audio_data': [0] * int(duration * sample_rate), 'audio_duration': duration}  # Assuming a small duration with zero values
 
 # Layout of the app

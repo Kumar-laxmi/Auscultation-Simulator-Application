@@ -19,3 +19,18 @@ ROUGH Work
 'normal_heart_sound_pulmonary_valve','split_first_heart_sound_pulmonary_valve','split_second_heart_sound_pulmonary_valve','third_heart_sound_pulmonary_valve','fourth_heart_sound_pulmonary_valve'
 'normal_heart_sound_tricuspid_valve','split_first_heart_sound_tricuspid_valvee','split_second_heart_sound_tricuspid_valve','third_heart_sound_tricuspid_valve','fourth_heart_sound_tricuspid_valve'
 'normal_heart_sound_erb_point','split_first_heart_sound_erb_point','split_second_heart_sound_erb_point','third_heart_sound_erb_point','fourth_heart_sound_erb_point'
+
+"normal_bowel_sound_with_bruits_div",
+    "constipation_div",
+    "bruits_due_to_renal_arteries_stenosis_div",
+    "paralytic_ileus_div",
+    "captement_div",
+    "hyperactive_div",
+    "normal_bowel_div",
+    "diarrhea_div",
+    "hypoactive_div",
+    "crohns_disease_div",
+    "irritable_bowel_syndrome_div",
+    "borborygmus_div",
+    "ulcerative_colitis_div",
+    "peritoneal_friction_rub_div"

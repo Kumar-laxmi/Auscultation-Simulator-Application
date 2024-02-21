@@ -40,18 +40,43 @@
             "irritable_bowel_syndrome", "diarrhea", "bruits_due_to_renal_arteries_stenosis", "constipation", "ulcerative_colitis", "crohns_disease", "paralytic_ileus",
         ];
 
-        function setDisplayStyle(divIdToShow) {
-            // Set the style of div elements
-            $('#hbr_div, #mitral_div, #aortic_div, #pulmonary_div, #tricuspid_div, #erb_div').css('display', 'none');
-            $(divIdToShow).css('display', 'block');
+        const graphDivs = [
+            /* ============================================== HEART GRAPHS ======================================================= */
+            'hbr_div', 'mitral_div', 'aortic_div', 'pulmonary_div', 'tricuspid_div', 'erb_div',
+
+            /* ============================================== LUNGS GRAPHS ======================================================= */
+            'LUL_div', 'LML_div', 'LLL_div', 'RUL_div', 'RML_div', 'RLL_div',
+
+            /* ============================================== BOWEL SOUNDS ======================================================= */
+            'normal_bowel_sound_with_bruits_div', 'constipation_div', 'bruits_due_to_renal_arteries_stenosis_div',
+            'paralytic_ileus_div', 'captement_div', 'hyperactive_div', 'normal_bowel_div', 'diarrhea_div',
+            'hypoactive_div', 'crohns_disease_div', 'irritable_bowel_syndrome_div', 'borborygmus_div',
+            'ulcerative_colitis_div', 'peritoneal_friction_rub_div'
+        ];
+
+        var currentVisibleDiv = 'hbr_div';
+
+        function setDisplayStyle() {
+            // Loop through each div in the graphDivs array
+            graphDivs.forEach(divId => {
+                var divElement = document.getElementById(divId);  // Get the div element by its ID
+
+                if (divElement) {       // Check if the div element exists before attempting to remove the class
+                    divElement.style.display = "none";  // Remove the "active" class from the div element
+                }
+            });
+            // Set the style of div elements based on hbr_btn active state
+            if ($('#hbr_btn').hasClass('active')) {
+                var currentSound = document.getElementById(currentVisibleDiv);
+                currentSound.style.display = "block";
+
+            }
         }
 
         function handleSoundClick(identifier, valveType) {
             $('#' + identifier + '_sound_' + valveType).click(function () {
-                // Check if hbr_btn is active
-                if ($('#hbr_btn').hasClass('active')) {
-                    setDisplayStyle('#' + valveType + '_div');
-                }
+                currentVisibleDiv = identifier + '_sound_' + valveType;
+                setDisplayStyle();
 
                 $.ajax({
                     type: 'POST',
