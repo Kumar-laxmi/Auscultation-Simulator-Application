@@ -1,8 +1,7 @@
 <script>
-    /* ============================================== HEART SOUNDS ======================================================= */
-    // Trigger Mitral Valve Sound Play at the Backend
     $(document).ready(function () {
-        const heartSounds = [
+        const Sounds = [
+            /* ============================================== HEART SOUNDS ======================================================= */
             /* Heart Tones */
             "normal_heart", "split_first_heart", "split_second_heart", "third_heart", "fourth_heart",
             /* Murmurs */
@@ -25,7 +24,7 @@
             $(divIdToShow).css('display', 'block');
         }
 
-        function handleHeartSoundClick(identifier, valveType) {
+        function handleSoundClick(identifier, valveType) {
             $('#' + identifier + '_sound_' + valveType).click(function () {
                 // Check if hbr_btn is active
                 if ($('#hbr_btn').hasClass('active')) {
@@ -48,12 +47,12 @@
             });
         }
 
-        heartSounds.forEach(function (identifier) {
-            handleHeartSoundClick(identifier, 'mitral_valve');
-            handleHeartSoundClick(identifier, 'aortic_valve');
-            handleHeartSoundClick(identifier, 'pulmonary_valve');
-            handleHeartSoundClick(identifier, 'tricuspid_valve');
-            handleHeartSoundClick(identifier, 'erb_point');
+        Sounds.forEach(function (identifier) {
+            handleSoundClick(identifier, 'mitral_valve');
+            handleSoundClick(identifier, 'aortic_valve');
+            handleSoundClick(identifier, 'pulmonary_valve');
+            handleSoundClick(identifier, 'tricuspid_valve');
+            handleSoundClick(identifier, 'erb_point');
             // Add more valve types if needed
         });
     });
