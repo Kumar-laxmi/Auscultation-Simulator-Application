@@ -39,7 +39,7 @@ app.layout = html.Div([
         placeholder='Enter audio path...',
         style={'width': '50%'}
     ),
-    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True}),
+    dcc.Graph(id='animated-audio-chart', style={'height': '95vh'}, config={'responsive': True, 'staticPlot': True}),
     dcc.Store(id='audio-path-store', data={'value': None}),
     dcc.Store(id='audio-data-store', data={'audio_data': [], 'audio_duration': 0}),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time and set default heart rate to 60

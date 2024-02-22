@@ -11,48 +11,121 @@
     var tricuspid_btn = document.getElementById("normal_heart_sound_tricuspid_valve");
     var erb_btn = document.getElementById("normal_heart_sound_erb_point");
 
-    // Blank Div
+    // Default Divs
     var currentDiv = document.getElementById("hbr_div");
+    var ecgDiv = document.getElementById("ecg_div");
+    var rspDiv = document.getElementById("rsp_div");
 
     // Heart Divs
-    var mitralDiv = document.getElementById("mitral_div"); 
-    var aorticDiv = document.getElementById("aortic_div");
-    var pulmonaryDiv = document.getElementById("pulmonary_div");
-    var tricuspidDiv = document.getElementById("tricuspid_div");
-    var erbDiv = document.getElementById("erb_div");
+    var mitralDiv = document.getElementById("mitral_valve_div"); 
+    var aorticDiv = document.getElementById("aortic_valve_div");
+    var pulmonaryDiv = document.getElementById("pulmonary_valve_div");
+    var tricuspidDiv = document.getElementById("tricuspid_valve_div");
+    var erbDiv = document.getElementById("erb_point_div");
 
-    mitral_btn.addEventListener("click", function() {
-        if (mitralDiv.style.display === "none") {
-            mitralDiv.style.display = "block";
-        }
-        else {
-            mitralDiv.style.display = "none";
-        }
-    })
+    // Lungs Divs
+    /*
+    var LULDiv = document.getElementById("");
+    var LMLDiv = document.getElementById("");
+    var LLLDiv = document.getElementById("");
+    var RULDiv = document.getElementById("");
+    var RMLDiv = document.getElementById("");
+    var RLLDiv = document.getElementById("");
+    */
 
     // Add a click event listener to the button
     hbr_btn.addEventListener("click", function() {
-        // Toggle the 'active' class on the button
-        this.classList.toggle("active");
-        
-        // Toggle the display property of currentDiv
+        this.classList.toggle("active");    // Toggle the 'active' class on the button
         if (currentDiv.style.display === "none") {
             currentDiv.style.display = "block";
-        } else {
+        }
+        else {
             currentDiv.style.display = "none";
         }
     });
+
+    // Click event for Mitral Valve
+    mitral_btn.addEventListener("click", function() {
+        currentDiv.style.display = "none";
+        currentDiv = mitralDiv;
+        if (currentDiv.style.display === "none" && hbr_btn.classList.contains("active")) {
+            currentDiv.style.display = "block";
+        }
+        else {
+            currentDiv.style.display = "none";
+        }
+    });
+
+    // Click event for Aortic Valve
+    aortic_btn.addEventListener("click", function() {
+        currentDiv.style.display = "none";
+        currentDiv = aorticDiv;
+        if (currentDiv.style.display === "none" && hbr_btn.classList.contains("active")) {
+            currentDiv.style.display = "block";
+        }
+        else {
+            currentDiv.style.display = "none";
+        }
+    });
+
+    // Click event for Pulmonary Valve
+    pulmonary_btn.addEventListener("click", function() {
+        currentDiv.style.display = "none";
+        currentDiv = pulmonaryDiv;
+        if (currentDiv.style.display === "none" && hbr_btn.classList.contains("active")) {
+            currentDiv.style.display = "block";
+        }
+        else {
+            currentDiv.style.display = "none";
+        }
+    });
+
+    // Click event for Tricuspid Valve
+    tricuspid_btn.addEventListener("click", function() {
+        currentDiv.style.display = "none";
+        currentDiv = tricuspidDiv;
+        if (currentDiv.style.display === "none" && hbr_btn.classList.contains("active")) {
+            currentDiv.style.display = "block";
+        }
+        else {
+            currentDiv.style.display = "none";
+        }
+    });
+
+    // Click event for Erb's Point
+    erb_btn.addEventListener("click", function() {
+        currentDiv.style.display = "none";
+        currentDiv = erbDiv;
+        if (currentDiv.style.display === "none" && hbr_btn.classList.contains("active")) {
+            currentDiv.style.display = "block";
+        }
+        else {
+            currentDiv.style.display = "none";
+        }
+    });
+
     compare_btn.addEventListener("click", function() {
-        // Toggle the 'active' class on the button
-        this.classList.toggle("active");
+        this.classList.toggle("active");    // Toggle the 'active' class on the button
     });
+
     ecg_btn.addEventListener("click", function() {
-        // Toggle the 'active' class on the button
-        this.classList.toggle("active");
+        this.classList.toggle("active");    // Toggle the 'active' class on the button
+        if (ecgDiv.style.display === "none") {
+            ecgDiv.style.display = "block";
+        }
+        else {
+            ecgDiv.style.display = "none";
+        }
     });
+
     rsp_btn.addEventListener("click", function() {
-        // Toggle the 'active' class on the button
-        this.classList.toggle("active");
+        this.classList.toggle("active");    // Toggle the 'active' class on the button
+        if (rspDiv.style.display === "none") {
+            rspDiv.style.display = "block";
+        }
+        else {
+            rspDiv.style.display = "none";
+        }
     });
     
 </script>

@@ -54,30 +54,8 @@
             'ulcerative_colitis_div', 'peritoneal_friction_rub_div'
         ];
 
-        var currentVisibleDiv = 'hbr_div';
-
-        function setDisplayStyle() {
-            // Loop through each div in the graphDivs array
-            graphDivs.forEach(divId => {
-                var divElement = document.getElementById(divId);  // Get the div element by its ID
-
-                if (divElement) {       // Check if the div element exists before attempting to remove the class
-                    divElement.style.display = "none";  // Remove the "active" class from the div element
-                }
-            });
-            // Set the style of div elements based on hbr_btn active state
-            if ($('#hbr_btn').hasClass('active')) {
-                var currentSound = document.getElementById(currentVisibleDiv);
-                currentSound.style.display = "block";
-
-            }
-        }
-
         function handleSoundClick(identifier, valveType) {
             $('#' + identifier + '_sound_' + valveType).click(function () {
-                currentVisibleDiv = identifier + '_sound_' + valveType;
-                setDisplayStyle();
-
                 $.ajax({
                     type: 'POST',
                     url: 'soundPlay/',

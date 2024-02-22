@@ -24,7 +24,7 @@ ecg_data = {'x_values': x_values.tolist(), 'ecg_signal': ecg_signal.tolist()}
 
 # Layout of the app
 app.layout = html.Div([
-    dcc.Graph(id='animated-ecg-chart', style={'height': '95vh'}),
+    dcc.Graph(id='animated-ecg-chart', style={'height': '95vh'}, config={'responsive': True, 'staticPlot': True}),
     dcc.Store(id='ecg-data-store', data=ecg_data),
     dcc.Store(id='interval-store', data=time.time()),  # Store the start time
     dcc.Interval(
