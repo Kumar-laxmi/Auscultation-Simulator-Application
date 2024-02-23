@@ -10,7 +10,7 @@
 - Get Volume:                                   amixer -c 3 get Speaker | awk -F"[][]" '/Left:/ { print $2 }'
 - Set Volume (Subprocess - Python):             os.system('amixer -c 3 set Speaker 45%')
 - Add default program in Background             sudo crontab -e
--                                               @reboot sudo python full_program_pwd
+-                                               @reboot sudo python <pwd>
 
 ROUGH Work
 
