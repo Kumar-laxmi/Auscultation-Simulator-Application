@@ -45,56 +45,77 @@ stop_flag_mitral, stop_flag_aortic, stop_flag_pulmonary, stop_flag_tricuspid, st
 def play_mitral(index, samples, samplerate):
     global speakers, stop_flag_mitral, current_mitral_valve_sound, hr_show
     delay_seconds = 60 / hr_show
-    while not stop_flag_mitral.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_mitral.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
 
 def play_aortic(index, samples, samplerate):
     global speakers, stop_flag_aortic, current_aortic_valve_sound, hr_show
     delay_seconds = 60 / hr_show
-    while not stop_flag_aortic.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_aortic.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
 
 def play_pulmonary(index, samples, samplerate):
     global speakers, stop_flag_pulmonary, current_pulmonary_valve_sound, hr_show
     delay_seconds = 60 / hr_show
-    while not stop_flag_pulmonary.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_pulmonary.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
 
 def play_tricuspid(index, samples, samplerate):
     global speakers, stop_flag_tricuspid, current_tricuspid_valve_sound, hr_show
     delay_seconds = 60 / hr_show
-    while not stop_flag_tricuspid.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_tricuspid.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
 
 def play_erb(index, samples, samplerate):
     global speakers, stop_flag_erb, current_erb_valve_sound, hr_show
     delay_seconds = 60 / hr_show
-    while not stop_flag_erb.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_erb.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
 
 def play_lungs(index, samples, samplerate):
     global speakers, stop_flag_lungs, current_lungs_sound, rr_show
     delay_seconds = 60 / rr_show
-    while not stop_flag_lungs.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_lungs.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
 
 def play_bowel(index, samples, samplerate):
     global speakers, stop_flag_bowel, current_bowel_sound, rr_show
     delay_seconds = 60 / rr_show
-    while not stop_flag_bowel.is_set():
+    try:
         speaker = speakers[index]
+    except:
+        speaker = speakers[0]
+    while not stop_flag_bowel.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
         
