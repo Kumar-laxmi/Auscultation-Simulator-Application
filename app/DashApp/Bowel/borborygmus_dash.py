@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
-from django.http import JsonResponse, HttpResponse
 import numpy as np
 import time
 
@@ -89,5 +88,6 @@ app.clientside_callback(
     Input('audio-path-input', 'value')
 )
 def update_audio_data(audioPath):
-    audioPath = 'app/static/audio/abdomen/borborygmus.wav'
+    #audioPath = 'app/static/audio/abdomen/borborygmus.wav'
+    audioPath = 'app/static/audio/heart/acute_pericarditis/A/combined_audio.wav'
     return loadAudioData(audioPath)

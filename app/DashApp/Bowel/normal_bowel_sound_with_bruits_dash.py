@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 from pydub import AudioSegment
 from django_plotly_dash import DjangoDash
-from django.http import JsonResponse, HttpResponse
 import numpy as np
 import time
 
