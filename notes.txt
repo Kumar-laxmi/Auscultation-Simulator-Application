@@ -11,6 +11,7 @@
 - Set Volume (Subprocess - Python):             os.system('amixer -c 3 set Speaker 45%')
 - Add default program in Background             sudo crontab -e
 -                                               @reboot sudo python <pwd>
+- Animation:                                    cmatrix -BC blue
 
 ROUGH Work
 
