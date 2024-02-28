@@ -21,14 +21,20 @@ from django.conf.urls.static import static
 from app.views import *
 
 urlpatterns = [
+    # Sure Admit Route
     path('admin/', admin.site.urls),
+
+    # Default Routes
     path('', index),
 
+    # Heart-beat and Breadth rate updation Routes
     path('heartUpdate/', heartUpdate),
     path('breathUpdate/', breathUpdate),
 
+    # Sound Play trigger Routes
     path('soundPlay/', soundPlay),
 
+    # Volume updation Routes
     path('mitralVolumeChange/', mitralVolumeChange),
     path('aorticVolumeChange/', aorticVolumeChange),
     path('pulmonaryVolumeChange/', pulmonaryVolumeChange),
@@ -37,6 +43,12 @@ urlpatterns = [
     path('lungsVolumeChange/', lungsVolumeChange),
     path('bowelVolumeChange/', bowelVolumeChange),
 
+    # Special Volume updation Routes
+    path('muteVolume/', muteVolume),
+    path('defaultVolume/', defaultVolume),
+    path('fullVolume/', fullVolume),
+
+    # Django Dash Graph generation Routes
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 

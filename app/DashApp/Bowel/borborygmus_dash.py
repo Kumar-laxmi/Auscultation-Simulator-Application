@@ -88,6 +88,5 @@ app.clientside_callback(
     Input('audio-path-input', 'value')
 )
 def update_audio_data(audioPath):
-    #audioPath = 'app/static/audio/abdomen/borborygmus.wav'
-    audioPath = 'app/static/audio/heart/acute_pericarditis/A/combined_audio.wav'
+    audioPath = 'app/static/audio/abdomen/borborygmus.wav'
     return loadAudioData(audioPath)

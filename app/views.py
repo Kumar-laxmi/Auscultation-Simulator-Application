@@ -257,6 +257,52 @@ def bowelVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+def muteVolume(request):
+    if request.method == 'POST':
+        for i in range(3,10):
+            os.system('amixer -c {} set Speaker 0%'.format(i))
+        print('Mitral Valve\'s Volume updated to 0%')
+        print('Aortic Valve\'s Volume updated to 0%')
+        print('Pulmonary Valve\'s Volume updated to 0%')
+        print('Tricuspid Valve\'s Volume updated to 0%')
+        print('Erb\'s Point\'s Volume updated to 0%')
+        print('Lungs\'s Volume updates to 0%')
+        print('Bowel\'s Volume updates to 0%')
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+
+def defaultVolume(request):
+    if request.method == 'POST':
+        for i in range(3,10):
+            os.system('amixer -c {} set Speaker 50%'.format(i))
+        print('Mitral Valve\'s Volume updated to 50%')
+        print('Aortic Valve\'s Volume updated to 50%')
+        print('Pulmonary Valve\'s Volume updated to 50%')
+        print('Tricuspid Valve\'s Volume updated to 50%')
+        print('Erb\'s Point\'s Volume updated to 50%')
+        print('Lungs\'s Volume updates to 50%')
+        print('Bowel\'s Volume updates to 50%')
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
+def fullVolume(request):
+    if request.method == 'POST':
+        for i in range(3,10):
+            os.system('amixer -c {} set Speaker 100%'.format(i))
+        print('Mitral Valve\'s Volume updated to 100%')
+        print('Aortic Valve\'s Volume updated to 100%')
+        print('Pulmonary Valve\'s Volume updated to 100%')
+        print('Tricuspid Valve\'s Volume updated to 100%')
+        print('Erb\'s Point\'s Volume updated to 100%')
+        print('Lungs\'s Volume updates to 100%')
+        print('Bowel\'s Volume updates to 100%')
+        return JsonResponse({'message': 'Success!'})
+    else:
+        return HttpResponse("Request method is not a POST")
+
 def start_mitral_thread(sound_name):
     global playing_thread_mitral, stop_flag_mitral, hr_show, current_mitral_valve_sound
     if playing_thread_mitral and playing_thread_mitral.is_alive():

@@ -213,4 +213,76 @@
             });
         });
     });
+
+    // Update Volume - Mute all Speakers
+    $(document).ready(function () {
+        const muteVolume = ["mute_volume"];
+
+        muteVolume.forEach(function (identifier) {
+            $('#' + identifier).on('input', function () {
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'muteVolume/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Update Volume - Default Volume to Speakers
+    $(document).ready(function () {
+        const defaultVolume = ["default_volume"];
+
+        defaultVolume.forEach(function (identifier) {
+            $('#' + identifier).on('input', function () {
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'defaultVolume/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
+
+    // Update Volume - Full Volume to Speakers
+    $(document).ready(function () {
+        const fullVolume = ["full_volume"];
+
+        fullVolume.forEach(function (identifier) {
+            $('#' + identifier).on('input', function () {
+                // Make an AJAX POST request
+                $.ajax({
+                    url: 'fullVolume/', // Replace with your backend endpoint
+                    method: 'POST',
+                    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // Send the range value as data
+                    success: function (response) {
+                        // Handle success response
+                        console.log('POST request successful for ' + identifier + ':', response);
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error('Error in POST request for ' + identifier + ':', error);
+                    }
+                });
+            });
+        });
+    });
 </script>
