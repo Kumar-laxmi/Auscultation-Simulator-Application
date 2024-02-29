@@ -1,80 +1,28 @@
 <script>
-    const heartSounds = [
-        /* Heart Tones */
-        "normal_heart_sound","split_first_heart_sound","split_second_heart_sound","third_heart_sound","fourth_heart_sound",
-        /* Murmurs */
-        "functional_murmur_sound","diastolic_murmur_sound","opening_snap_sound","holosystolic_murmur_sound","early_systolic_murmur_sound","mid_systolic_murmur_sound","continuous_murmur_sound","austin_flint_murmur_sound","pericardial_rub_sound","graham_steell_murmur_sound",
-        /* Aortic Value */
-        "aortic_valve_regurgitation_sound","aortic_valve_stenosis_sound","aortic_valve_stenosis_regurgitation_sound","congenital_aortic_stenosis_sound",
-        /* Mitral Value */
-        "mitral_valve_regurgitation_sound","mitral_valve_stenosis_sound","mitral_valve_prelapse_sound","mitral_stenosis_regurgitation_sound","mitral_stenosis_tricuspid_regurgitation_sound",
-        /* Pulmonary Value */
-        "pulmonary_valve_stenosis_sound","pulmonary_valve_regurgitation_sound",
-        /* Tricuspid Value */
-        "tricuspid_valve_regurgitation_sound",
-        /* Pathologies */
-        "coarctation_of_the_aorta_sound","hypertrophic_cardiomyopathy_sound","patent_ductus_arteriosus_sound","atrial_septal_defect_sound","ventricular_septal_defect_sound","acute_myocardial_infarction_sound","congestive_heart_failure_sound","systemic_hypertension_sound","acute_pericarditis_sound","dilated_cardiomyopathy_sound","pulmonary_hypertension_sound","tetralogy_of_fallot_sound","ventricular_aneurysm_sound","ebstein_anomaly_sound"
-    ];
-
-    const lungFrontSounds = [
-        /* ############### LUNGS FRONT SOUNDS ############### */
-        /* Normal Breadth Sound */
-        "brochial_respiration_front_sound", "bronchovesicular_respiration_front_sound", "vesicular_respiration_front_sound", "diminished_vescicular_respiration_front_sound",
-        /* Adventitious Sound */
-        "coarse_crackles_front_sound", "fine_crackles_front_sound", "wheezes_front_sound", "rhonchi_front_sound", "gurgling_rhonchi_front_sound", "stridor_front_sound", "pleural_friction_rub_front_sound", "amphoric_respiration_front_sound", "harsh_respiration_front_sound",
-        /* Pathologies */
-        "asthma_front_sound", "covid19_front_sound", "right_sided_pneumothorax_front_sound", "left_sided_pneumothorax_front_sound", "pneumonia_front_sound"
-    ]
-
-    const lungBackSounds = [
-        /* ############### LUNGS BACK SOUNDS ############### */
-        /* Normal Breadth Sound */
-        "brochial_respiration_back_sound", "bronchovesicular_respiration_back_sound", "vesicular_respiration_back_sound", "diminished_vescicular_respiration_back_sound",
-        /* Adventitious Sound */
-        "coarse_crackles_back_sound", "fine_crackles_back_sound", "wheezes_back_sound", "rhonchi_back_sound", "gurgling_rhonchi_back_sound", "stridor_back_sound", "pleural_friction_rub_back_sound", "amphoric_respiration_back_sound", "harsh_respiration_back_sound",
-        /* Pathologies */
-        "asthma_back_sound", "covid19_back_sound", "right_sided_pneumothorax_back_sound", "left_sided_pneumothorax_back_sound", "pneumonia_back_sound"
-    ]
-
-    const bowelSounds = [
-        /* ############### BOWEL SOUNDS ############### */
-        /* Bowel Sounds */
-
-        /* Pathologies */
-    ]
-
-    const valveNames = {
-        // Heart Locations
-        mitral_valve: 'Mitral Valve',
-        aortic_valve: 'Aortic Valve',
-        pulmonary_valve: 'Pulmonary Valve',
-        tricuspid_valve: 'Tricuspid Valve',
-        erbs_point: 'Erbs Point'
-    };
-
-    const lobeNamesFront = {
-        LUL: 'Left Upper Lobe',
-        LLL: 'Left Lower Lobe',
-        RUL: 'Right Upper Lobe',
-        RML: 'Right Middle Lobe',
-        RLL: 'Right Lower Lobe'
-    };
-
-    const lobeNamesBack = {
-        LUL: 'Left Upper Lobe',
-        LML: 'Left Middle Lobe',
-        LLL: 'Left Lower Lobe',
-        RUL: 'Right Upper Lobe',
-        RML: 'Right Middle Lobe',
-        RLL: 'Right Lower Lobe'
-    }
-
-    // Javascript Input -> Range IDs
+    // Javascript Input -> Range IDs 
     const mitralRangeID = ["normal_heart_sound_mitral_valve_range","split_first_heart_sound_mitral_valve_range","split_second_heart_sound_mitral_valve_range","third_heart_sound_mitral_valve_range","fourth_heart_sound_mitral_valve_range","functional_murmur_sound_mitral_valve_range","diastolic_murmur_sound_mitral_valve_range","opening_snap_sound_mitral_valve_range","holosystolic_murmur_sound_mitral_valve_range","early_systolic_murmur_sound_mitral_valve_range","mid_systolic_murmur_sound_mitral_valve_range","continuous_murmur_sound_mitral_valve_range","austin_flint_murmur_sound_mitral_valve_range","pericardial_rub_sound_mitral_valve_range","graham_steell_murmur_sound_mitral_valve_range","aortic_valve_regurgitation_sound_mitral_valve_range","aortic_valve_stenosis_sound_mitral_valve_range","aortic_valve_stenosis_regurgitation_sound_mitral_valve_range","congenital_aortic_stenosis_sound_mitral_valve_range","mitral_valve_regurgitation_sound_mitral_valve_range","mitral_valve_stenosis_sound_mitral_valve_range","mitral_valve_prelapse_sound_mitral_valve_range","mitral_stenosis_regurgitation_sound_mitral_valve_range","mitral_stenosis_tricuspid_regurgitation_sound_mitral_valve_range","pulmonary_valve_stenosis_sound_mitral_valve_range","pulmonary_valve_regurgitation_sound_mitral_valve_range","tricuspid_valve_regurgitation_sound_mitral_valve_range","coarctation_of_the_aorta_sound_mitral_valve_range","hypertrophic_cardiomyopathy_sound_mitral_valve_range","patent_ductus_arteriosus_sound_mitral_valve_range","atrial_septal_defect_sound_mitral_valve_range","ventricular_septal_defect_sound_mitral_valve_range","acute_myocardial_infarction_sound_mitral_valve_range","congestive_heart_failure_sound_mitral_valve_range","systemic_hypertension_sound_mitral_valve_range","acute_pericarditis_sound_mitral_valve_range","dilated_cardiomyopathy_sound_mitral_valve_range","pulmonary_hypertension_sound_mitral_valve_range","tetralogy_of_fallot_sound_mitral_valve_range","ventricular_aneurysm_sound_mitral_valve_range","ebstein_anomaly_sound_mitral_valve_range"];
     const aorticRangeID = ["normal_heart_sound_aortic_valve_range","split_first_heart_sound_aortic_valve_range","split_second_heart_sound_aortic_valve_range","third_heart_sound_aortic_valve_range","fourth_heart_sound_aortic_valve_range","functional_murmur_sound_aortic_valve_range","diastolic_murmur_sound_aortic_valve_range","opening_snap_sound_aortic_valve_range","holosystolic_murmur_sound_aortic_valve_range","early_systolic_murmur_sound_aortic_valve_range","mid_systolic_murmur_sound_aortic_valve_range","continuous_murmur_sound_aortic_valve_range","austin_flint_murmur_sound_aortic_valve_range","pericardial_rub_sound_aortic_valve_range","graham_steell_murmur_sound_aortic_valve_range","aortic_valve_regurgitation_sound_aortic_valve_range","aortic_valve_stenosis_sound_aortic_valve_range","aortic_valve_stenosis_regurgitation_sound_aortic_valve_range","congenital_aortic_stenosis_sound_aortic_valve_range","mitral_valve_regurgitation_sound_aortic_valve_range","mitral_valve_stenosis_sound_aortic_valve_range","mitral_valve_prelapse_sound_aortic_valve_range","mitral_stenosis_regurgitation_sound_aortic_valve_range","mitral_stenosis_tricuspid_regurgitation_sound_aortic_valve_range","pulmonary_valve_stenosis_sound_aortic_valve_range","pulmonary_valve_regurgitation_sound_aortic_valve_range","tricuspid_valve_regurgitation_sound_aortic_valve_range","coarctation_of_the_aorta_sound_aortic_valve_range","hypertrophic_cardiomyopathy_sound_aortic_valve_range","patent_ductus_arteriosus_sound_aortic_valve_range","atrial_septal_defect_sound_aortic_valve_range","ventricular_septal_defect_sound_aortic_valve_range","acute_myocardial_infarction_sound_aortic_valve_range","congestive_heart_failure_sound_aortic_valve_range","systemic_hypertension_sound_aortic_valve_range","acute_pericarditis_sound_aortic_valve_range","dilated_cardiomyopathy_sound_aortic_valve_range","pulmonary_hypertension_sound_aortic_valve_range","tetralogy_of_fallot_sound_aortic_valve_range","ventricular_aneurysm_sound_aortic_valve_range","ebstein_anomaly_sound_aortic_valve_range"];
     const pulmonaryRangeID = ["normal_heart_sound_pulmonary_valve_range","split_first_heart_sound_pulmonary_valve_range","split_second_heart_sound_pulmonary_valve_range","third_heart_sound_pulmonary_valve_range","fourth_heart_sound_pulmonary_valve_range","functional_murmur_sound_pulmonary_valve_range","diastolic_murmur_sound_pulmonary_valve_range","opening_snap_sound_pulmonary_valve_range","holosystolic_murmur_sound_pulmonary_valve_range","early_systolic_murmur_sound_pulmonary_valve_range","mid_systolic_murmur_sound_pulmonary_valve_range","continuous_murmur_sound_pulmonary_valve_range","austin_flint_murmur_sound_pulmonary_valve_range","pericardial_rub_sound_pulmonary_valve_range","graham_steell_murmur_sound_pulmonary_valve_range","aortic_valve_regurgitation_sound_pulmonary_valve_range","aortic_valve_stenosis_sound_pulmonary_valve_range","aortic_valve_stenosis_regurgitation_sound_pulmonary_valve_range","congenital_aortic_stenosis_sound_pulmonary_valve_range","mitral_valve_regurgitation_sound_pulmonary_valve_range","mitral_valve_stenosis_sound_pulmonary_valve_range","mitral_valve_prelapse_sound_pulmonary_valve_range","mitral_stenosis_regurgitation_sound_pulmonary_valve_range","mitral_stenosis_tricuspid_regurgitation_sound_pulmonary_valve_range","pulmonary_valve_stenosis_sound_pulmonary_valve_range","pulmonary_valve_regurgitation_sound_pulmonary_valve_range","tricuspid_valve_regurgitation_sound_pulmonary_valve_range","coarctation_of_the_aorta_sound_pulmonary_valve_range","hypertrophic_cardiomyopathy_sound_pulmonary_valve_range","patent_ductus_arteriosus_sound_pulmonary_valve_range","atrial_septal_defect_sound_pulmonary_valve_range","ventricular_septal_defect_sound_pulmonary_valve_range","acute_myocardial_infarction_sound_pulmonary_valve_range","congestive_heart_failure_sound_pulmonary_valve_range","systemic_hypertension_sound_pulmonary_valve_range","acute_pericarditis_sound_pulmonary_valve_range","dilated_cardiomyopathy_sound_pulmonary_valve_range","pulmonary_hypertension_sound_pulmonary_valve_range","tetralogy_of_fallot_sound_pulmonary_valve_range","ventricular_aneurysm_sound_pulmonary_valve_range","ebstein_anomaly_sound_pulmonary_valve_range"];
     const tricuspidRangeID = ["normal_heart_sound_tricuspid_valve_range","split_first_heart_sound_tricuspid_valve_range","split_second_heart_sound_tricuspid_valve_range","third_heart_sound_tricuspid_valve_range","fourth_heart_sound_tricuspid_valve_range","functional_murmur_sound_tricuspid_valve_range","diastolic_murmur_sound_tricuspid_valve_range","opening_snap_sound_tricuspid_valve_range","holosystolic_murmur_sound_tricuspid_valve_range","early_systolic_murmur_sound_tricuspid_valve_range","mid_systolic_murmur_sound_tricuspid_valve_range","continuous_murmur_sound_tricuspid_valve_range","austin_flint_murmur_sound_tricuspid_valve_range","pericardial_rub_sound_tricuspid_valve_range","graham_steell_murmur_sound_tricuspid_valve_range","aortic_valve_regurgitation_sound_tricuspid_valve_range","aortic_valve_stenosis_sound_tricuspid_valve_range","aortic_valve_stenosis_regurgitation_sound_tricuspid_valve_range","congenital_aortic_stenosis_sound_tricuspid_valve_range","mitral_valve_regurgitation_sound_tricuspid_valve_range","mitral_valve_stenosis_sound_tricuspid_valve_range","mitral_valve_prelapse_sound_tricuspid_valve_range","mitral_stenosis_regurgitation_sound_tricuspid_valve_range","mitral_stenosis_tricuspid_regurgitation_sound_tricuspid_valve_range","pulmonary_valve_stenosis_sound_tricuspid_valve_range","pulmonary_valve_regurgitation_sound_tricuspid_valve_range","tricuspid_valve_regurgitation_sound_tricuspid_valve_range","coarctation_of_the_aorta_sound_tricuspid_valve_range","hypertrophic_cardiomyopathy_sound_tricuspid_valve_range","patent_ductus_arteriosus_sound_tricuspid_valve_range","atrial_septal_defect_sound_tricuspid_valve_range","ventricular_septal_defect_sound_tricuspid_valve_range","acute_myocardial_infarction_sound_tricuspid_valve_range","congestive_heart_failure_sound_tricuspid_valve_range","systemic_hypertension_sound_tricuspid_valve_range","acute_pericarditis_sound_tricuspid_valve_range","dilated_cardiomyopathy_sound_tricuspid_valve_range","pulmonary_hypertension_sound_tricuspid_valve_range","tetralogy_of_fallot_sound_tricuspid_valve_range","ventricular_aneurysm_sound_tricuspid_valve_range","ebstein_anomaly_sound_tricuspid_valve_range"];
     const erbRangeID = ["normal_heart_sound_erbs_point_range","split_first_heart_sound_erbs_point_range","split_second_heart_sound_erbs_point_range","third_heart_sound_erbs_point_range","fourth_heart_sound_erbs_point_range","functional_murmur_sound_erbs_point_range","diastolic_murmur_sound_erbs_point_range","opening_snap_sound_erbs_point_range","holosystolic_murmur_sound_erbs_point_range","early_systolic_murmur_sound_erbs_point_range","mid_systolic_murmur_sound_erbs_point_range","continuous_murmur_sound_erbs_point_range","austin_flint_murmur_sound_erbs_point_range","pericardial_rub_sound_erbs_point_range","graham_steell_murmur_sound_erbs_point_range","aortic_valve_regurgitation_sound_erbs_point_range","aortic_valve_stenosis_sound_erbs_point_range","aortic_valve_stenosis_regurgitation_sound_erbs_point_range","congenital_aortic_stenosis_sound_erbs_point_range","mitral_valve_regurgitation_sound_erbs_point_range","mitral_valve_stenosis_sound_erbs_point_range","mitral_valve_prelapse_sound_erbs_point_range","mitral_stenosis_regurgitation_sound_erbs_point_range","mitral_stenosis_tricuspid_regurgitation_sound_erbs_point_range","pulmonary_valve_stenosis_sound_erbs_point_range","pulmonary_valve_regurgitation_sound_erbs_point_range","tricuspid_valve_regurgitation_sound_erbs_point_range","coarctation_of_the_aorta_sound_erbs_point_range","hypertrophic_cardiomyopathy_sound_erbs_point_range","patent_ductus_arteriosus_sound_erbs_point_range","atrial_septal_defect_sound_erbs_point_range","ventricular_septal_defect_sound_erbs_point_range","acute_myocardial_infarction_sound_erbs_point_range","congestive_heart_failure_sound_erbs_point_range","systemic_hypertension_sound_erbs_point_range","acute_pericarditis_sound_erbs_point_range","dilated_cardiomyopathy_sound_erbs_point_range","pulmonary_hypertension_sound_erbs_point_range","tetralogy_of_fallot_sound_erbs_point_range","ventricular_aneurysm_sound_erbs_point_range","ebstein_anomaly_sound_erbs_point_range"];
+    
+    const lungsFrontID_LUL = ["brochial_respiration_front_sound_LUL_range","bronchovesicular_respiration_front_sound_LUL_range","vesicular_respiration_front_sound_LUL_range","diminished_vescicular_respiration_front_sound_LUL_range","coarse_crackles_front_sound_LUL_range","fine_crackles_front_sound_LUL_range","wheezes_front_sound_LUL_range","rhonchi_front_sound_LUL_range","gurgling_rhonchi_front_sound_LUL_range","stridor_front_sound_LUL_range","pleural_friction_rub_front_sound_LUL_range","amphoric_respiration_front_sound_LUL_range","harsh_respiration_front_sound_LUL_range","asthma_front_sound_LUL_range","covid19_front_sound_LUL_range","right_sided_pneumothorax_front_sound_LUL_range","left_sided_pneumothorax_front_sound_LUL_range","pneumonia_front_sound_LUL_range"];
+    const lungsFrontID_LLL = ["brochial_respiration_front_sound_LLL_range","bronchovesicular_respiration_front_sound_LLL_range","vesicular_respiration_front_sound_LLL_range","diminished_vescicular_respiration_front_sound_LLL_range","coarse_crackles_front_sound_LLL_range","fine_crackles_front_sound_LLL_range","wheezes_front_sound_LLL_range","rhonchi_front_sound_LLL_range","gurgling_rhonchi_front_sound_LLL_range","stridor_front_sound_LLL_range","pleural_friction_rub_front_sound_LLL_range","amphoric_respiration_front_sound_LLL_range","harsh_respiration_front_sound_LLL_range","asthma_front_sound_LLL_range","covid19_front_sound_LLL_range","right_sided_pneumothorax_front_sound_LLL_range","left_sided_pneumothorax_front_sound_LLL_range","pneumonia_front_sound_LLL_range"];
+    const lungsFrontID_RUL = ["brochial_respiration_front_sound_RUL_range","bronchovesicular_respiration_front_sound_RUL_range","vesicular_respiration_front_sound_RUL_range","diminished_vescicular_respiration_front_sound_RUL_range","coarse_crackles_front_sound_RUL_range","fine_crackles_front_sound_RUL_range","wheezes_front_sound_RUL_range","rhonchi_front_sound_RUL_range","gurgling_rhonchi_front_sound_RUL_range","stridor_front_sound_RUL_range","pleural_friction_rub_front_sound_RUL_range","amphoric_respiration_front_sound_RUL_range","harsh_respiration_front_sound_RUL_range","asthma_front_sound_RUL_range","covid19_front_sound_RUL_range","right_sided_pneumothorax_front_sound_RUL_range","left_sided_pneumothorax_front_sound_RUL_range","pneumonia_front_sound_RUL_range"];
+    const lungsFrontID_RML = ["brochial_respiration_front_sound_RML_range","bronchovesicular_respiration_front_sound_RML_range","vesicular_respiration_front_sound_RML_range","diminished_vescicular_respiration_front_sound_RML_range","coarse_crackles_front_sound_RML_range","fine_crackles_front_sound_RML_range","wheezes_front_sound_RML_range","rhonchi_front_sound_RML_range","gurgling_rhonchi_front_sound_RML_range","stridor_front_sound_RML_range","pleural_friction_rub_front_sound_RML_range","amphoric_respiration_front_sound_RML_range","harsh_respiration_front_sound_RML_range","asthma_front_sound_RML_range","covid19_front_sound_RML_range","right_sided_pneumothorax_front_sound_RML_range","left_sided_pneumothorax_front_sound_RML_range","pneumonia_front_sound_RML_range"];
+    const lungsFrontID_RLL = ["brochial_respiration_front_sound_RLL_range","bronchovesicular_respiration_front_sound_RLL_range","vesicular_respiration_front_sound_RLL_range","diminished_vescicular_respiration_front_sound_RLL_range","coarse_crackles_front_sound_RLL_range","fine_crackles_front_sound_RLL_range","wheezes_front_sound_RLL_range","rhonchi_front_sound_RLL_range","gurgling_rhonchi_front_sound_RLL_range","stridor_front_sound_RLL_range","pleural_friction_rub_front_sound_RLL_range","amphoric_respiration_front_sound_RLL_range","harsh_respiration_front_sound_RLL_range","asthma_front_sound_RLL_range","covid19_front_sound_RLL_range","right_sided_pneumothorax_front_sound_RLL_range","left_sided_pneumothorax_front_sound_RLL_range","pneumonia_front_sound_RLL_range"];
+    
+    const lungsBackID_LUL = ["brochial_respiration_back_sound_LUL_range","bronchovesicular_respiration_back_sound_LUL_range","vesicular_respiration_back_sound_LUL_range","diminished_vescicular_respiration_back_sound_LUL_range","coarse_crackles_back_sound_LUL_range","fine_crackles_back_sound_LUL_range","wheezes_back_sound_LUL_range","rhonchi_back_sound_LUL_range","gurgling_rhonchi_back_sound_LUL_range","stridor_back_sound_LUL_range","pleural_friction_rub_back_sound_LUL_range","amphoric_respiration_back_sound_LUL_range","harsh_respiration_back_sound_LUL_range","asthma_back_sound_LUL_range","covid19_back_sound_LUL_range","right_sided_pneumothorax_back_sound_LUL_range","left_sided_pneumothorax_back_sound_LUL_range","pneumonia_back_sound_LUL_range"];
+    const lungsBackID_LML = ["brochial_respiration_back_sound_LML_range","bronchovesicular_respiration_back_sound_LML_range","vesicular_respiration_back_sound_LML_range","diminished_vescicular_respiration_back_sound_LML_range","coarse_crackles_back_sound_LML_range","fine_crackles_back_sound_LML_range","wheezes_back_sound_LML_range","rhonchi_back_sound_LML_range","gurgling_rhonchi_back_sound_LML_range","stridor_back_sound_LML_range","pleural_friction_rub_back_sound_LML_range","amphoric_respiration_back_sound_LML_range","harsh_respiration_back_sound_LML_range","asthma_back_sound_LML_range","covid19_back_sound_LML_range","right_sided_pneumothorax_back_sound_LML_range","left_sided_pneumothorax_back_sound_LML_range","pneumonia_back_sound_LML_range"];
+    const lungsBackID_LLL = ["brochial_respiration_back_sound_LLL_range","bronchovesicular_respiration_back_sound_LLL_range","vesicular_respiration_back_sound_LLL_range","diminished_vescicular_respiration_back_sound_LLL_range","coarse_crackles_back_sound_LLL_range","fine_crackles_back_sound_LLL_range","wheezes_back_sound_LLL_range","rhonchi_back_sound_LLL_range","gurgling_rhonchi_back_sound_LLL_range","stridor_back_sound_LLL_range","pleural_friction_rub_back_sound_LLL_range","amphoric_respiration_back_sound_LLL_range","harsh_respiration_back_sound_LLL_range","asthma_back_sound_LLL_range","covid19_back_sound_LLL_range","right_sided_pneumothorax_back_sound_LLL_range","left_sided_pneumothorax_back_sound_LLL_range","pneumonia_back_sound_LLL_range"];
+    const lungsBackID_RUL = ["brochial_respiration_back_sound_RUL_range","bronchovesicular_respiration_back_sound_RUL_range","vesicular_respiration_back_sound_RUL_range","diminished_vescicular_respiration_back_sound_RUL_range","coarse_crackles_back_sound_RUL_range","fine_crackles_back_sound_RUL_range","wheezes_back_sound_RUL_range","rhonchi_back_sound_RUL_range","gurgling_rhonchi_back_sound_RUL_range","stridor_back_sound_RUL_range","pleural_friction_rub_back_sound_RUL_range","amphoric_respiration_back_sound_RUL_range","harsh_respiration_back_sound_RUL_range","asthma_back_sound_RUL_range","covid19_back_sound_RUL_range","right_sided_pneumothorax_back_sound_RUL_range","left_sided_pneumothorax_back_sound_RUL_range","pneumonia_back_sound_RUL_range"];
+    const lungsBackID_RML = ["brochial_respiration_back_sound_RML_range","bronchovesicular_respiration_back_sound_RML_range","vesicular_respiration_back_sound_RML_range","diminished_vescicular_respiration_back_sound_RML_range","coarse_crackles_back_sound_RML_range","fine_crackles_back_sound_RML_range","wheezes_back_sound_RML_range","rhonchi_back_sound_RML_range","gurgling_rhonchi_back_sound_RML_range","stridor_back_sound_RML_range","pleural_friction_rub_back_sound_RML_range","amphoric_respiration_back_sound_RML_range","harsh_respiration_back_sound_RML_range","asthma_back_sound_RML_range","covid19_back_sound_RML_range","right_sided_pneumothorax_back_sound_RML_range","left_sided_pneumothorax_back_sound_RML_range","pneumonia_back_sound_RML_range"];
+    const lungsBackID_RLL = ["brochial_respiration_back_sound_RLL_range","bronchovesicular_respiration_back_sound_RLL_range","vesicular_respiration_back_sound_RLL_range","diminished_vescicular_respiration_back_sound_RLL_range","coarse_crackles_back_sound_RLL_range","fine_crackles_back_sound_RLL_range","wheezes_back_sound_RLL_range","rhonchi_back_sound_RLL_range","gurgling_rhonchi_back_sound_RLL_range","stridor_back_sound_RLL_range","pleural_friction_rub_back_sound_RLL_range","amphoric_respiration_back_sound_RLL_range","harsh_respiration_back_sound_RLL_range","asthma_back_sound_RLL_range","covid19_back_sound_RLL_range","right_sided_pneumothorax_back_sound_RLL_range","left_sided_pneumothorax_back_sound_RLL_range","pneumonia_back_sound_RLL_range"];
+    
+    const bowelID_LUQ = ["normal_bowel_sound_LUQ_range","hyperactive_sound_LUQ_range","hypoactive_sound_LUQ_range","borborygmus_sound_LUQ_range","captement_sound_LUQ_range","peritoneal_friction_rub_sound_LUQ_range","normal_bowel_sound_with_bruits_sound_LUQ_range","irritable_bowel_syndrome_sound_LUQ_range","diarrhea_sound_LUQ_range","bruits_due_to_renal_arteries_stenosis_sound_LUQ_range","constipation_sound_LUQ_range","ulcerative_colitis_sound_LUQ_range","crohns_disease_sound_LUQ_range","paralytic_ileus_sound_LUQ_range"];
+    const bowelID_LLQ = ["normal_bowel_sound_LLQ_range","hyperactive_sound_LLQ_range","hypoactive_sound_LLQ_range","borborygmus_sound_LLQ_range","captement_sound_LLQ_range","peritoneal_friction_rub_sound_LLQ_range","normal_bowel_sound_with_bruits_sound_LLQ_range","irritable_bowel_syndrome_sound_LLQ_range","diarrhea_sound_LLQ_range","bruits_due_to_renal_arteries_stenosis_sound_LLQ_range","constipation_sound_LLQ_range","ulcerative_colitis_sound_LLQ_range","crohns_disease_sound_LLQ_range","paralytic_ileus_sound_LLQ_range"];
+    const bowelID_RUQ = ["normal_bowel_sound_RUQ_range","hyperactive_sound_RUQ_range","hypoactive_sound_RUQ_range","borborygmus_sound_RUQ_range","captement_sound_RUQ_range","peritoneal_friction_rub_sound_RUQ_range","normal_bowel_sound_with_bruits_sound_RUQ_range","irritable_bowel_syndrome_sound_RUQ_range","diarrhea_sound_RUQ_range","bruits_due_to_renal_arteries_stenosis_sound_RUQ_range","constipation_sound_RUQ_range","ulcerative_colitis_sound_RUQ_range","crohns_disease_sound_RUQ_range","paralytic_ileus_sound_RUQ_range"];
+    const bowelID_RLQ = ["normal_bowel_sound_RLQ_range","hyperactive_sound_RLQ_range","hypoactive_sound_RLQ_range","borborygmus_sound_RLQ_range","captement_sound_RLQ_range","peritoneal_friction_rub_sound_RLQ_range","normal_bowel_sound_with_bruits_sound_RLQ_range","irritable_bowel_syndrome_sound_RLQ_range","diarrhea_sound_RLQ_range","bruits_due_to_renal_arteries_stenosis_sound_RLQ_range","constipation_sound_RLQ_range","ulcerative_colitis_sound_RLQ_range","crohns_disease_sound_RLQ_range","paralytic_ileus_sound_RLQ_range"];
 
     // Javascript Ranges
     const mitralRangeID_value = mitralRangeID.map(id => id + '_value');
@@ -83,6 +31,25 @@
     const tricuspidRangeID_value = tricuspidRangeID.map(id => id + '_value');
     const erbRangeID_value = erbRangeID.map(id => id + '_value');
 
+    const lungsFrontID_LUL_value = lungsFrontID_LUL.map(id => id + '_value');
+    const lungsFrontID_LLL_value = lungsFrontID_LLL.map(id => id + '_value');
+    const lungsFrontID_RUL_value = lungsFrontID_RUL.map(id => id + '_value');
+    const lungsFrontID_RML_value = lungsFrontID_RML.map(id => id + '_value');
+    const lungsFrontID_RLL_value = lungsFrontID_RLL.map(id => id + '_value');
+
+    const lungsBackID_LUL_value = lungsBackID_LUL.map(id => id + '_value');
+    const lungsBackID_LML_value = lungsBackID_LML.map(id => id + '_value');
+    const lungsBackID_LLL_value = lungsBackID_LLL.map(id => id + '_value');
+    const lungsBackID_RUL_value = lungsBackID_RUL.map(id => id + '_value');
+    const lungsBackID_RML_value = lungsBackID_RML.map(id => id + '_value');
+    const lungsBackID_RLL_value = lungsBackID_RLL.map(id => id + '_value');
+
+    const bowelID_LUQ_value = bowelID_LUQ.map(id => id + '_value');
+    const bowelID_LLQ_value = bowelID_LLQ.map(id => id + '_value');
+    const bowelID_RUQ_value = bowelID_RUQ.map(id => id + '_value');
+    const bowelID_RLQ_value = bowelID_RLQ.map(id => id + '_value');
+    
+    /* =================================================== HEART ================================================= */
     // Range input and p tag Synchronization - Mitral Valve
     mitralRangeID.forEach((id,index) => {
         const rangeInput = document.getElementById(id);
@@ -177,5 +144,293 @@
             });
         });
     });
-    
+
+    /* ================================================= LUNGS FRONT ============================================= */
+    // Range input and p tag Synchronization - Lungs Front - LUL
+    lungsFrontID_LUL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsFrontID_LUL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsFrontID_LUL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsFrontID_LUL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Front - LLL
+    lungsFrontID_LLL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsFrontID_LLL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsFrontID_LLL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsFrontID_LLL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Front - RUL
+    lungsFrontID_RUL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsFrontID_RUL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsFrontID_RUL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsFrontID_RUL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Front - RML
+    lungsFrontID_RML.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsFrontID_RML_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsFrontID_RML.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsFrontID_RML_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Front - RLL
+    lungsFrontID_RLL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsFrontID_RLL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsFrontID_RLL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsFrontID_RLL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    /* ================================================= LUNGS BACK ============================================== */
+    // Range input and p tag Synchronization - Lungs Back - LUL
+    lungsBackID_LUL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsBackID_LUL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsBackID_LUL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsBackID_LUL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Back - LML
+    lungsBackID_LML.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsBackID_LML_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsBackID_LML.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsBackID_LML_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Back - LLL
+    lungsBackID_LLL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsBackID_LLL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsBackID_LLL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsBackID_LLL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Back - RUL
+    lungsBackID_RUL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsBackID_RUL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsBackID_RUL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsBackID_RUL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Back - RML
+    lungsBackID_RML.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsBackID_RML_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsBackID_RML.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsBackID_RML_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Lungs Back - RLL
+    lungsBackID_RLL.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(lungsBackID_RLL_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            lungsBackID_RLL.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(lungsBackID_RLL_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    /* ==================================================== BOWEL ============================================== */
+    // Range input and p tag Synchronization - Bowel - LUQ
+    bowelID_LUQ.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(bowelID_LUQ_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            bowelID_LUQ.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(bowelID_LUQ_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Bowel - LLQ
+    bowelID_LLQ.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(bowelID_LLQ_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            bowelID_LLQ.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(bowelID_LLQ_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Bowel - RUQ
+    bowelID_RUQ.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(bowelID_RUQ_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            bowelID_RUQ.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(bowelID_RUQ_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
+    // Range input and p tag Synchronization - Bowel - RLQ
+    bowelID_RLQ.forEach((id,index) => {
+        const rangeInput = document.getElementById(id);
+        const valueParagraph = document.getElementById(bowelID_RLQ_value[index]);
+
+        rangeInput.addEventListener('input', () => {
+            const value = rangeInput.value;
+            valueParagraph.textContent = value + '%';
+
+            // Sync values among range inputs
+            bowelID_RLQ.forEach((otherId,otherIndex) => {
+                if (otherIndex !== index) {
+                    document.getElementById(bowelID_RLQ_value[otherIndex]).textContent = value + '%';
+                    document.getElementById(otherId).value = value;
+                }
+            });
+        });
+    });
+
 </script>
