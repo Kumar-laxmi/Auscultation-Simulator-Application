@@ -12,6 +12,8 @@
 - Add default program in Background             sudo crontab -e
 -                                               @reboot sudo python <pwd>
 - Animation:                                    cmatrix -BC blue
+- Updating Raspberry Pi:                        sudo apt update
+-                                               sudo apt full-upgrade                                           
 
 ROUGH Work
 
