@@ -14,3 +14,31 @@
 - Animation:                                    cmatrix -BC blue
 - Updating Raspberry Pi:                        sudo apt update
 -                                               sudo apt full-upgrade 
+
+
+
+from  n    params  module                                       arguments                     
+0                  -1  1       928  ultralytics.nn.modules.Conv                  [3, 32, 3, 2]                 
+1                  -1  1     18560  ultralytics.nn.modules.Conv                  [32, 64, 3, 2]                
+2                  -1  1     29056  ultralytics.nn.modules.C2f                   [64, 64, 1, True]             
+3                  -1  1     73984  ultralytics.nn.modules.Conv                  [64, 128, 3, 2]               
+4                  -1  2    197632  ultralytics.nn.modules.C2f                   [128, 128, 2, True]           
+5                  -1  1    295424  ultralytics.nn.modules.Conv                  [128, 256, 3, 2]              
+6                  -1  2    788480  ultralytics.nn.modules.C2f                   [256, 256, 2, True]           
+7                  -1  1   1180672  ultralytics.nn.modules.Conv                  [256, 512, 3, 2]              
+8                  -1  1   1838080  ultralytics.nn.modules.C2f                   [512, 512, 1, True]           
+9                  -1  1    656896  ultralytics.nn.modules.SPPF                  [512, 512, 5]                 
+10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+11             [-1, 6]  1         0  ultralytics.nn.modules.Concat                [1]                           
+12                  -1  1    591360  ultralytics.nn.modules.C2f                   [768, 256, 1]                 
+13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+14             [-1, 4]  1         0  ultralytics.nn.modules.Concat                [1]                           
+15                  -1  1    148224  ultralytics.nn.modules.C2f                   [384, 128, 1]                 
+16                  -1  1    147712  ultralytics.nn.modules.Conv                  [128, 128, 3, 2]              
+17            [-1, 12]  1         0  ultralytics.nn.modules.Concat                [1]                           
+18                  -1  1    493056  ultralytics.nn.modules.C2f                   [384, 256, 1]                 
+19                  -1  1    590336  ultralytics.nn.modules.Conv                  [256, 256, 3, 2]              
+20             [-1, 9]  1         0  ultralytics.nn.modules.Concat                [1]                           
+21                  -1  1   1969152  ultralytics.nn.modules.C2f                   [768, 512, 1]                 
+22        [15, 18, 21]  1   2117596  ultralytics.nn.modules.Detect                [4, [128, 256, 512]]          
+Model summary: 225 layers, 11137148 parameters, 11137132 gradients, 28.7 GFLOPs

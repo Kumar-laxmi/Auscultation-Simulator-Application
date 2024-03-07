@@ -269,4 +269,7 @@ The project scope of the Auscultation Simulator encompasses the design and devel
 #### GPIO Connection of LCD Display and Buzzer with Raspberry Pi:
 ![GPIO with Pi](app/static/image/screen_shots/gpio_pi.jpeg)
 
+#### GPIO Diagram of Raspberry Pi 4 (Model B)
+![GPIO Diagram](app/static/image/screen_shots/gpio_pinout_diagram.png)
+
 
