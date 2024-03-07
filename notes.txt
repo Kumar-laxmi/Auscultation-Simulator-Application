@@ -17,28 +17,19 @@
 
 
 
-from  n    params  module                                       arguments                     
-0                  -1  1       928  ultralytics.nn.modules.Conv                  [3, 32, 3, 2]                 
-1                  -1  1     18560  ultralytics.nn.modules.Conv                  [32, 64, 3, 2]                
-2                  -1  1     29056  ultralytics.nn.modules.C2f                   [64, 64, 1, True]             
-3                  -1  1     73984  ultralytics.nn.modules.Conv                  [64, 128, 3, 2]               
-4                  -1  2    197632  ultralytics.nn.modules.C2f                   [128, 128, 2, True]           
-5                  -1  1    295424  ultralytics.nn.modules.Conv                  [128, 256, 3, 2]              
-6                  -1  2    788480  ultralytics.nn.modules.C2f                   [256, 256, 2, True]           
-7                  -1  1   1180672  ultralytics.nn.modules.Conv                  [256, 512, 3, 2]              
-8                  -1  1   1838080  ultralytics.nn.modules.C2f                   [512, 512, 1, True]           
-9                  -1  1    656896  ultralytics.nn.modules.SPPF                  [512, 512, 5]                 
-10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
-11             [-1, 6]  1         0  ultralytics.nn.modules.Concat                [1]                           
-12                  -1  1    591360  ultralytics.nn.modules.C2f                   [768, 256, 1]                 
-13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
-14             [-1, 4]  1         0  ultralytics.nn.modules.Concat                [1]                           
-15                  -1  1    148224  ultralytics.nn.modules.C2f                   [384, 128, 1]                 
-16                  -1  1    147712  ultralytics.nn.modules.Conv                  [128, 128, 3, 2]              
-17            [-1, 12]  1         0  ultralytics.nn.modules.Concat                [1]                           
-18                  -1  1    493056  ultralytics.nn.modules.C2f                   [384, 256, 1]                 
-19                  -1  1    590336  ultralytics.nn.modules.Conv                  [256, 256, 3, 2]              
-20             [-1, 9]  1         0  ultralytics.nn.modules.Concat                [1]                           
-21                  -1  1   1969152  ultralytics.nn.modules.C2f                   [768, 512, 1]                 
-22        [15, 18, 21]  1   2117596  ultralytics.nn.modules.Detect                [4, [128, 256, 512]]          
-Model summary: 225 layers, 11137148 parameters, 11137132 gradients, 28.7 GFLOPs
+Table 1. Training & Validation Performance of Model for all Classes
+Model summary: 168 layers, 11127132 parameters, 0 gradients, 28.4 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% 11/11 [00:30<00:00,  2.80s/it]
+                   all        347       5594      0.991      0.986      0.993      0.874
+               Bicycle        347        410      0.984      0.976      0.993      0.618
+                   Car        347       3632      0.998      0.992      0.995      0.937
+                   Bus        347        323      0.999      0.994      0.995      0.989
+                 Lorry        347       1229      0.983      0.982      0.988      0.951
+
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% 22/22 [00:31<00:00,  1.44s/it]
+                 all        347       5594       0.99      0.978      0.992      0.862
+             Bicycle        347        410      0.969      0.949      0.985      0.578
+                 Car        347       3632      0.997      0.989      0.995      0.936
+                 Bus        347        323      0.998      0.994      0.995      0.987
+               Lorry        347       1229      0.995      0.982      0.995      0.946
+
