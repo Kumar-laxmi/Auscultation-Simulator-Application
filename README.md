@@ -1,4 +1,4 @@
-![Image](app/static/image/readme_banner.png)
+![Auscultation Simulator Application](app/static/image/readme_banner.png)
 
 ## Introduction
 <p>
@@ -184,11 +184,12 @@ The project scope of the Auscultation Simulator encompasses the design and devel
 ## Project Installation:
 **STEP 1:** Clone the repository from GitHub.
 ```bash
-
+  git clone https://github.com/Kumar-laxmi/Auscultation-Simulator-Application.git
 ```
 
 **STEP 2:** Change the directory to the repository.
 ```bash
+  cd Auscultation-Simulator-Application
 ```
 
 **STEP 3:** Create a virtual environment
@@ -237,6 +238,35 @@ The project scope of the Auscultation Simulator encompasses the design and devel
 ```
 
 ## Output Screen-shots:
-![image]()
+#### The preview of Dashboard when opening the simulator
+![image](app/static/image/screen_shots/ss1.png)
+
+#### When Audio waveform viewer is enabled and no audio is selected
+![image](app/static/image/screen_shots/ss2.png)
+
+#### When Audio waveform viewer is enabled and audio & location is selected
+![image](app/static/image/screen_shots/ss3.png)
+
+#### When Audio and ECG Waveforms are enabled
+![image](app/static/image/screen_shots/ss4.png)
+
+#### When full screen mode for waveform is activated
+![image](app/static/image/screen_shots/ss5.png)
+
+#### When only ECG and Respiratory Rate waveforms are viewed in full screen mode
+![image](app/static/image/screen_shots/ss6.png)
+
+## Hardware Implementation:
+#### Raspberry Pi Used:
+![Raspberry Pi 4 Model B](app/static/image/screen_shots/raspberrypi.jpeg)
+
+#### Hardware connection with USB 3.0 7-port Hub:
+![Pi with Hub](app/static/image/screen_shots/pi_with_hub.jpeg)
+
+#### 16x2 LCD Display and driver used:
+![LCD with driver](app/static/image/screen_shots/lcd_display.jpeg)
+
+#### GPIO Connection of LCD Display and Buzzer with Raspberry Pi:
+![GPIO with Pi](app/static/image/screen_shots/gpio_pi.jpeg)
 
 
