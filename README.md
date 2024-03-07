@@ -271,5 +271,5 @@ The project scope of the Auscultation Simulator encompasses the design and devel
 
 #### GPIO Diagram of Raspberry Pi 4 (Model B)
 ![GPIO Diagram](app/static/image/screen_shots/gpio_pinout_diagram.png)
-
+![Pin Diagram](app/static/image/screen_shots/circuit.png)
 
