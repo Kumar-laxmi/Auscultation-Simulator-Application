@@ -1,0 +1,15 @@
+,sound_name,audio_file_path
+0,Borborygmus,app/static/audio/abdomen/borborygmus.wav
+1,bruits_due_to_renal_arteries_stenosis,app/static/audio/abdomen/bruits_due_to_renal_arteries_stenosis.wav
+2,capotement,app/static/audio/abdomen/capotement.wav
+3,constipation,app/static/audio/abdomen/constipation.wav
+4,crohns_disease,app/static/audio/abdomen/crohns_disease.wav
+5,diarrhea,app/static/audio/abdomen/diarrhea.wav
+6,hyperactive_sounds,app/static/audio/abdomen/hyperactive_sounds.wav
+7,hypoactive_sounds,app/static/audio/abdomen/hypoactive_sounds.wav
+8,irritable_bowel_syndrome,app/static/audio/abdomen/irritable_bowel_syndrome.wav
+9,normal_bowel_sounds_with_bruits,app/static/audio/abdomen/normal_bowel_sound_with_bruits.wav
+10,normal_bowel,app/static/audio/abdomen/normal_bowel.wav
+11,paralytic_ileus,app/static/audio/abdomen/paralytic_ileus.wav
+12,peritoneal_friction_rub,app/static/audio/abdomen/peritoneal_friction_rub.wav
+13,ulcerative_colitis,app/static/audio/abdomen/ulcerative_colitis.wav

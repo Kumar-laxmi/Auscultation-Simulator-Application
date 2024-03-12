@@ -4,7 +4,6 @@ from django.shortcuts import render
 import soundcard as sc
 import soundfile as sf
 from pydub import AudioSegment
-import sqlite3
 import pandas as pd
 import io
 import threading
@@ -30,13 +29,9 @@ except:
 
 speakers = sc.all_speakers()
 
-try:
-    con = sqlite3.connect("/home/maveric/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
-except:
-    con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
-df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
-df_lungs = pd.read_sql_query("SELECT * FROM app_lungaudio", con)
-df_bowel = pd.read_sql_query("SELECT * FROM app_bowelaudio", con)
+df_heart = pd.read_csv('app/static/paths/heart_sound.csv')
+df_lungs = pd.read_csv('app/static/paths/lungs_sound.csv')
+df_bowel = pd.read_csv('app/static/paths/bowel_sound.csv')
 
 playing_thread_mitral, playing_thread_aortic, playing_thread_pulmonary, playing_thread_tricuspid, playing_thread_erb, playing_thread_lungs, playing_thread_bowel = None, None, None, None, None, None, None
 
