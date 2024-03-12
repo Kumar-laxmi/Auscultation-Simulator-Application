@@ -31,7 +31,7 @@ except:
 speakers = sc.all_speakers()
 
 try:
-    con = sqlite3.connect("/home/pi/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
+    con = sqlite3.connect("/home/maveric/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 except:
     con = sqlite3.connect("/Users/kumarlaxmikant/Desktop/Visual_Studio/Auscultation-Simulator-Application/db.sqlite3", check_same_thread=False)
 df_heart = pd.read_sql_query("SELECT * FROM app_heartaudio", con)
@@ -118,7 +118,8 @@ def play_bowel(index, samples, samplerate):
     while not stop_flag_bowel.is_set():
         speaker.play(samples, samplerate)
         time.sleep(delay_seconds)
-        
+
+# Function to update Heart Rate and update audio cards according to that  
 def heartUpdate(request):
     global hr_show, current_mitral_valve_sound, current_aortic_valve_sound, current_pulmonary_valve_sound, current_tricuspid_valve_sound, current_erb_valve_sound
 
@@ -152,6 +153,7 @@ def heartUpdate(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Function to update Breadth Rate and update audio cards according to that 
 def breathUpdate(request):
     global rr_show
     global current_lungs_sound, current_bowel_sound
@@ -180,6 +182,7 @@ def breathUpdate(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Mitral Valve
 def mitralVolumeChange(request):
     global current_mitral_valve_sound
     if request.method == 'POST':
@@ -191,6 +194,7 @@ def mitralVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Aortic Valve
 def aorticVolumeChange(request):
     global current_aortic_valve_sound
     if request.method == 'POST':
@@ -202,6 +206,7 @@ def aorticVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Pulmonary Valve
 def pulmonaryVolumeChange(request):
     global current_pulmonary_valve_sound
     if request.method == 'POST':
@@ -213,6 +218,7 @@ def pulmonaryVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Tricuspid Valve
 def tricuspidVolumeChange(request):
     global current_tricuspid_valve_sound
     if request.method == 'POST':
@@ -224,6 +230,7 @@ def tricuspidVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Erb's Point
 def erbVolumeChange(request):
     global current_erb_valve_sound
     if request.method == 'POST':
@@ -235,6 +242,7 @@ def erbVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Lungs
 def lungsVolumeChange(request):
     global current_lungs_sound
     if request.method == 'POST':
@@ -246,6 +254,7 @@ def lungsVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volume of Sound cards associated to Bowel
 def bowelVolumeChange(request):
     global current_bowel_sound
     if request.method == 'POST':
@@ -257,6 +266,7 @@ def bowelVolumeChange(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volumes of all sound cards to 0%
 def muteVolume(request):
     if request.method == 'POST':
         for i in range(3,10):
@@ -272,7 +282,7 @@ def muteVolume(request):
     else:
         return HttpResponse("Request method is not a POST")
 
-
+# Update the volumes of all sound cards to 50%
 def defaultVolume(request):
     if request.method == 'POST':
         for i in range(3,10):
@@ -288,6 +298,7 @@ def defaultVolume(request):
     else:
         return HttpResponse("Request method is not a POST")
 
+# Update the volumes of all sound cards to 100%
 def fullVolume(request):
     if request.method == 'POST':
         for i in range(3,10):
